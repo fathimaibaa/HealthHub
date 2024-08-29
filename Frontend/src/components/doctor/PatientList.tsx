@@ -27,7 +27,7 @@ const AppointmentDetails: React.FC = () => {
   useEffect(() => {
     const fetchBookingDetails = async () => {
       try {
-        const response = await axiosJWT.get(
+        const response:any = await axiosJWT.get(
           `${DOCTOR_API}/bookingdetails/${id}`
         );
         const bookingData = response.data.data.bookingDetails;

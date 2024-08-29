@@ -5,12 +5,12 @@ import { Payload } from "../types/PropsType";
 import logout, { doctorlogout } from "./Logout";
 import { getItemFromLocalStorage } from "./Setnget";
 
-const axiosJWT = axios.create();
+const axiosJWT = axios.create({});
 
 const getNewAccessToken = async () => {
   try {
     let refresh_token = getItemFromLocalStorage("refresh_token") as string
-    const { data } = await axios.post(TOKEN_API + "/refresh_token", {
+    const { data } : any = await axios.post(TOKEN_API + "/refresh_token", {
       refresh_token,
     });
     return data?.access_token;
@@ -31,7 +31,7 @@ const getAccessToken = async () => {
       }
 
 
-    const { data } = await axios.get(TOKEN_API + `/accessToken?access_token=${access_token}`);
+    const { data } :any = await axios.get(TOKEN_API + `/accessToken?access_token=${access_token}`);
     
     let token = access_token;
     let user = data?.user || data?.doctor;
@@ -50,7 +50,7 @@ const getAccessToken = async () => {
   }
 };
 
-axiosJWT.interceptors.request.use(async (config) => {
+axiosJWT.interceptors.request.use(async (config:any) => {
     let currentDate = new Date();
     let decodedToken;
     let accessToken;

@@ -17,7 +17,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axiosJWT.get(`${ADMIN_API}/doctors`);
+        const response :any= await axiosJWT.get(`${ADMIN_API}/doctors`);
         if (Array.isArray(response.data.doctors)) {
           setDoctors(response.data.doctors);
         }
@@ -28,7 +28,7 @@ const Dashboard: React.FC = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await axiosJWT.get(`${ADMIN_API}/users`);
+        const response:any = await axiosJWT.get(`${ADMIN_API}/users`);
         if (Array.isArray(response.data.users)) {
           setUsers(response.data.users);
         }
@@ -39,7 +39,7 @@ const Dashboard: React.FC = () => {
 
     const fetchAppointments = async () => {
       try {
-        const response = await axiosJWT.get(`${ADMIN_API}/appoinments`);
+        const response :any= await axiosJWT.get(`${ADMIN_API}/appoinments`);
         if (Array.isArray(response.data.appoinments)) {
           setAppointments(response.data.appoinments);
         }

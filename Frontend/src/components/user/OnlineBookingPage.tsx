@@ -27,7 +27,7 @@ const AppointmentOnlineBookingPage: React.FC = () => {
     patientGender: "",
   });
   const [departments, setDepartments] = useState<{ [key: string]: string }>({});
-  const [dates, setDates] = useState<string[]>([]);
+  const [ dates,setDates] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<string | null>(null);
@@ -41,10 +41,10 @@ const AppointmentOnlineBookingPage: React.FC = () => {
 useEffect(()=>{
   const fetchDoctorsAndDepartments = async () => {
     try {
-      const response = await axiosJWT.get(`${USER_API}/doctor/${id}`);
+      const response:any = await axiosJWT.get(`${USER_API}/doctor/${id}`);
       setDoctor(response.data.doctor);
 
-      const deptResponse = await axiosJWT.get(`${USER_API}/department/list`);
+      const deptResponse:any = await axiosJWT.get(`${USER_API}/department/list`);
       const listedDepartments = deptResponse.data.departments.filter(
         (dept: DepartmentInterface) => dept.isListed
       );
@@ -60,7 +60,7 @@ useEffect(()=>{
       setDepartments(departmentMap);
 
       try {
-        const datesResponse = await axiosJWT.get(
+        const datesResponse :any= await axiosJWT.get(
           `${USER_API}/time-slots/${id}/dates`
         );
         const formattedDates: string[] = datesResponse.data.dateSlots.map(
@@ -100,7 +100,7 @@ useEffect(()=>{
 
     const fetchDoctorDetails = async () => {
       try {
-        const response = await axiosJWT.get(`${USER_API}/doctor/${id}`);
+        const response:any = await axiosJWT.get(`${USER_API}/doctor/${id}`);
         setDoctor(response.data.doctor);
       } catch (error) {
         console.error("Error fetching doctor details:", error);
@@ -117,7 +117,7 @@ useEffect(()=>{
     const fetchTimeSlots = async () => {
       if (selectedDate) {
         try {
-          const response = await axiosJWT.get(
+          const response:any = await axiosJWT.get(
             `${USER_API}/timeslots/${id}?date=${selectedDate.toISOString()}`
           );
 
@@ -147,7 +147,7 @@ useEffect(()=>{
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await axiosJWT.get(`${USER_API}/bookings/${userId}`);
+        const response:any = await axiosJWT.get(`${USER_API}/bookings/${userId}`);
         setBookings(response.data.data.bookingDetails);
       } catch (error) {
         console.error("Error fetching bookings:", error);
@@ -183,7 +183,7 @@ useEffect(()=>{
         timeSlot: selectedTimeSlot,
       };
 
-      const response = await axiosJWT.post(
+      const response:any = await axiosJWT.post(
         `${USER_API}/appointments`,
         appointmentData
      ,);
@@ -222,7 +222,7 @@ useEffect(()=>{
         timeSlot: selectedTimeSlot,
       };
 
-      const response = await axiosJWT.post(
+      const response:any = await axiosJWT.post(
         `${USER_API}/walletPayment`,
         appointmentData
       );
@@ -303,7 +303,7 @@ useEffect(()=>{
   const handleTimeSlotSelection = (slot: string) => {
     setSelectedTimeSlot(selectedTimeSlot === slot ? null : slot);
   };
-
+console.log(dates)
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Book an Appointment</h1>

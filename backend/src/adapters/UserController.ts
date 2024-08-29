@@ -28,7 +28,7 @@ import {doctorDbInterface} from '../app/interfaces/DoctorDBRepository'
 import { getDoctors,getSingleDoctor } from "../app/use-cases/Admin/AdminRead";
 import { TimeSlotDbInterface } from "../app/interfaces/TimeSlotDbRepository";
 import { TimeSlotRepositoryMongodbType } from "../frameworks/database/repositories/TimeSlotRepositoryMongodb";
-import { getAllTimeSlot } from "../app/use-cases/user/timeslots/get and update";
+import { getAllTimeSlot } from "../app/use-cases/user/timeslots/Get and Update";
 import { getAllTimeSlotsByDoctorId, getDateSlotsByDoctorId } from "../app/use-cases/Doctor/Timeslot";
 import { getUserProfile, getWalletUser, updateUser, WalletTransactions } from "../app/use-cases/user/auth/read&update/Profile";
 import { fetchPrescriptionUsecase,uploadLabDocuments,getDocuments, deleteSingleDocument } from "../app/use-cases/Prescription/PrescriptionUseCase";

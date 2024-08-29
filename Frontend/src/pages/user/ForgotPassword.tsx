@@ -4,25 +4,33 @@ import { useFormik } from "formik";
 import axios from "axios";
 import showToast from "../../utils/Toaster";
 
+
+
+interface ForgotPasswordResponse {
+  message: string;
+}
+
+
 const ForgotPassword = () => {
   const formik = useFormik({
     initialValues: { email: "" },
     validate: ({ email }) => {
-      let errors: { email?: string } = {}
-
+      let errors: { email?: string } = {};
+  
       if (!email.trim().length) errors.email = "Email is Required*";
       else if (!emailRegex.test(email)) errors.email = "Invalid email address";
       return errors;
     },
     onSubmit: ({ email }) => {
       axios
-        .post(USER_API + "/forgot_password", { email })
+        .post<ForgotPasswordResponse>(USER_API + "/forgot_password", { email })
         .then(({ data }) => showToast(data.message, "success"))
         .catch(({ response }) => {
           showToast(response.data.message, "error");
         });
     },
   });
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen">

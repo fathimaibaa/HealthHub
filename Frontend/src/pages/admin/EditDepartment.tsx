@@ -5,21 +5,20 @@ import { ADMIN_API } from '../../constants/Index';
 import AdminHeader from '../../components/admin/HeaderSidebar/Header';
 import AdminSidebar from '../../components/admin/HeaderSidebar/Sidebar';
 import showToast from "../../utils/Toaster";
-import { AxiosError } from 'axios';
 
 const EditDepartmentPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [departmentName, setDepartmentName] = useState('');
-  const [isListed, setIsListed] = useState(false);
-   
+  const [departmentName, setDepartmentName] = useState<string>('');
+  const [isListed, setIsListed] = useState<boolean>(false);
+
   useEffect(() => {
-    axiosJWT.put(`${ADMIN_API}/department/${id}`)
+    axiosJWT.get<{ departmentName: string; isListed: boolean }>(`${ADMIN_API}/department/${id}`)
       .then(response => {
         setDepartmentName(response.data.departmentName);
         setIsListed(response.data.isListed);
       })
-      .catch(error => {
+      .catch((error: unknown) => {
         console.log(error);
         showToast('Failed to fetch department details', 'error');
       });
@@ -28,7 +27,7 @@ const EditDepartmentPage: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await axiosJWT.put(
+      const response = await axiosJWT.put<{ success: boolean }>(
         `${ADMIN_API}/department/${id}`,
         { departmentName, isListed }
       );
@@ -41,8 +40,10 @@ const EditDepartmentPage: React.FC = () => {
     } catch (error: unknown) {
       let errorMessage = 'An error occurred while updating the department';
 
-      if (error instanceof AxiosError) {
-        errorMessage = error.response?.data?.message || errorMessage;
+      // Manual type guard to check if the error is an Axios error
+      if (error && typeof (error as any).response === 'object') {
+        const axiosError = error as any; // cast to any
+        errorMessage = axiosError.response?.data?.message || errorMessage;
       }
 
       showToast(errorMessage, 'error');

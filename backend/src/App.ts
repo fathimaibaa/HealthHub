@@ -1,7 +1,7 @@
 import express, { Application, NextFunction } from "express";
 import http from "http";
 import serverConfig from "./frameworks/webserver/Server";
-import routes from "./frameworks/webserver/routes";
+import routes from "./frameworks/webserver/routes/Index";
 import connectDb from "./frameworks/database/Connection";
 import expressConfig from "./frameworks/webserver/ExpressConfig";
 import errorHandlingMiddleware from "./frameworks/webserver/middlewares/ErrorhandleMiddleware";

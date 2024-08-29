@@ -14,7 +14,7 @@ const WalletPage: React.FC = () => {
 
   useEffect(() => {
     const fetchWalletAmount = async () => {
-      const response = await axiosJWT.get(`${USER_API}/fetchWallet/${user.id}`);
+      const response:any = await axiosJWT.get(`${USER_API}/fetchWallet/${user.id}`);
       setWalletAmount(response.data.getWallet.balance);
     };
 

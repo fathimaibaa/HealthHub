@@ -1,9 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import doctor from '../../assets/images/doctor.jpeg'; 
 
 const Banner: React.FC = () => {
-  const navigate = useNavigate();
   return (
     <div className="flex flex-col lg:flex-row items-center justify-between w-full h-[80vh] bg-white text-purple-900 py-12 lg:py-24 px-6 lg:px-20 rounded-lg shadow-md">
       <div className="lg:w-1/2 flex flex-col items-start justify-center text-left space-y-4">

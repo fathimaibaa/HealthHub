@@ -9,6 +9,12 @@ import {
 } from "../../utils/Setnget";
 import showToast from "../../utils/Toaster";
 import { useNavigate } from "react-router-dom";
+interface VerifyOtpResponse {
+  message: string;
+}
+interface ResendOtpResponse {
+  message: string;
+}
 
 const OTPForm: React.FC = () => {
   const [seconds, setSeconds] = useState(60);
@@ -29,7 +35,7 @@ const OTPForm: React.FC = () => {
       const userId = getItemFromLocalStorage("userId");
       if (userId) {
         axios
-          .post(USER_API + "/verify_otp", { otp, userId })
+          .post<VerifyOtpResponse>(USER_API + "/verify_otp", { otp, userId })
           .then(({ data }) => {
             showToast(data.message, "success");
             removeItemFromLocalStorage("userId");
@@ -39,11 +45,12 @@ const OTPForm: React.FC = () => {
             showToast(response.data.message, "error");
           });
       } else {
-        showToast("something went wrong", "error");
+        showToast("Something went wrong", "error");
         return navigate("/user/login", { replace: true });
       }
     },
   });
+  
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -60,7 +67,7 @@ const OTPForm: React.FC = () => {
     const userId = getItemFromLocalStorage("userId");
     if (userId) {
       axios
-        .post(USER_API + "/resend_otp", { userId })
+        .post<ResendOtpResponse>(USER_API + "/resend_otp", { userId })
         .then(({ data }) => {
           showToast(data.message, "success");
         })
@@ -68,10 +75,11 @@ const OTPForm: React.FC = () => {
           showToast(response.data.message, "error");
         });
     } else {
-      showToast("something went wrong", "error");
+      showToast("Something went wrong", "error");
       return navigate("/user/login");
     }
   };
+  
 
   return (
     <div>

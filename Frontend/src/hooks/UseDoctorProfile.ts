@@ -1,11 +1,10 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState } from "react";
 import axiosJWT from "../utils/AxiosService";
 import showToast from "../utils/Toaster";
 import { DoctorInterface } from "../types/DoctorInterface";
 import { DOCTOR_API, nameRegex, phoneRegex } from "../constants/Index";
 import { uploadImagesToCloudinary, uploadCertificateToCloudinary } from "../Api/UploadImages";
 import { useNavigate } from 'react-router-dom';
-import { getItemFromLocalStorage } from "../utils/Setnget";
 
 const useDoctorProfile = () => {
   const navigate = useNavigate();
@@ -53,7 +52,7 @@ const useDoctorProfile = () => {
     const fetchProfile = async () => {
       try {
         const { data } = await axiosJWT.get(DOCTOR_API + "/profile");
-        const { doctor } = data;
+        const { doctor }:any = data;
         setFormData((prev) => ({
           ...prev,
           doctorName: doctor?.doctorName,
@@ -71,6 +70,7 @@ const useDoctorProfile = () => {
           status: doctor?.status
         }));
         setImagePreview(doctor?.profileImage || "");
+        setProfile(doctor?.profileImage || "")
         setCertificatePreview(doctor?.lisenceCertificate || "");
         setDegreePreview(doctor?.degreeCertificate || ""); 
       } catch (error) {
@@ -80,7 +80,7 @@ const useDoctorProfile = () => {
     };
     const fetchDepartments = async () => {
       try {
-        const { data } = await axiosJWT.get(DOCTOR_API + "/department/list");
+        const { data }:any = await axiosJWT.get(DOCTOR_API + "/department/list");
 
         setDepartments(data.departments);
       } catch (error) {
@@ -152,11 +152,11 @@ const useDoctorProfile = () => {
       try {
         const imageUrl = await uploadImagesToCloudinary(formData.imageFile);
         const certificateUrl = await uploadCertificateToCloudinary(formData.lisenceCertificate);
-        const degreeUrl = await uploadCertificateToCloudinary(formData.degreeCertificate); 
+        // const degreeUrl = await uploadCertificateToCloudinary(formData.degreeCertificate); 
 
 
 
-        const response = await axiosJWT.patch(DOCTOR_API + "/profile/edit", {
+        const response :any = await axiosJWT.patch(DOCTOR_API + "/profile/edit", {
           doctorName: formData.doctorName,
           gender: formData.gender,
           age: formData.age,
@@ -168,10 +168,10 @@ const useDoctorProfile = () => {
           description: formData.description,
           profileImage: imageUrl || profile?.profileImage,
           lisenceCertificate: certificateUrl || profile?.lisenceCertificate,
-          degreeCertificate: degreeUrl || profile?.degreeCertificate, 
+          // degreeCertificate: degreeUrl || profile?.degreeCertificate, 
         });
 
-        showToast(response?.data?.message);
+        showToast(response.data.message);
 
         setIsSubmitting(false);
         navigate('/doctor');
@@ -185,6 +185,7 @@ const useDoctorProfile = () => {
 
   const handleVerify = () => {
     setIsVerified(true);
+    console.log(isVerified)
   };
 
   return {

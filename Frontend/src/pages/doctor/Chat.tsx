@@ -82,11 +82,11 @@ const Chat: React.FC = () => {
         const response = await axiosJWT.get(
           `${CHAT_API}/conversations/${doctor.id}`
         );
-        const conversationData = response.data;
+        const conversationData:any = response.data;
 
         const updatedConversations = await Promise.all(
           conversationData.map(async (conversation: any) => {
-            const messagesResponse = await axiosJWT.get(
+            const messagesResponse :any= await axiosJWT.get(
               `${CHAT_API}/messages/${conversation._id}`
             );
             const messages = messagesResponse.data.messages;
@@ -114,7 +114,7 @@ const Chat: React.FC = () => {
     const getMessages = async () => {
       if (!currentChat) return;
       try {
-        const response = await axiosJWT.get(
+        const response:any = await axiosJWT.get(
           `${CHAT_API}/messages/${currentChat._id}`
         );
         setMessages(response.data.messages);
@@ -131,13 +131,13 @@ const Chat: React.FC = () => {
     const id = conversation.members.find((member: any) => member !== doctor.id);
 
     try {
-      const response = await axiosJWT.get(`${DOCTOR_API}/user/${id}`);
+      const response:any = await axiosJWT.get(`${DOCTOR_API}/user/${id}`);
       setReceiverData(response.data.user);
     } catch (error) {
       console.error("Error fetching receiver details:", error);
     }
 
-    const lastMessageResponse = await axiosJWT.get(
+    const lastMessageResponse:any = await axiosJWT.get(
       `${CHAT_API}/messages/${conversation._id}`
     );
     const lastMessageData = lastMessageResponse.data.messages.slice(-1)[0];

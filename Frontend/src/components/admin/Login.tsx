@@ -20,6 +20,16 @@ const Login: React.FC = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  interface LoginResponse {
+    admin: {
+      name: string;
+      role: string;
+    };
+    message: string;
+    access_token: string;
+    refresh_token: string;
+  }
+  
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -29,24 +39,25 @@ const Login: React.FC = () => {
     onSubmit: ({ email, password }) => {
       setIsSubmitting(true);
       axios
-        .post(ADMIN_API + "/login", { email, password })
+        .post<LoginResponse>(ADMIN_API + "/login", { email, password })
         .then(({ data }) => {
-          console.log(data,"datadatadatadatadatadata")
+          console.log(data, "datadatadatadatadatadata");
           const { name, role } = data.admin;
           const { message, access_token, refresh_token } = data;
           showToast(message, "success");
-          setItemToLocalStorage('access_token', access_token); 
-          setItemToLocalStorage("refresh_token",refresh_token)
+          setItemToLocalStorage("access_token", access_token); 
+          setItemToLocalStorage("refresh_token", refresh_token);
           dispatch(setUser({ isAuthenticated: true, name, role }));
           navigate("/admin");
         })
         .catch(({ response }) => {
-          const { message } = response.data;
+          const { message } = response.data as LoginResponse;
           setIsSubmitting(false);
-          showToast(message, "error");;
+          showToast(message, "error");
         });
     },
   });
+  
 
   return (
     <section
@@ -113,7 +124,7 @@ const Login: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full px-6 py-2 text-white rounded-lg bg-gradient-to-l from-green-700 to-green-600 hover:bg-gradient-to-r  transition-all duration-400 "
+              className="w-full px-6 py-2 text-white rounded-lg bg-gradient-to-l from-purple-700 to-purple-600 hover:bg-gradient-to-r  transition-all duration-400 "
               disabled={isSubmitting ? true : false}
             >
               <span className="font-semibold"> SignIn</span>

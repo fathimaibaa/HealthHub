@@ -7,7 +7,9 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { DOCTOR_API } from '../../constants/Index';
 import showToast from "../../utils/Toaster";
 import { validateSignUp } from "../../utils/Validation";
-
+interface SignUpResponse {
+  message: string;
+}
 const Signup: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ const Signup: React.FC = () => {
     onSubmit: ({ name: doctorName, phoneNumber, email, password }) => {
       setIsSubmitting(true);
       axios
-        .post(DOCTOR_API + "/register", { doctorName, phoneNumber, email, password })
+        .post<SignUpResponse>(DOCTOR_API + "/register", { doctorName, phoneNumber, email, password })
         .then(({ data }) => {
           showToast(data.message, "success");
           setTimeout(() => {
@@ -34,7 +36,7 @@ const Signup: React.FC = () => {
           }, 1000);
         })
         .catch(({ response }) => {
-          const { message } = response.data;
+          const { message } = response.data as { message: string };
           setIsSubmitting(false);
           showToast(message, "error");
         });

@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { DepartmentInterface } from './departmentInterface';
+import { DepartmentInterface } from './DepartmentInterface';
 
 
 export interface CreateDoctorInterfface{

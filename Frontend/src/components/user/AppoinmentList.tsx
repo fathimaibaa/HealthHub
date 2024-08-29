@@ -15,7 +15,7 @@ const AppointmentsListPage = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await axiosJWT.get(`${USER_API}/allAppoinments`);
+        const response :any= await axiosJWT.get(`${USER_API}/allAppoinments`);
         setAppointments(response.data.bookings.bookingDetails);
       } catch (error) {
         console.error("Error fetching appointments:", error);
@@ -28,14 +28,14 @@ const AppointmentsListPage = () => {
   useEffect(() => {
     const fetchDoctorsAndDepartments = async () => {
       try {
-        const deptResponse = await axios.get(`${USER_API}/department/list`);
+        const deptResponse:any = await axios.get(`${USER_API}/department/list`);
         const listedDepartments = deptResponse.data.departments;
         const departmentMap = listedDepartments.reduce((acc: { [key: string]: string }, dept: DepartmentInterface) => {
           acc[dept._id] = dept.departmentName;
           return acc;
         }, {});
 
-        const docResponse = await axios.get(`${USER_API}/doctors`);
+        const docResponse:any = await axios.get(`${USER_API}/doctors`);
         const approvedDoctors = docResponse.data.doctors.filter((doctor: DoctorInterface) => doctor.isApproved);
 
         setDepartments(departmentMap);

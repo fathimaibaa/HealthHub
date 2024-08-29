@@ -3,16 +3,22 @@ import axiosJWT from "../utils/AxiosService";
 import { DoctorInterface } from "../types/DoctorInterface";
 import { ADMIN_API } from "../constants/Index";
 
+interface DoctorsResponse {
+  doctors: DoctorInterface[];
+}
+
 const useDoctors = () => {
   const [doctors, setDoctors] = useState<DoctorInterface[]>([]);
 
   useEffect(() => {
     axiosJWT
-      .get(ADMIN_API + "/doctors")
+      .get<DoctorsResponse>(ADMIN_API + "/doctors")
       .then(({ data }) => {
-        setDoctors(data.doctors)
+        setDoctors(data.doctors);
       })
-      .catch((error: any) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+      });
   }, [setDoctors]);
 
   return { doctors, setDoctors };

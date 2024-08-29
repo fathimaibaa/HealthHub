@@ -3,7 +3,7 @@ import { userDbInterface } from "../../interfaces/UserDbRepository";
 import { doctorDbInterface } from "../../interfaces/DoctorDBRepository";
 import { BookingDbRepositoryInterface } from "../../interfaces/BookingDbRepository";
 import sentMail from "../../../utils/SendMail";
-import { doctorVerificationRejectedEmailPage } from "../../../utils/docRejectionEmail";
+import { doctorVerificationRejectedEmailPage } from "../../../utils/DocRejectionEmail";
 
 
 export const getUsers = async (userDbRepository: ReturnType<userDbInterface>) =>

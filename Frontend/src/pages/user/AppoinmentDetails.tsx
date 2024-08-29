@@ -15,6 +15,10 @@ import { ZIM } from "zego-zim-web";
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { FiMessageSquare } from "react-icons/fi";
 
+interface ChatResponse {
+  success: boolean;
+  message: string;
+}
 
 const AppointmentDetails: React.FC = () => {
   const user = useAppSelector((state) => state.UserSlice);
@@ -41,7 +45,9 @@ const AppointmentDetails: React.FC = () => {
 const userName = user.name;
 const appID = 2032275435;
 const serverSecret = '77364187d39f3d32201e089b3ba0a5d0';
-const TOKEN = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret,null, userID, userName);
+const TOKEN = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, "", userID || "defaultUserID", userName || "defaultUserName");
+
+
 
 const zp = ZegoUIKitPrebuilt.create(TOKEN);
 zp.addPlugins({ ZIM });
@@ -50,11 +56,11 @@ zp.addPlugins({ ZIM });
   useEffect(() => {
     const fetchBookingDetails = async () => {
       try {
-        const response = await axiosJWT.get(`${USER_API}/bookingdetails/${id}`);
+        const response:any = await axiosJWT.get(`${USER_API}/bookingdetails/${id}`);
         const bookingData = response.data.data.bookingDetails;
         setBookingDetails(bookingData);
 
-        const doctorResponse = await axiosJWT.get(
+        const doctorResponse:any = await axiosJWT.get(
           `${USER_API}/doctor/${bookingData.doctorId}`
         );
         setDoctorDetails(doctorResponse.data.doctor);
@@ -122,7 +128,7 @@ zp.addPlugins({ ZIM });
       appoinmentId,
     };
 
-    const response = await axiosJWT.post(`${USER_API}/fetchPrescription`, data);
+    const response:any = await axiosJWT.post(`${USER_API}/fetchPrescription`, data);
 
 
     if (response.data && response.data.response) {
@@ -183,7 +189,7 @@ const handleSubmit = async (event: any) => {
       documentsData.push({ name: document.name, url: url });
     }
     
-    const response = await axiosJWT.post(`${USER_API}/uploadDocuments`, {   id: id, documents: documentsData, });
+    const response:any = await axiosJWT.post(`${USER_API}/uploadDocuments`, {   id: id, documents: documentsData, });
     if (response.data.sucess) {
       showToast('Documents uploaded successfully', 'success');
       setShowDocumentModal(false);
@@ -211,7 +217,7 @@ const removeDocument = (index:number) => {
 
 const handleChat = () => {
   axios
-    .post(`${CHAT_API}/conversations`, {
+    .post<ChatResponse>(`${CHAT_API}/conversations`, {
       senderId: user.id,
       recieverId: doctorDetails._id,
     })
@@ -228,6 +234,7 @@ const handleChat = () => {
       showToast("Error initiating chat", "error");
     });
 };
+
 
 
   return (

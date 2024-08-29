@@ -23,7 +23,7 @@ const TransactionPage: React.FC = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axiosJWT.get(`${USER_API}/transactions`);
+        const response :any= await axiosJWT.get(`${USER_API}/transactions`);
         setTransactions(response.data.transaction);
       } catch (error) {
         showToast("Oops! Something went wrong", "error");

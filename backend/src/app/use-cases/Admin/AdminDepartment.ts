@@ -3,7 +3,7 @@ import CustomError from "../../../utils/CustomError";
 
 
 import DepartmentEntity, { DepartmentEntityType } from "../../../entities/DepartmentEntity";
-import { CreateDepartmentInterface } from "../../../types/departmentInterface";
+import { CreateDepartmentInterface } from "../../../types/DepartmentInterface";
 import { IDepartmentRepository } from "../../interfaces/DepartmentRepositoryInterface";
 
 export const addDepartment = async (

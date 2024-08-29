@@ -10,11 +10,10 @@ const Body: React.FC = () => {
   const [doctors, setDoctors] = useState<DoctorInterface[]>([]);
   const [departments, setDepartments] = useState<{ [key: string]: string }>({});
   const [hoveredDoctorId, setHoveredDoctorId] = useState<string | null>(null);
-  const [currentIndex, setcurrentIndex] = useState(0);
   useEffect(() => {
     const fetchDoctorsAndDepartments = async () => {
       try {
-        const deptResponse = await axios.get(`${USER_API}/department/list`);
+        const deptResponse:any = await axios.get(`${USER_API}/department/list`);
         const listedDepartments = deptResponse.data.departments.filter(
           (dept: DepartmentInterface) => dept.isListed
         );
@@ -26,7 +25,7 @@ const Body: React.FC = () => {
           {}
         );
 
-        const docResponse = await axios.get(`${USER_API}/doctors`);
+        const docResponse :any= await axios.get(`${USER_API}/doctors`);
         const approvedDoctors = docResponse.data.doctors.filter(
           (doctor: DoctorInterface) => doctor.isApproved
         );

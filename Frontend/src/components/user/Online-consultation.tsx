@@ -52,7 +52,7 @@ const OnlineDoctors: React.FC = () => {
   useEffect(() => {
     const fetchDoctorDepartments = async () => {
       try {
-        const response = await axiosJWT.get(`${USER_API}/departments`);
+        const response:any = await axiosJWT.get(`${USER_API}/departments`);
         if (response.data.success) {
           const listedDepartments = response.data.allDepartment.filter(
             (department: any) => department.isListed
@@ -76,7 +76,7 @@ const OnlineDoctors: React.FC = () => {
           (department) => department.departmentName
         );
 
-        const response = await axiosJWT.get(`${USER_API}/doctors`, {
+        const response:any = await axiosJWT.get(`${USER_API}/doctors`, {
           params: {
             searchQuery,
             department: selectedDepartment,

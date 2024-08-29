@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axiosJWT from "../../utils/AxiosService";
 import { USER_API } from "../../constants/Index";
 import { FaCalendarAlt, FaSearch } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-import { DepartmentInterface } from "../../types/DepartmentInterface";
 
 interface TimeSlot {
   start: string;
@@ -55,35 +53,36 @@ const DoctorListingPage: React.FC = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const departmentResponse = await axios.get(`${USER_API}/department/list`);
+        const departmentResponse: any = await axios.get(`${USER_API}/department/list`);
         if (departmentResponse.data.success) {
           const listedDepartments = departmentResponse.data.departments.filter(
             (department: any) => department.isListed
           );
-  
+
           setDepartments(listedDepartments);
-  
-          const response = await axios.get(`${USER_API}/doctors`, {
+
+          const response: any = await axios.get(`${USER_API}/doctors`, {
             params: {
               searchQuery,
-              department: selectedDepartment ? listedDepartments.find((dept) => dept.departmentName === selectedDepartment)?._id : "",
+              department: selectedDepartment
+                ? listedDepartments.find((dept: any) => dept.departmentName === selectedDepartment)?._id
+                : "",
               selectedDate: selectedDate ? selectedDate.toISOString() : null,
               selectedTimeSlot,
               page: currentPage,
               limit: itemsPerPage,
             },
           });
-  
+
           const filteredDoctors = response.data.doctors.filter(
-            (doctor: any) =>
-              doctor.isApproved === true
+            (doctor: any) => doctor.isApproved === true
           );
-  
+
           const doctorsWithDepartmentNames = filteredDoctors.map((doctor: any) => ({
             ...doctor,
-            department: listedDepartments.find((dept) => dept._id === doctor.department)?.departmentName,
+            department: listedDepartments.find((dept: any) => dept._id === doctor.department)?.departmentName,
           }));
-  
+
           setDoctors(doctorsWithDepartmentNames);
           setTotalPages(Math.ceil(filteredDoctors.length / itemsPerPage));
           setFiltersUsed(
@@ -99,7 +98,7 @@ const DoctorListingPage: React.FC = () => {
         console.error("Error fetching doctors:", error);
       }
     };
-  
+
     fetchDoctors();
   }, [
     searchQuery,

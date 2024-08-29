@@ -21,7 +21,7 @@ const DocumentList = () => {
   useEffect(() => {
     const fetchDocuments = async () => {
       try {
-        const response = await axiosJWT.get(`${USER_API}/documents/${id}`);
+        const response :any= await axiosJWT.get(`${USER_API}/documents/${id}`);
         setDocuments(response.data.documents);
       } catch (error) {
         console.error("Error fetching documents:", error);

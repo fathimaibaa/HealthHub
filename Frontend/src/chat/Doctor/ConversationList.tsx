@@ -9,7 +9,7 @@ const ConversationsList: React.FC = () => {
     useEffect(() => {
         const fetchConversations = async () => {
             try {
-                const response = await axiosJWT.get(`${USER_API}/conversations`);
+                const response:any = await axiosJWT.get(`${USER_API}/conversations`);
                 const sortedConversations = response.data.conversations.sort((a: any, b: any) => {
                     return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
                 });

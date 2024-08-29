@@ -7,14 +7,27 @@ import showToast from "../../utils/Toaster";
 import axios from "axios";
 import { useAppDispatch } from "../../redux/store/Store";
 import login from '../../assets/images/login.jpg';
-import { jwtDecode } from "jwt-decode";
 import { setDoctor } from "../../redux/slices/DoctorSlice";
 import { setItemToLocalStorage } from "../../utils/Setnget";
+
+interface Doctor {
+  doctorName: string;
+  role: string;
+  _id: string;
+}
+
+interface LoginResponse {
+  doctor: Doctor;
+  message: string;
+  access_token: string;
+  refresh_token: string;
+}
 
 const Login: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -24,7 +37,7 @@ const Login: React.FC = () => {
     onSubmit: ({ email, password }) => {
       setIsSubmitting(true);
       axios
-        .post(DOCTOR_API + "/login", { email, password })
+        .post<LoginResponse>(DOCTOR_API + "/login", { email, password })
         .then(({ data }) => {
           const { doctorName: name, role, _id } = data.doctor;
           const { message, access_token, refresh_token } = data;
@@ -37,7 +50,7 @@ const Login: React.FC = () => {
           }, 1000);
         })
         .catch(({ response }) => {
-          const { message } = response.data;
+          const { message } = response.data as { message: string };
           setIsSubmitting(false);
           showToast(message, "error");
         });

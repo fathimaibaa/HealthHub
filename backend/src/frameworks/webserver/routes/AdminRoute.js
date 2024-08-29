@@ -1,0 +1,38 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const AdminController_1 = __importDefault(require("../../../adapters/AdminController"));
+const DoctorDBRepository_1 = require("../../../app/interfaces/DoctorDBRepository");
+const UserDbRepository_1 = require("../../../app/interfaces/UserDbRepository");
+const AuthServiceInterface_1 = require("../../../app/service-interface/AuthServiceInterface");
+const DepartmentRepositoryInterface_1 = require("../../../app/interfaces/DepartmentRepositoryInterface");
+const DepartmentRepositoryMongodb_1 = require("../../database/repositories/DepartmentRepositoryMongodb");
+const DoctorRepositoryMongodb_1 = require("../../database/repositories/DoctorRepositoryMongodb");
+const UserRepositoryMongodb_1 = require("../../database/repositories/UserRepositoryMongodb");
+const AuthService_1 = require("../../services/AuthService");
+const BookingDbRepository_1 = require("../../../app/interfaces/BookingDbRepository");
+const BookingRepositoryMongodb_1 = require("../../database/repositories/BookingRepositoryMongodb");
+exports.default = () => {
+    const router = (0, express_1.Router)();
+    const controller = (0, AdminController_1.default)(AuthServiceInterface_1.authServiceInterface, AuthService_1.authService, UserDbRepository_1.userDbRepository, UserRepositoryMongodb_1.userRepositoryMongodb, BookingDbRepository_1.bookingDbRepository, BookingRepositoryMongodb_1.bookingRepositoryMongodb, DoctorDBRepository_1.doctorDbRepository, DoctorRepositoryMongodb_1.doctorRepositoryMongodb, DepartmentRepositoryInterface_1.departmentDbRepository, DepartmentRepositoryMongodb_1.departmentRepositoryMongodb);
+    router.post('/login', controller.adminLogin);
+    router.get("/users", controller.getAllUser);
+    router.patch("/block_user/:id", controller.userBlock);
+    router.get("/doctors", controller.getAllDoctors);
+    router.patch("/block_doctor/:id", controller.doctorBlock);
+    router.get("/doctors/:id", controller.doctorDetails);
+    router.patch("/update_doctor/:id", controller.updateDoctor);
+    router.patch("/verify_doctor_rejection/:id", controller.rejectionDoctor);
+    router.get('/department', controller.getAllDepartmentsHandler);
+    router.post('/addDepartment', controller.addDepartmentHandler);
+    router.get('/department/list', controller.listDepartmentsHandler);
+    router.put('/department/:id', controller.updateDepartmentHandler);
+    router.patch('/block_department/:id', controller.blockDepartmentHandler);
+    router.patch('/unblock_department/:id', controller.unblockDepartmentHandler);
+    router.get("/appoinments", controller.getAllAppoinments);
+    router.get("/reports", controller.getReports);
+    return router;
+};

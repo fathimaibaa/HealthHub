@@ -70,7 +70,7 @@ const DoctorCalendar: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosJWT.post(`${DOCTOR_API}/getTimeSlots`, {
+        const response:any = await axiosJWT.post(`${DOCTOR_API}/getTimeSlots`, {
           doctorId: doctor.id,
         });
         
@@ -169,7 +169,7 @@ const DoctorCalendar: React.FC = () => {
         endDate: selectedEndDate,
         slotTime: selectedTimeSlots,
       };
-      const response = await axiosJWT.post(`${DOCTOR_API}/addSlot`, slotsData);
+      const response :any = await axiosJWT.post(`${DOCTOR_API}/addSlot`, slotsData);
       if (response) {
        
         showToast("Slots added successfully!", "success");

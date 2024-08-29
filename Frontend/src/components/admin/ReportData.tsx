@@ -1,8 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { BookingInterface } from "../../types/BookingInterface";
-import axiosJWT from "../../utils/AxiosService";
-import { ADMIN_API } from "../../constants/Index";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useDoctors from '../../hooks/UseDoctors';
 

@@ -3,18 +3,22 @@ import axiosJWT from "../utils/AxiosService";
 import { BookingInterface } from "../types/BookingInterface";
 import { ADMIN_API } from "../constants/Index";
 
+interface ReportsResponse {
+  reports: BookingInterface[];
+}
 
 const useReports = () => {
   const [reports, setReports] = useState<BookingInterface[]>([]);
 
   useEffect(() => {
     axiosJWT
-      .get(ADMIN_API + "/reports")
+      .get<ReportsResponse>(ADMIN_API + "/reports")
       .then(({ data }) => {
-        console.log(data,'dataa hereeeeeeeeeeeeeeee')
-        setReports(data.reports)
+        setReports(data.reports);
       })
-      .catch((error: any) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+      });
   }, [setReports]);
 
   return { reports, setReports };

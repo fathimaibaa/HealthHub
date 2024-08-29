@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect,  useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axiosJWT from '../../utils/AxiosService';
 import { USER_API } from '../../constants/Index';
@@ -25,11 +25,11 @@ const DoctorDetailsPage: React.FC = () => {
   useEffect(() => {
     const fetchDoctorsAndDepartments = async () => {
       try {
-        const response = await axiosJWT.get(`${USER_API}/doctor/${id}`);
+        const response:any = await axiosJWT.get(`${USER_API}/doctor/${id}`);
         const doctorData = response.data.doctor;
         setDoctor(doctorData);
     
-        const deptResponse = await axiosJWT.get(`${USER_API}/department/list`);
+        const deptResponse:any = await axiosJWT.get(`${USER_API}/department/list`);
         const listedDepartments = deptResponse.data.departments.filter(
           (dept: DepartmentInterface) => dept.isListed
         );

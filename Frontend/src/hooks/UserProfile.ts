@@ -3,19 +3,25 @@ import axiosJWT from "../utils/AxiosService";
 import showToast from "../utils/Toaster";
 import { UserInterface } from '../types/UserInterface';
 import { USER_API, nameRegex, phoneRegex } from "../constants/Index";
-import {uploadImagesToCloudinary} from "../Api/UploadImages";
+import { uploadImagesToCloudinary } from "../Api/UploadImages";
 
+interface UserResponse {
+  user: UserInterface;
+}
 
+interface UpdateProfileResponse {
+  message: string;
+}
 
 const useProfile = () => {
   const [profile, setProfile] = useState<UserInterface | null>(null);
   const [error, setError] = useState<string | null>(null);
-  
+
   const [formData, setFormData] = useState<{
     name: string;
     gender: string;
     age: number | null;
-    phoneNumber: string;
+    phoneNumber: string; // Ensure this is always a string
     imageFile: File | null;
   }>({
     name: "",
@@ -24,24 +30,23 @@ const useProfile = () => {
     phoneNumber: "",
     imageFile: null,
   });
+
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   useEffect(() => {
-    
-        axiosJWT
-      .get(USER_API + "/profile")
+    axiosJWT
+      .get<UserResponse>(USER_API + "/profile")
       .then(({ data }) => {
         const { user } = data;
-        
         setProfile(user);
-        setFormData((prev) => ({
-          ...prev,
-          name: user?.name || "",
-          gender: user?.gender || "",
-          age: user?.age || null,
-          phoneNumber: user?.phoneNumber || "",
-        }));
+        setFormData({
+          name: user.name || "",
+          gender: user.gender || "",
+          age: user.age || null,
+          phoneNumber: String(user.phoneNumber || ""), // Ensure it's a string
+          imageFile: null,
+        });
       })
       .catch(() => showToast("Oops! Something went wrong", "error"));
   }, []);
@@ -52,9 +57,9 @@ const useProfile = () => {
     const { name, value } = e.target;
     let errorMessage = "";
 
-    if (name === "imageFile") { 
+    if (name === "imageFile") {
       const fileInput = e.target as HTMLInputElement;
-      const file = fileInput.files && fileInput.files[0]; 
+      const file = fileInput.files && fileInput.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -71,8 +76,7 @@ const useProfile = () => {
         if (!value.trim()) {
           errorMessage = "Name is required";
         } else if (!nameRegex.test(value)) {
-          errorMessage =
-            "First letter must be capital and no leading or trailing space";
+          errorMessage = "First letter must be capital and no leading or trailing space";
         }
       } else if (name === "age") {
         const ageValue = parseInt(value, 10);
@@ -89,7 +93,7 @@ const useProfile = () => {
 
       setFormData((prev) => ({
         ...prev,
-        [name]: name === "age" ? parseInt(value, 10) : value,
+        [name]: name === "age" ? (isNaN(parseInt(value, 10)) ? null : parseInt(value, 10)) : String(value), // Ensure value is always a string
       }));
     }
 
@@ -97,33 +101,28 @@ const useProfile = () => {
   };
 
   const handleSubmit = async () => {
-  if (!error) {
-    setIsSubmitting(true);
-    const url = await uploadImagesToCloudinary(formData.imageFile); 
+    if (!error) {
+      setIsSubmitting(true);
+      const url = formData.imageFile ? await uploadImagesToCloudinary(formData.imageFile) : profile?.profilePicture;
 
-
-    axiosJWT
-      .patch(USER_API + "/profile/edit", {
-        name: formData.name,
-        gender: formData.gender,
-        age: formData.age,
-        phoneNumber: formData.phoneNumber,
-        profilePicture: url || profile?.profilePicture,
-      })
-      .then(({ data }) => {
-        showToast(data.message);
-        setIsSubmitting(false);
-      })
-      .catch(() => {
-        setIsSubmitting(false);
-        showToast(
-          "Oops! Something went wrong while updating profile",
-          "error"
-        );
-      });
-  }
-};
-
+      axiosJWT
+        .patch<UpdateProfileResponse>(USER_API + "/profile/edit", {
+          name: formData.name,
+          gender: formData.gender,
+          age: formData.age,
+          phoneNumber: formData.phoneNumber, // Ensure this is always a string
+          profilePicture: url || profile?.profilePicture,
+        })
+        .then(({ data }) => {
+          showToast(data.message);
+          setIsSubmitting(false);
+        })
+        .catch(() => {
+          setIsSubmitting(false);
+          showToast("Oops! Something went wrong while updating profile", "error");
+        });
+    }
+  };
 
   return {
     profile,

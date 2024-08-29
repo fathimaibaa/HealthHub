@@ -6,27 +6,31 @@ import { USER_API } from "../../constants/Index";
 import showToast from "../../utils/Toaster";
 import { useFormik } from "formik";
 
-
+interface ResetPasswordResponse {
+    message: string;
+  }
+  
 
 const ResetPasswordForm = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const formik = useFormik({
         initialValues: {
-            password: "",
-            confirmPassword: "",
+          password: "",
+          confirmPassword: "",
         },
         validate: validateResetPassword,
         onSubmit: ({ password }) => {
-            axios
-                .post(USER_API + `/reset_password/${id}`, { password })
-                .then(({ data }) => {
-                    showToast(data.message, "success");
-                    navigate("/user/login");
-                })
-                .catch(({ response }) => showToast(response.data.message, "error"));
+          axios
+            .post<ResetPasswordResponse>(USER_API + `/reset_password/${id}`, { password })
+            .then(({ data }) => {
+              showToast(data.message, "success");
+              navigate("/user/login");
+            })
+            .catch(({ response }) => showToast(response.data.message, "error"));
         },
-    });
+      });
+      
 
     return (
         <div 

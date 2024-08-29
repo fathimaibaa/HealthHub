@@ -13,7 +13,7 @@ const AddDepartmentPage: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await axiosJWT.post(
+      const response:any = await axiosJWT.post(
         `${ADMIN_API}/addDepartment`,
         { departmentName }
       );

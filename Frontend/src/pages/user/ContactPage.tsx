@@ -102,7 +102,7 @@ const ContactSection: React.FC = () => {
       };
 
       emailjs.send(serviceId, templateId, templateParams, publicKey)
-        .then((response) => {
+        .then(() => {
           setMsgType('success');
           setMsg('Message sent successfully!');
           

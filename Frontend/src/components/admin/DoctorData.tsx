@@ -25,24 +25,38 @@ const DoctorData: React.FC<DoctorDataProps> = ({
   const handleCheckboxChange = () => {
     setShowConfirmModal(true);
   };
-
+  interface ApiResponse {
+    success: boolean;
+    message?: string;
+  }
+  
   const handleConfirm = () => {
-    axiosJWT.patch(ADMIN_API + `/block_doctor/${_id}`)
+    const apiEndpoint = isChecked
+      ? `${ADMIN_API}/unblock_doctor/${_id}`
+      : `${ADMIN_API}/block_doctor/${_id}`;
+  
+    axiosJWT.patch<ApiResponse>(apiEndpoint)
       .then(response => {
         if (response.data.success) {
-          setIsChecked(!isChecked);
-          const message = !isChecked
+          const newIsChecked = !isChecked;
+          setIsChecked(newIsChecked);
+          const message = newIsChecked
             ? "Doctor blocked successfully"
             : "Doctor unblocked successfully";
           toast.success(message, { position: "top-center", autoClose: 3000 });
+        } else {
+          toast.error("Something went wrong, please try again.", { position: "top-center", autoClose: 3000 });
         }
       })
-      .catch((err) => console.log(err))
-      .finally(() => {
+      .catch((err) => {
+        console.error("An error occurred:", err);
+        toast.error("An error occurred, please try again.", { position: "top-center", autoClose: 3000 });
+      })
+      .then(() => {
         setShowConfirmModal(false);
       });
   };
-
+  
   return (
     <>
       {showConfirmModal && (
@@ -72,11 +86,9 @@ const DoctorData: React.FC<DoctorDataProps> = ({
         </div>
       )}
       <tr className="bg-white border-b dark:bg-white-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-      <td className="px-6 py-4 text-left font-medium text-black whitespace-nowrap">
-  {serialNo}
-</td>
-
-
+        <td className="px-6 py-4 text-left font-medium text-black whitespace-nowrap">
+          {serialNo}
+        </td>
         <td className="px-6 py-4 text-left">{doctorName}</td>
         <td className="px-6 py-4 text-left">{email}</td>
         <td className="px-6 py-4 text-left">{status}</td>
@@ -113,7 +125,7 @@ const DoctorData: React.FC<DoctorDataProps> = ({
           </label>
         </td>
         <td className="px-6 py-4 text-left">
-          <Link to={`/admin/doctors/${_id}`}  className="bg-purple-900 text-white py-2 px-4 rounded  text-sm sm:text-base md:text-lg lg:text-base">
+          <Link to={`/admin/doctors/${_id}`} className="bg-purple-900 text-white py-2 px-4 rounded text-sm sm:text-base md:text-lg lg:text-base">
             View Details
           </Link>
         </td>

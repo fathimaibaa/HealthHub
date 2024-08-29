@@ -35,10 +35,10 @@ const DoctorDetails: React.FC = () => {
 
     const fetchDoctorsAndDepartments = async () => {
       try {
-        const response = await axiosJWT.get(`${ADMIN_API}/doctors/${id}`);
+        const response:any = await axiosJWT.get(`${ADMIN_API}/doctors/${id}`);
         setDoctorDetails(response.data.doctor);
 
-        const deptResponse = await axiosJWT.get(`${ADMIN_API}/department/list`);
+        const deptResponse :any= await axiosJWT.get(`${ADMIN_API}/department/list`);
         const listedDepartments = deptResponse.data.departments.filter(
           (dept: DepartmentInterface) => dept.isListed
         );
@@ -70,7 +70,7 @@ const DoctorDetails: React.FC = () => {
       setShowModal(true);
     } else {
       try {
-        const response = await axiosJWT.patch(`${ADMIN_API}/update_doctor/${id}`, { action: selectedAction });
+        const response :any= await axiosJWT.patch(`${ADMIN_API}/update_doctor/${id}`, { action: selectedAction });
         if (response.data.success) {
           toast.success(response.data.message);
           navigate('/admin/doctors');
@@ -86,7 +86,7 @@ const DoctorDetails: React.FC = () => {
 
   const handleRejectConfirm = async () => {
     try {
-      const response = await axiosJWT.patch(`${ADMIN_API}/verify_doctor_rejection/${id}`, { status: 'rejected', reason: rejectionReason });
+      const response :any= await axiosJWT.patch(`${ADMIN_API}/verify_doctor_rejection/${id}`, { status: 'rejected', reason: rejectionReason });
       if (response.data.success) {
         toast.success(response.data.message);
         setShowModal(false);
@@ -103,7 +103,7 @@ const DoctorDetails: React.FC = () => {
   if (!doctorDetails) {
     return <div>Loading...</div>;
   }
-
+console.log(randomIds)
   return (
     <div className="flex h-screen bg-gray-100">
       <AdminSidebar />

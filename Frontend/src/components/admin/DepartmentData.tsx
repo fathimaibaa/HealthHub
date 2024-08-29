@@ -7,6 +7,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+
+// Define the interface for the expected response data
+interface ApiResponse {
+  success: boolean;
+  message?: string;
+}
+
 interface DepartmentDataProps extends DepartmentInterface {
   serialNo: number;
 }
@@ -19,7 +26,7 @@ const DepartmentData: React.FC<DepartmentDataProps> = ({
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(isListed);
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
-  const [actionType, setActionType] = useState<string>('');
+  const [actionType, setActionType] = useState<string>("");
 
   const handleCheckboxChange = () => {
     setActionType(isChecked ? "block" : "unblock");
@@ -30,9 +37,9 @@ const DepartmentData: React.FC<DepartmentDataProps> = ({
     const apiEndpoint = isChecked
       ? `${ADMIN_API}/block_department/${_id}`
       : `${ADMIN_API}/unblock_department/${_id}`;
-
-    axiosJWT.patch(apiEndpoint)
-      .then(response => {
+  
+    axiosJWT.patch<ApiResponse>(apiEndpoint)
+      .then((response) => {
         if (response.data.success) {
           setIsChecked(!isChecked);
           const message = isChecked
@@ -47,14 +54,14 @@ const DepartmentData: React.FC<DepartmentDataProps> = ({
         console.error("An error occurred, please try again.");
         toast.error("An error occurred, please try again.", { position: "top-center", autoClose: 3000 });
       })
-      .finally(() => {
+      .then(() => {
         setShowConfirmModal(false);
       });
   };
+  
 
   return (
     <>
-     
       {showConfirmModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded shadow-lg">
@@ -82,7 +89,6 @@ const DepartmentData: React.FC<DepartmentDataProps> = ({
         </div>
       )}
 
-      
       <tr className="bg-white border-b dark:bg-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
         <td className="px-6 py-4 text-left font-medium text-gray-900 whitespace-nowrap dark:text-black truncate" style={{ maxWidth: '50px' }}>
           {serialNo}

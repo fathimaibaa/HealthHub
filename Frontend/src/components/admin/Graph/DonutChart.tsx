@@ -17,7 +17,7 @@ const DonutChart: FC = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axiosJWT.get(`${ADMIN_API}/doctors`);
+        const response:any = await axiosJWT.get(`${ADMIN_API}/doctors`);
         console.log(response,"doctorsss")
         if (Array.isArray(response.data.doctors)) {
           setDoctors(response.data.doctors);
@@ -29,7 +29,7 @@ const DonutChart: FC = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await axiosJWT.get(`${ADMIN_API}/users`);
+        const response:any = await axiosJWT.get(`${ADMIN_API}/users`);
         console.log(response,"userssssssssss")
         if (Array.isArray(response.data.users)) {
           setUsers(response.data.users);
@@ -41,7 +41,7 @@ const DonutChart: FC = () => {
 
     const fetchAppoinments = async () => {
       try {
-        const response = await axiosJWT.get(`${ADMIN_API}/appoinments`);
+        const response :any= await axiosJWT.get(`${ADMIN_API}/appoinments`);
         console.log(response,"appoinments")
         if (Array.isArray(response.data.appoinments)) {
           setAppoinments(response.data.appoinments);

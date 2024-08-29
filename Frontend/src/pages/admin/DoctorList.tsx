@@ -30,7 +30,7 @@ const DoctorList: React.FC = () => {
   const handlePreviousPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
-
+console.log(setDoctors)
   return (
     <div className="flex h-screen">
       <AdminSidebar />

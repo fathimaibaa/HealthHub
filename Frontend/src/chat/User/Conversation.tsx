@@ -22,7 +22,7 @@ const Conversation: React.FC<ConversationProps> = ({ conversation, lastMessage }
         const fetchDoctorData = async () => {
             try {
                 const doctorId = conversation.members[1];
-                const response = await axiosJWT.get(`${USER_API}/doctor/${doctorId}`);
+                const response:any = await axiosJWT.get(`${USER_API}/doctor/${doctorId}`);
                 setDoctorData(response.data.doctor);
             } catch (error) {
                 console.error("Error fetching doctor data:", error);

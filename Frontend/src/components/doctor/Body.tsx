@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { MdDateRange, MdList, MdPerson } from "react-icons/md";
+import React from "react";
+import { MdDateRange, MdList} from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Transition } from '@headlessui/react';
 
 
 const Body: React.FC = () => {

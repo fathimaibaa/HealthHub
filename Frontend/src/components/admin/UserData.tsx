@@ -23,22 +23,32 @@ const UserData: React.FC<UserDataProps> = ({
     setShowConfirmModal(true);
   };
 
+  interface BlockUserResponse {
+    success: boolean;
+  }
+  
   const handleConfirm = () => {
-    axiosJWT.patch(ADMIN_API + `/block_user/${_id}`)
+    axiosJWT.patch<BlockUserResponse>(ADMIN_API + `/block_user/${_id}`)
       .then(response => {
-        if (response.data.success) {
+        if (response.data && response.data.success) {
           setIsChecked(!isChecked);
           const message = !isChecked
             ? "User blocked successfully"
             : "User unblocked successfully";
           toast.success(message, { position: "top-center", autoClose: 3000 });
+        } else {
+          toast.error("Something went wrong, please try again.", { position: "top-center", autoClose: 3000 });
         }
       })
-      .catch((err) => console.log(err))
-      .finally(() => {
+      .catch((err) => {
+        console.error("An error occurred:", err);
+        toast.error("An error occurred, please try again.", { position: "top-center", autoClose: 3000 });
+      })
+      .then(() => {
         setShowConfirmModal(false);
-      });
+      }); 
   };
+  
 
   return (
     <>

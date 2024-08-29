@@ -15,6 +15,29 @@ import login from '../../assets/images/login.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
+interface LoginResponse {
+  user: {
+    name: string;
+    role: string;
+    _id: string;
+  };
+  message: string;
+  access_token: string;
+  refresh_token: string;
+}
+
+interface GoogleSignInResponse {
+  user: {
+    name: string;
+    role: string;
+    _id: string;
+  };
+  message: string;
+  access_token: string;
+  refresh_token: string;
+}
+
+
 const Login: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -29,21 +52,22 @@ const Login: React.FC = () => {
     onSubmit: ({ email, password }) => {
       setIsSubmitting(true);
       axios
-        .post(USER_API + "/login", { email, password })
-        .then(({ data }) => {
-          const { name, role, _id } = data.user;
-          const { message, access_token, refresh_token } = data;
-          setItemToLocalStorage("access_token", access_token);
-          setItemToLocalStorage("refresh_token", refresh_token);
-          showToast(message, "success");
-          dispatch(setUser({ isAuthenticated: true, name, role, id: _id }));
-          navigate("/");
-        })
-        .catch(({ response }) => {
-          const { message } = response.data;
-          setIsSubmitting(false);
-          showToast(message, "error");
-        });
+      .post<LoginResponse>(USER_API + "/login", { email, password })
+      .then(({ data }) => {
+        const { name, role, _id } = data.user;
+        const { message, access_token, refresh_token } = data;
+        setItemToLocalStorage("access_token", access_token);
+        setItemToLocalStorage("refresh_token", refresh_token);
+        showToast(message, "success");
+        dispatch(setUser({ isAuthenticated: true, name, role, id: _id }));
+        navigate("/");
+      })
+      .catch(({ response }) => {
+        const { message } = response.data;
+        setIsSubmitting(false);
+        showToast(message, "error");
+      });
+    
     },
   });
 
@@ -54,23 +78,24 @@ const Login: React.FC = () => {
     email_verified: boolean;
   }) => {
     axios
-      .post(USER_API + "/google_signIn", { user })
-      .then(({ data }) => {
-        const { message, user, access_token, refresh_token } = data;
-        setItemToLocalStorage("access_token", access_token);
-        setItemToLocalStorage("refresh_token", refresh_token);
-        showToast(message, "success");
-        dispatch(
-          setUser({
-            name: user.name,
-            isAuthenticated: true,
-            role: user.role,
-            id: user._id,
-          })
-        );
-        navigate("/");
-      })
-      .catch(({ response }) => showToast(response.data.message, "error"));
+    .post<GoogleSignInResponse>(USER_API + "/google_signIn", { user })
+    .then(({ data }) => {
+      const { message, user, access_token, refresh_token } = data;
+      setItemToLocalStorage("access_token", access_token);
+      setItemToLocalStorage("refresh_token", refresh_token);
+      showToast(message, "success");
+      dispatch(
+        setUser({
+          name: user.name,
+          isAuthenticated: true,
+          role: user.role,
+          id: user._id,
+        })
+      );
+      navigate("/");
+    })
+    .catch(({ response }) => showToast(response.data.message, "error"));
+  
   };
 
   return (

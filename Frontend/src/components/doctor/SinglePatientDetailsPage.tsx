@@ -24,12 +24,11 @@ const PatientDetailPage = () => {
   const [medicines, setMedicines] = useState<{ name: string; dosage: string; instructions: string }[]>([{ name: "", dosage: "", instructions: "" }]);
   const [prescription, setPrescription] = useState<any | null>(null);
 
-  const userID = doctor.id; 
-const userName = doctor.name;
-const appID = 2032275435;
-const serverSecret = '77364187d39f3d32201e089b3ba0a5d0';
-const TOKEN = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret,null, userID, userName);
-
+  const userID = doctor.id || "";  
+  const userName = doctor.name || "";  
+  const appID = 2032275435;
+  const serverSecret = '77364187d39f3d32201e089b3ba0a5d0';
+  const TOKEN = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, "", userID, userName); 
 const zp = ZegoUIKitPrebuilt.create(TOKEN);
 zp.addPlugins({ ZIM });
 function invite() {
@@ -52,7 +51,7 @@ function invite() {
   useEffect(() => {
     const fetchPatientDetails = async () => {
       try {
-        const response = await axiosJWT.get(`${USER_API}/bookingdetails/${id}`);
+        const response:any = await axiosJWT.get(`${USER_API}/bookingdetails/${id}`);
         const bookingData = response.data.data.bookingDetails;
         setPatient(bookingData);
       } catch (err) {
@@ -64,7 +63,7 @@ function invite() {
 
     const fetchPrescriptionDetails = async () => {
       try {
-        const response = await axiosJWT.get(`${DOCTOR_API}/prescription/${id}`);
+        const response:any = await axiosJWT.get(`${DOCTOR_API}/prescription/${id}`);
         if (response.data.response && response.data.response.length > 0) {
           setPrescription(response.data.response[0]);
         }

@@ -5,7 +5,6 @@ import AdminSidebar from '../../components/admin/HeaderSidebar/Sidebar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useReports from '../../hooks/UseReport';
-import { useNavigate } from 'react-router-dom';
 
 
 const ReportList: React.FC = () => {

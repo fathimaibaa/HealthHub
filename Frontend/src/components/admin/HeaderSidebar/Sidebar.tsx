@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logout from "../../../utils/Logout";
 import { useAppDispatch } from "../../../redux/store/Store";
 import { clearUser } from "../../../redux/slices/UserSlice";
-import { Star, Megaphone, Stethoscope } from "lucide-react";
+import {  Stethoscope } from "lucide-react";
 
 const AdminSidebar: React.FC = () => {
   const dispatch = useAppDispatch();

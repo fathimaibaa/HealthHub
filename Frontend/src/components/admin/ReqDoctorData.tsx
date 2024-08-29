@@ -26,8 +26,12 @@ const ReqDoctorData: React.FC<DoctorDataProps> = ({
     setShowConfirmModal(true);
   };
 
+  interface BlockDoctorResponse {
+    success: boolean;
+  }
+  
   const handleConfirm = () => {
-    axiosJWT.patch(ADMIN_API + `/block_doctor/${_id}`)
+    axiosJWT.patch<BlockDoctorResponse>(ADMIN_API + `/block_doctor/${_id}`)
       .then(response => {
         if (response.data.success) {
           setIsChecked(!isChecked);
@@ -37,11 +41,14 @@ const ReqDoctorData: React.FC<DoctorDataProps> = ({
           toast.success(message, { position: "top-center", autoClose: 3000 });
         }
       })
-      .catch((err) => console.log(err))
-      .finally(() => {
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(() => {
         setShowConfirmModal(false);
       });
   };
+  
 
   return (
     <>

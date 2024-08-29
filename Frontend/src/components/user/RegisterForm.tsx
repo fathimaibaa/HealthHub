@@ -17,34 +17,50 @@ const Register: React.FC = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
 
-    const formik = useFormik({
+
+    interface NewUser {
+        _id: string;
+        name: string;
+        email: string;
+        phoneNumber: string;
+      }
+      
+      interface RegisterResponse {
+        message: string;
+        newUser: NewUser;
+      }
+      
+
+
+      const formik = useFormik({
         initialValues: {
-            name: "",
-            email: "",
-            phoneNumber: "",
-            password: "",
-            confirmPassword: "",
+          name: "",
+          email: "",
+          phoneNumber: "",
+          password: "",
+          confirmPassword: "",
         },
         validate: validateSignUp,
         onSubmit: ({ name, email, phoneNumber, password }) => {
-            setIsSubmitting(true);
-            axios
-                .post(USER_API + "/register", { name, email, phoneNumber, password })
-                .then(({ data }) => {
-                    console.log(data);
-                    showToast(data.message, "success");
-                    setTimeout(() => {
-                        setItemToLocalStorage("userId", data.newUser._id);
-                        navigate("/user/verify_otp");
-                    }, 1000);
-                })
-                .catch(({ response }) => {
-                    const { message } = response.data;
-                    setIsSubmitting(false);
-                    showToast(message, "error");
-                });
+          setIsSubmitting(true);
+          axios
+            .post<RegisterResponse>(USER_API + "/register", { name, email, phoneNumber, password })
+            .then(({ data }) => {
+              console.log(data);
+              showToast(data.message, "success");
+              setTimeout(() => {
+                setItemToLocalStorage("userId", data.newUser._id);
+                navigate("/user/verify_otp");
+              }, 1000);
+            })
+            .catch(({ response }) => {
+              const { message } = response.data;
+              setIsSubmitting(false);
+              showToast(message, "error");
+            });
         },
-    });
+      });
+      
 
     return (
         <div className="flex items-center justify-center h-screen bg-cover bg-center"
