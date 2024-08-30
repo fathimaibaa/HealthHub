@@ -31,8 +31,8 @@ const ContactSection: React.FC = () => {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [msg, setMsg] = useState<string>(''); 
-  const [msgType, setMsgType] = useState<'success' | 'error' | ''>(''); // State to hold message type
-  const [isLoading, setIsLoading] = useState<boolean>(false); // State to handle loading indicator
+  const [msgType, setMsgType] = useState<'success' | 'error' | ''>(''); 
+  const [isLoading, setIsLoading] = useState<boolean>(false); 
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;

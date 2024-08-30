@@ -6,13 +6,13 @@ import DonutChart from '../../components/admin/Graph/DonutChart';
 import axiosJWT from '../../utils/AxiosService';
 import { ADMIN_API } from '../../constants/Index';
 import { useNavigate } from 'react-router-dom';
-import { FaClipboardList } from 'react-icons/fa'; // Add an icon
+import { FaClipboardList } from 'react-icons/fa'; 
 
 const Dashboard: React.FC = () => {
   const [doctors, setDoctors] = useState<[]>([]);
   const [users, setUsers] = useState<[]>([]);
   const [appointments, setAppointments] = useState<[]>([]);
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -62,10 +62,9 @@ const Dashboard: React.FC = () => {
           <h1 className="text-2xl font-bold mb-1">Dashboard</h1>
           <div className="grid grid-cols-3 gap-6">
 
-            {/* Card 1: Doctors Count */}
             <div
               className="shadow-md rounded-lg p-6 bg-orange-300 text-white cursor-pointer flex items-center justify-between"
-              onClick={() => navigate('/admin/doctors')} // Navigate on click
+              onClick={() => navigate('/admin/doctors')} 
             >
               <div>
                 <h2 className="text-lg font-bold">Doctors Count</h2>
@@ -73,10 +72,9 @@ const Dashboard: React.FC = () => {
               </div>
             </div>
 
-            {/* Card 2: Users Count */}
             <div
               className="shadow-md rounded-lg p-6 bg-purple-400 text-white cursor-pointer flex items-center justify-between"
-              onClick={() => navigate('/admin/users')} // Navigate on click
+              onClick={() => navigate('/admin/users')} 
             >
               <div>
                 <h2 className="text-lg font-bold">Users Count</h2>
@@ -84,10 +82,9 @@ const Dashboard: React.FC = () => {
               </div>
             </div>
 
-            {/* Card 3: Appointments Count - Prominent */}
             <div
               className="shadow-md rounded-lg p-6 bg-blue-300 text-white cursor-pointer flex items-center justify-between"
-              onClick={() => navigate('/admin/reports')} // Navigate on click
+              onClick={() => navigate('/admin/reports')} 
             >
               <div>
                 <h2 className="text-lg font-bold">Appointments Report</h2>

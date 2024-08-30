@@ -301,7 +301,6 @@ export default (
     try {
       console.log('helooooooooooooooooooooooooooooooooooooooo')
       const reports = await getAllReports(dbBookingRepository);
-      console.log(reports,'////////////////////////////////////////reports')
       return res.status(HttpStatus.OK).json({ success: true, reports });
     } catch (error) {
       next(error);

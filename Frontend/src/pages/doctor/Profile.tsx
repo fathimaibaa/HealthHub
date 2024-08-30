@@ -5,13 +5,6 @@ import Footer from '../../components/doctor/Footer/Footer';
 import { MdOutlineModeEdit } from "react-icons/md";
 import useDoctorProfile from "../../hooks/UseDoctorProfile";
 
-// interface Department {
-//   _id: string;
-//   departmentName: string;
-//   isListed: boolean;
-//   createdAt: string;
-//   updatedAt: string;
-// }
 
 
 const Profile: React.FC = () => {
@@ -25,7 +18,6 @@ const Profile: React.FC = () => {
     departments ,
     handleInputChange,
     handleSubmit,
-    // handleVerify,
   } = useDoctorProfile() 
 
 

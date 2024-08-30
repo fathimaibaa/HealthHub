@@ -29,7 +29,6 @@ const Navbar: React.FC = () => {
     <nav className="bg-purple-900 shadow-lg w-full">
       <div className="px-5">
         <div className="flex justify-between h-16">
-          {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
           <img src={logo} alt="Health Hub Logo" className="h-10" />
             

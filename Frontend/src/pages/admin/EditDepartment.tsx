@@ -40,9 +40,8 @@ const EditDepartmentPage: React.FC = () => {
     } catch (error: unknown) {
       let errorMessage = 'An error occurred while updating the department';
 
-      // Manual type guard to check if the error is an Axios error
       if (error && typeof (error as any).response === 'object') {
-        const axiosError = error as any; // cast to any
+        const axiosError = error as any; 
         errorMessage = axiosError.response?.data?.message || errorMessage;
       }
 

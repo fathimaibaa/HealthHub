@@ -21,7 +21,7 @@ const useProfile = () => {
     name: string;
     gender: string;
     age: number | null;
-    phoneNumber: string; // Ensure this is always a string
+    phoneNumber: string; 
     imageFile: File | null;
   }>({
     name: "",
@@ -44,7 +44,7 @@ const useProfile = () => {
           name: user.name || "",
           gender: user.gender || "",
           age: user.age || null,
-          phoneNumber: String(user.phoneNumber || ""), // Ensure it's a string
+          phoneNumber: String(user.phoneNumber || ""),
           imageFile: null,
         });
       })
@@ -110,7 +110,7 @@ const useProfile = () => {
           name: formData.name,
           gender: formData.gender,
           age: formData.age,
-          phoneNumber: formData.phoneNumber, // Ensure this is always a string
+          phoneNumber: formData.phoneNumber, 
           profilePicture: url || profile?.profilePicture,
         })
         .then(({ data }) => {

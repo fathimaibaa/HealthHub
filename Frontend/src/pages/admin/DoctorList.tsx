@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AdminHeader from '../../components/admin/HeaderSidebar/Header';
 import AdminSidebar from '../../components/admin/HeaderSidebar/Sidebar';
-import useDoctors from '../../hooks/UseDoctors';
+import useDoctors from '../../hooks/Usedoctors';
 import DoctorData from '../../components/admin/DoctorData';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

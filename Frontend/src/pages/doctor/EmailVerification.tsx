@@ -25,7 +25,6 @@ const EmailVerificationPage = () => {
         setIsVerified(true);
       })
       .catch((error) => {
-        // Check if the error has a response and message
         if (error && error.response && error.response.data) {
           const message = (error.response.data as ErrorResponse).message || 'An error occurred';
           showToast(message, "error");

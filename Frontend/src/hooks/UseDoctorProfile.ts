@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import axiosJWT from "../utils/AxiosService";
 import showToast from "../utils/Toaster";
@@ -152,7 +153,6 @@ const useDoctorProfile = () => {
       try {
         const imageUrl = await uploadImagesToCloudinary(formData.imageFile);
         const certificateUrl = await uploadCertificateToCloudinary(formData.lisenceCertificate);
-        // const degreeUrl = await uploadCertificateToCloudinary(formData.degreeCertificate); 
 
 
 
@@ -168,7 +168,6 @@ const useDoctorProfile = () => {
           description: formData.description,
           profileImage: imageUrl || profile?.profileImage,
           lisenceCertificate: certificateUrl || profile?.lisenceCertificate,
-          // degreeCertificate: degreeUrl || profile?.degreeCertificate, 
         });
 
         showToast(response.data.message);

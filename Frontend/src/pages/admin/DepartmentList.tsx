@@ -1,7 +1,7 @@
 import React ,{useState}from 'react';
 import AdminHeader from '../../components/admin/HeaderSidebar/Header';
 import AdminSidebar from '../../components/admin/HeaderSidebar/Sidebar';
-import useDepartments from '../../hooks/UseDepartment';
+import useDepartments from '../../hooks/UseDepartments';
 import DepartmentData from '../../components/admin/DepartmentData';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';

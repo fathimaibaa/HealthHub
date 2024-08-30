@@ -8,6 +8,7 @@ import errorHandlingMiddleware from "./frameworks/webserver/middlewares/Errorhan
 import CustomError from "./utils/CustomError";
 import { Server } from "socket.io";
 import socketConfig from "./frameworks/webserver/webSocket/Socket";
+import path from "path";
 
 
 const app : Application = express();
@@ -25,7 +26,16 @@ const io = new Server(server, {
       credentials: true,
     },
   });
+
+  app.use(
+    express.static(path.join(__dirname, "../../client/Dine_Delight_Client/dist"))
+  );
+
+
   socketConfig(io);
+
+
+
 
 routes(app);
 serverConfig(server).startServer()

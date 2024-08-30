@@ -1,7 +1,7 @@
 import React from "react";
 import { BookingInterface } from "../../types/BookingInterface";
 import "react-toastify/dist/ReactToastify.css";
-import useDoctors from '../../hooks/UseDoctors';
+import useDoctors from '../../hooks/Usedoctors';
 
 
 interface BookingDataProps extends BookingInterface {
