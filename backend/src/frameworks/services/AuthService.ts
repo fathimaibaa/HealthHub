@@ -38,7 +38,7 @@ export const authService = () =>{
         return {accessToken,refreshToken};
     }
 
-
+//create doctor tokens
     const doctorCreateTokens = (id:string,name:string, role:string)=>{
         const payload = {
             id,
