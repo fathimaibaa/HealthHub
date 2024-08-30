@@ -200,7 +200,6 @@ exports.default = (authServiceInterface, authServiceImpl, userDbRepository, user
         try {
             console.log('helooooooooooooooooooooooooooooooooooooooo');
             const reports = yield (0, AdminRead_1.getAllReports)(dbBookingRepository);
-            console.log(reports, '////////////////////////////////////////reports');
             return res.status(HttpStatus_1.HttpStatus.OK).json({ success: true, reports });
         }
         catch (error) {
