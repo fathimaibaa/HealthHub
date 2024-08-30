@@ -44,6 +44,7 @@ const authService = () => {
         });
         return { accessToken, refreshToken };
     };
+    //create doctor tokens
     const doctorCreateTokens = (id, name, role) => {
         const payload = {
             id,
