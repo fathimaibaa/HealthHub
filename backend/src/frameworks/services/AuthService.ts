@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import configKeys from "../../Config";
 import jwt from "jsonwebtoken";
 import crypto from 'crypto';
