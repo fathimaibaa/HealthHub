@@ -60,7 +60,7 @@ const Body: React.FC = () => {
           Our Doctors
         </h1>
        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-20 justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-20 justify-center">
           {doctors.slice(0, 4).map((doctor) => (
             <Link key={doctor._id} to={`/user/doctor/${doctor._id}`}>
               <div
