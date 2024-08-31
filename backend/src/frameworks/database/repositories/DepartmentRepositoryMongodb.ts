@@ -38,7 +38,7 @@ export const departmentRepositoryMongodb = () => {
     };
   
     const unlistDepartments = async () => {
-      return await Department.find({ listed: false })
+      return await Department.find({ isListed: false })
     };
   
     return {

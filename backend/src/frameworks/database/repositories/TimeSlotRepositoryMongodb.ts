@@ -41,7 +41,7 @@ export const timeSlotRepositoryMongodb = () => {
     doctorId: string,
     time:string,
     
-   ) => await TimeSlot.findOne({ doctorId, time});
+   ) => await TimeSlot.findOne({ doctorId:doctorId, time:time});
 
   
   const getAllTimeSlots = async (doctorId: string) =>
