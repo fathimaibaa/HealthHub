@@ -41,7 +41,7 @@ const timeSlotRepositoryMongodb = () => {
             throw error;
         }
     });
-    const getSlotByTime = (doctorId, time) => __awaiter(void 0, void 0, void 0, function* () { return yield TimeSlots_1.default.findOne({ doctorId, time }); });
+    const getSlotByTime = (doctorId, time) => __awaiter(void 0, void 0, void 0, function* () { return yield TimeSlots_1.default.findOne({ doctorId: doctorId, time: time }); });
     const getAllTimeSlots = (doctorId) => __awaiter(void 0, void 0, void 0, function* () { return yield TimeSlots_1.default.find({ doctorId }).sort({ slotTime: -1 }); });
     const getAllTimeSlotsByDate = (doctorId, date) => __awaiter(void 0, void 0, void 0, function* () {
         try {

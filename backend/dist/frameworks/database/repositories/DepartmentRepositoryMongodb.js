@@ -42,7 +42,7 @@ const departmentRepositoryMongodb = () => {
         return yield Department_1.default.find({ isListed: true });
     });
     const unlistDepartments = () => __awaiter(void 0, void 0, void 0, function* () {
-        return yield Department_1.default.find({ listed: false });
+        return yield Department_1.default.find({ isListed: false });
     });
     return {
         addDepartment,
