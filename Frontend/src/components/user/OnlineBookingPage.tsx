@@ -196,7 +196,7 @@ useEffect(()=>{
 
         const bookingId = response.data.booking.bookingId;
         Navigate({
-          to: `${USER_API}/payment_status/${bookingId}?success=true`,
+          to: `${"https:/health-hub-one.vercel.app"}/payment_status/${bookingId}?success=true`,
         });
       }
        else {
