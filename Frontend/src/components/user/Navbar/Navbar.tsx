@@ -6,6 +6,7 @@ import showToast from "../../../utils/Toaster";
 import { clearUser } from "../../../redux/slices/UserSlice";
 import logo from '../../../assets/images/logo.png';
 import { removeItemFromLocalStorage } from "../../../utils/Setnget";
+import { FiMenu, FiX } from 'react-icons/fi'; // Importing icons from react-icons
 
 const Navbar: React.FC = () => {
   const user = useSelector((state: RootState) => state.UserSlice);
@@ -40,8 +41,7 @@ const Navbar: React.FC = () => {
             onClick={toggleMenu}
             className="text-white hover:text-gray-300 focus:outline-none focus:text-gray-300"
           >
-            {/* Add an icon for the hamburger menu */}
-            {/* {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />} */}
+            {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />} {/* Menu toggle icon */}
           </button>
         </div>
         {/* Navigation Links */}

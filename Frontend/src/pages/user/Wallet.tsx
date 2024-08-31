@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/user/Navbar/Navbar";
-
 import { useAppSelector } from "../../redux/store/Store";
-
 import { USER_API } from "../../constants/Index";
 import axiosJWT from "../../utils/AxiosService";
 
@@ -14,7 +12,9 @@ const WalletPage: React.FC = () => {
 
   useEffect(() => {
     const fetchWalletAmount = async () => {
-      const response:any = await axiosJWT.get(`${USER_API}/fetchWallet/${user.id}`);
+      const response: any = await axiosJWT.get(
+        `${USER_API}/fetchWallet/${user.id}`
+      );
       setWalletAmount(response.data.getWallet.balance);
     };
 
@@ -28,8 +28,8 @@ const WalletPage: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center justify-center bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-md w-1/3 mt-32 mb-28">
+      <div className="flex flex-col items-center justify-center bg-gray-100 min-h-screen">
+        <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-2/3 md:w-1/2 lg:w-1/3 mt-32 mb-28 mx-4">
           <h2 className="text-3xl font-bold text-center text-blue-900 mb-4">
             Wallet
           </h2>
