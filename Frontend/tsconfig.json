@@ -7,18 +7,27 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node", /* Changed from "bundler" to "node" */
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false, /* Changed to false for better module handling */
     "noEmit": true,
     "jsx": "react-jsx",
+
+    /* Enable Synthetic Default Imports */
+    "allowSyntheticDefaultImports": true,
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Module Resolution */
+    "baseUrl": "./", /* Ensures the base path is the project root */
+    "paths": {
+      "@/*": ["src/*"] /* Allows for alias imports like "@/Pages/..." */
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
