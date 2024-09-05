@@ -5,14 +5,16 @@ import Navbar from '../Components/User/Navbar/Navbar'
 import Body from '../Components/User/Body'
  
 const Home:React.FC = () => {
-  return (
+  return ( 
     <>
+
     <Navbar/> 
     <Banner/>
     
     <Body/>
     
     <Footer/>
+    
     </>
     
   )
