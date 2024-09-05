@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
-import axiosJWT from "../utils/AxiosService";
-import showToast from "../utils/Toaster";
+import axiosJWT from "../uuu/AxiosService";
+import showToast from "../uuu/Toaster";
 import { DoctorInterface } from "../Types/DoctorInterface";
 import { DOCTOR_API, nameRegex, phoneRegex } from "../Constants/Index";
 import { uploadImagesToCloudinary, uploadCertificateToCloudinary } from "../Api/UploadImages";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axiosJWT from "../../utils/AxiosService";
+import axiosJWT from "../../uuu/AxiosService";
 import { USER_API } from "../../Constants/Index";
 import Conversation from "./Conversation";
 

@@ -6,8 +6,8 @@ import { useFormik } from "formik";
 import {
   getItemFromLocalStorage,
   removeItemFromLocalStorage,
-} from "../../utils/Setnget";
-import showToast from "../../utils/Toaster";
+} from "../../uuu/Setnget";
+import showToast from "../../uuu/Toaster";
 import { useNavigate } from "react-router-dom";
 interface VerifyOtpResponse {
   message: string;

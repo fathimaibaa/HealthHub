@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/User/Navbar/Navbar";
 import { useAppSelector } from "../../Redux/Store/Store";
 import { USER_API } from "../../Constants/Index";
-import axiosJWT from "../../utils/AxiosService";
+import axiosJWT from "../../uuu/AxiosService";
 
 const WalletPage: React.FC = () => {
   const user = useAppSelector((state) => state.UserSlice);

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axiosJWT from '../../utils/AxiosService';
+import axiosJWT from '../../uuu/AxiosService';
 import { ADMIN_API } from '../../Constants/Index';
 import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';
 import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
-import showToast from "../../utils/Toaster";
+import showToast from "../../uuu/Toaster";
 
 const EditDepartmentPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

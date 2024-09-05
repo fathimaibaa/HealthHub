@@ -1,7 +1,7 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import Navbar from "../../Components/User/Navbar/Navbar";
 import PaymentMessage from "../../Components/User/Payment";
-import axiosJWT from "../../utils/AxiosService";
+import axiosJWT from "../../uuu/AxiosService";
 import { USER_API } from "../../Constants/Index";
 
 const PaymentCompleted = () => {

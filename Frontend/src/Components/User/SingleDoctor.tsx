@@ -1,6 +1,6 @@
 import React, { useEffect,  useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axiosJWT from '../../utils/AxiosService';
+import axiosJWT from '../../uuu/AxiosService';
 import { USER_API } from '../../Constants/Index';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { DepartmentInterface } from '../../Types/DepartmentInterface';
