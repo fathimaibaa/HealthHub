@@ -67,9 +67,9 @@ const Navbar: React.FC = () => {
           {/* Profile and Login/Logout */}
           {user.isAuthenticated && user.role === "user" ? (
             <>
-<Link to="/user/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</Link>
+<Link to="/user/profile" className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white hover:text-purple-900 md:ml-2">Profile</Link>
 
-<Link to="/user/wallet" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Wallet</Link>
+<Link to="/user/wallet" className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white hover:text-purple-900 md:ml-2">Wallet</Link>
               <Link
                 to="/user/appoinmentlist"
                 className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white hover:text-purple-900 md:ml-2"

@@ -6,7 +6,7 @@ function NotFoundPage() {
   const navigate = useNavigate();
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-green-700 bg-fixed bg-cover bg-bottom error-bg">
+        <div className="flex items-center justify-center min-h-screen bg-purple-600 bg-fixed bg-cover bg-bottom error-bg">
             <div className="container">
                 <div className="row pb-1">
                     <div className="col-sm-8 offset-sm-2 text-gray-50 text-center -mt-52">
