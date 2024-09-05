@@ -3,8 +3,6 @@ export const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 export const phoneRegex = /^\d{10}$/;
 export const BASE_URL = "https://fathimaodayi.site/api/";
 export const SERVER_URL = "https://fathimaodayi.site/"
-// export const BASE_URL = "http://localhost:5173/api/";
-// export const SERVER_URL = "http://localhost:5173/"
 
 
 export const USER_API = BASE_URL + "user";

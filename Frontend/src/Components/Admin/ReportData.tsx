@@ -16,7 +16,6 @@ const ReportData: React.FC<BookingDataProps> = ({
   timeSlot,
 }) => {
   const {doctors} = useDoctors();
-  console.log(doctors,"nn")
   const doctor = doctors.find(doc => doc._id === doctorId);
   const doctorName = doctor ? doctor.doctorName : "Unknown Doctor";
   return (

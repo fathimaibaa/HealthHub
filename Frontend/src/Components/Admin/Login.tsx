@@ -41,7 +41,6 @@ const Login: React.FC = () => {
       axios
         .post<LoginResponse>(ADMIN_API + "/login", { email, password })
         .then(({ data }) => {
-          console.log(data, "datadatadatadatadatadata");
           const { name, role } = data.admin;
           const { message, access_token, refresh_token } = data;
           showToast(message, "success");

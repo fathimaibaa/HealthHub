@@ -10,7 +10,7 @@ export const PublicRoute: FC = () => {
     }   else if (role === "admin") {
         return isAuthenticated ? (<Navigate to={"/admin"} replace />) : ( <Outlet /> );
       }
-    return <Outlet />; // if user has no role and not authenticated return the routes
+    return <Outlet />; 
   };
   
 
@@ -19,6 +19,6 @@ export const PublicRoute: FC = () => {
     if (role === "doctor") {
       return isAuthenticated ? <Navigate to={"/doctor"} replace /> : <Outlet />;
     } 
-    return <Outlet />; // if user has no role and not authenticated return the routes
+    return <Outlet />; 
   };
   

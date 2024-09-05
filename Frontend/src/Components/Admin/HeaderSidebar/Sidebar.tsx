@@ -13,20 +13,16 @@ const AdminSidebar: React.FC = () => {
     try {
       dispatch(clearUser());
 
-      // Assuming `logout` is an Axios request, provide the correct configuration
       await logout({
         method: 'POST',
         url: '/api/logout',
       });
 
-      // Display success message
       alert("Logout success");
 
-      // Navigate to the admin login page
       navigate("/admin/login");
     } catch (error) {
       console.error("Logout failed", error);
-      // Handle the error appropriately
     }
   };
 

@@ -5,7 +5,6 @@ const sentMail = async (
   content: string
 ) => {
   try {
-    console.log('inside the send mailer')
     const info = await transporter.sendMail({
       from: '"HEALTH HUB" <HealthHub@gmail.com>',
       to: email,
