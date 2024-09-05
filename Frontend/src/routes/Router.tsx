@@ -3,54 +3,54 @@ import ProtectedRoute, { AdminProtectedRoute, DoctorProtectedRoute } from "./Pro
 import { DoctorPublicRoute, PublicRoute } from "./PublicRoute";
 
 
-import  Register  from '../Pages/User/Register'
-import VerifyOtp  from  "../Pages/User/VerifyOTP"
-import Login from '../Pages/User/Login'
-import Home from '../Pages/Home'
-import ForgotPassword from '../Pages/User/ForgotPassword'
-import ResetPassword from '../Pages/User/ResetPassword'
-import DoctorDetailsUser from '../Pages/User/SingleDoctorDetails'
+import  Register  from '../pppp/User/Register'
+import VerifyOtp  from  "../pppp/User/VerifyOTP"
+import Login from '../pppp/User/Login'
+import Home from '../pppp/Home'
+import ForgotPassword from '../pppp/User/ForgotPassword'
+import ResetPassword from '../pppp/User/ResetPassword'
+import DoctorDetailsUser from '../pppp/User/SingleDoctorDetails'
  import AppointmentOnlineBookingPage from "../Components/User/OnlineBookingPage"
-import PaymentCompleted from "../Pages/User/PaymentCompleted";
+import PaymentCompleted from "../pppp/User/PaymentCompleted";
 import OnlineDoctors from "../Components/User/Online-consultation"
-import ProfileUser from '../Pages/User/Profile'   
-import UploadForm from "../Pages/User/LabRecord";  
-import DocumentListPageUser from "../Pages/User/DocumentListPage";                          
-import Chat from "../Pages/User/Chat";
-import WalletPage from "../Pages/User/Wallet";
-import Transaction from '../Pages/User/WalletTransaction'
-import AboutPage from "../Pages/User/AboutPage";
-import ContactPage from '../Pages/User/ContactPage'
+import ProfileUser from '../pppp/User/Profile'   
+import UploadForm from "../pppp/User/LabRecord";  
+import DocumentListPageUser from "../pppp/User/DocumentListPage";                          
+import Chat from "../pppp/User/Chat";
+import WalletPage from "../pppp/User/Wallet";
+import Transaction from '../pppp/User/WalletTransaction'
+import AboutPage from "../pppp/User/AboutPage";
+import ContactPage from '../pppp/User/ContactPage'
 
-import DoctorhomePage from '../Pages/Doctor/DoctorDashbord'
-import DoctorSignup from '../Pages/Doctor/DoctorSignup' 
-import EmailVerificationPage from '../Pages/Doctor/EmailVerification'          
-import DoctorLogin from '../Pages/Doctor/DoctorLogin'
-import ProfileDoctor from '../Pages/Doctor/Profile'
-import DoctorList from '../Pages/User/DoctorPage'
-import DoctorSlotPage from '../Pages/Doctor/SlotPage'
-import PatientListPage from '../Pages/Doctor/PatientListPage'
-import SinglePagePatient from "../Pages/Doctor/SinglePagePatient";
-import DoctorChat from "../Pages/Doctor/Chat"
-import DocumentListPage from "../Pages/Doctor/DocumentListPage";
+import DoctorhomePage from '../pppp/Doctor/DoctorDashbord'
+import DoctorSignup from '../pppp/Doctor/DoctorSignup' 
+import EmailVerificationPage from '../pppp/Doctor/EmailVerification'          
+import DoctorLogin from '../pppp/Doctor/DoctorLogin'
+import ProfileDoctor from '../pppp/Doctor/Profile'
+import DoctorList from '../pppp/User/DoctorPage'
+import DoctorSlotPage from '../pppp/Doctor/SlotPage'
+import PatientListPage from '../pppp/Doctor/PatientListPage'
+import SinglePagePatient from "../pppp/Doctor/SinglePagePatient";
+import DoctorChat from "../pppp/Doctor/Chat"
+import DocumentListPage from "../pppp/Doctor/DocumentListPage";
 
 
 
-import AdminLogin from '../Pages/Admin/AdminLogin'
-import AdminDashboard from '../Pages/Admin/AdminDashboard'
-import AdminUserList from '../Pages/Admin/UserList'
-import AdminDoctorList from '../Pages/Admin/DoctorList'
-import RequestedDoctors from '../Pages/Admin/ReqDoctorList'
-import AdminDoctorDetails from '../Pages/Admin/DoctorDetails'
-import AdminDepartmentList from '../Pages/Admin/DepartmentList'
-import AddDepartmentList from '../Pages/Admin/AddDepartmentPage'
-import AppoinmentDetails from "../Pages/User/AppoinmentDetails";
+import AdminLogin from '../pppp/Admin/AdminLogin'
+import AdminDashboard from '../pppp/Admin/AdminDashboard'
+import AdminUserList from '../pppp/Admin/UserList'
+import AdminDoctorList from '../pppp/Admin/DoctorList'
+import RequestedDoctors from '../pppp/Admin/ReqDoctorList'
+import AdminDoctorDetails from '../pppp/Admin/DoctorDetails'
+import AdminDepartmentList from '../pppp/Admin/DepartmentList'
+import AddDepartmentList from '../pppp/Admin/AddDepartmentPage'
+import AppoinmentDetails from "../pppp/User/AppoinmentDetails";
 
-import EditDepartment from "../Pages/Admin/EditDepartment";
-import AppoinmentListPage from "../Pages/User/GetAppoinmentsAll";
-import AdminReport from "../Pages/Admin/Report"
+import EditDepartment from "../pppp/Admin/EditDepartment";
+import AppoinmentListPage from "../pppp/User/GetAppoinmentsAll";
+import AdminReport from "../pppp/Admin/Report"
 
-import NotFoundPage from "../Pages/Error404";
+import NotFoundPage from "../pppp/Error404";
 
 export const MainRouter = () => {
     return (
