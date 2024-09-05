@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ZIM } from "zego-zim-web";
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
-import { useAppSelector } from "../Redux/Store/Store";
+import { useAppSelector } from "../redux/store/Store";
 import { ReactNode } from "react";
 
 export const ZegoCloud = ({ children }: { children: ReactNode }) => {

@@ -8,7 +8,7 @@ import { FaFilePdf, FaPlus, FaTimes, FaTrash } from "react-icons/fa";
 import { FaFileUpload } from "react-icons/fa";
 import { uploadDocumentToCloudinary } from "../../Api/UploadImages";
 import { AiOutlineFileText} from 'react-icons/ai';
-import { useAppSelector } from "../../Redux/Store/Store";
+import { useAppSelector } from "../../redux/store/Store";
 import axios from 'axios';
 
 import { ZIM } from "zego-zim-web";

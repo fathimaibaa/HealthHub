@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DepartmentInterface } from "../../Types/DepartmentInterface";
+import { DepartmentInterface } from "../../types/DepartmentInterface";
 import axiosJWT from "../../Utils/AxiosService";
 import { ADMIN_API } from "../../Constants/Index";
 import { toast } from "react-toastify";

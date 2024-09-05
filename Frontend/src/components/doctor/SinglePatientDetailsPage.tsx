@@ -8,7 +8,7 @@ import { AiOutlineFileText, AiOutlineVideoCamera } from 'react-icons/ai';
 import { FiMessageSquare } from 'react-icons/fi';
 import { ZIM } from "zego-zim-web";
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
-import { useAppSelector } from '../../Redux/Store/Store';
+import { useAppSelector } from '../../redux/store/Store';
 import axios from 'axios';
 
 const PatientDetailPage = () => {

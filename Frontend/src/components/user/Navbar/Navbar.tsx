@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../Redux/Reducer/Reducer";
+import { RootState } from "../../../redux/reducer/Reducer";
 import showToast from "../../../Utils/Toaster";
-import { clearUser } from "../../../Redux/Slices/UserSlice";
+import { clearUser } from "../../../redux/slices/UserSlice";
 import logo from '../../../Assets/Images/logo.png';
 import { removeItemFromLocalStorage } from "../../../Utils/Setnget";
 import { FiMenu, FiX } from 'react-icons/fi'; 

@@ -1,7 +1,7 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import axiosJWT from "../Utils/AxiosService";
 import showToast from "../Utils/Toaster";
-import { UserInterface } from '../Types/UserInterface';
+import { UserInterface } from '../types/UserInterface';
 import { USER_API, nameRegex, phoneRegex } from "../Constants/Index";
 import { uploadImagesToCloudinary } from "../Api/UploadImages";
 

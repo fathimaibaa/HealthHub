@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ADMIN_API } from '../../Constants/Index';
 import axiosJWT from '../../Utils/AxiosService';
-import { DoctorInterface } from '../../Types/DoctorInterface';
+import { DoctorInterface } from '../../types/DoctorInterface';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -5,9 +5,9 @@ import { validateLogin } from "../../Utils/Validation";
 import { DOCTOR_API } from "../../Constants/Index";
 import showToast from "../../Utils/Toaster";
 import axios from "axios";
-import { useAppDispatch } from "../../Redux/Store/Store";
+import { useAppDispatch } from "../../redux/store/Store";
 import login from '../../Assets/Images/login.jpg';
-import { setDoctor } from "../../Redux/Slices/DoctorSlice";
+import { setDoctor } from "../../redux/slices/DoctorSlice";
 import { setItemToLocalStorage } from "../../Utils/Setnget";
 
 interface Doctor {

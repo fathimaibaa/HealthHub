@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { USER_API } from "../../Constants/Index";
 import "../../Index.css";
 import axios from "axios";
-import { DoctorInterface } from "../../Types/DoctorInterface";
-import { DepartmentInterface } from "../../Types/DepartmentInterface";
+import { DoctorInterface } from "../../types/DoctorInterface";
+import { DepartmentInterface } from "../../types/DepartmentInterface";
 
 const Body: React.FC = () => {
   const [doctors, setDoctors] = useState<DoctorInterface[]>([]);

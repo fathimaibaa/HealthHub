@@ -1,5 +1,5 @@
 import React from "react";
-import { BookingInterface } from "../../Types/BookingInterface";
+import { BookingInterface } from "../../types/BookingInterface";
 import "react-toastify/dist/ReactToastify.css";
 import useDoctors from '../../Hooks/Usedoctors';
 

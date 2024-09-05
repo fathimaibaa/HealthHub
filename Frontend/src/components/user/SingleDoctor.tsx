@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axiosJWT from '../../Utils/AxiosService';
 import { USER_API } from '../../Constants/Index';
 import { FaCalendarAlt } from 'react-icons/fa';
-import { DepartmentInterface } from '../../Types/DepartmentInterface';
+import { DepartmentInterface } from '../../types/DepartmentInterface';
 
 interface Doctor {
   profileImage: string;

@@ -3,7 +3,7 @@ import Conversation from "../../Chat/User/Conversation";
 import Message from "../../Chat/User/Message";
 import Navbar from "../../Components/User/Navbar/Navbar";
 import { FiSend } from "react-icons/fi";
-import { useAppSelector } from "../../Redux/Store/Store";
+import { useAppSelector } from "../../redux/store/Store";
 import axiosJWT from "../../Utils/AxiosService";
 import { CHAT_API, USER_API } from "../../Constants/Index";
 

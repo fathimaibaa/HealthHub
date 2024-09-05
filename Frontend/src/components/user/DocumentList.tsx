@@ -7,7 +7,7 @@ import axiosJWT from "../../Utils/AxiosService";
 import { useParams } from "react-router-dom";
 import { USER_API } from "../../Constants/Index";
 import showToast from "../../Utils/Toaster"; 
-import { useAppSelector } from "../../Redux/Store/Store";
+import { useAppSelector } from "../../redux/store/Store";
 
 const DocumentList = () => {
   const { id } = useParams<{ id: string }>();

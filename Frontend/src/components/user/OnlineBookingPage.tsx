@@ -10,8 +10,8 @@ import { Calendar } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Navigate, useNavigate } from "react-router-dom";
 import {  useSelector } from "react-redux";
-import { RootState } from "../../Redux/Reducer/Reducer";
-import { DepartmentInterface } from "../../Types/DepartmentInterface";
+import { RootState } from "../../redux/reducer/Reducer";
+import { DepartmentInterface } from "../../types/DepartmentInterface";
 
 
 const AppointmentOnlineBookingPage: React.FC = () => {

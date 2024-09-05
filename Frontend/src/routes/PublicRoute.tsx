@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useAppSelector } from "../Redux/Store/Store";
+import { useAppSelector } from "../redux/store/Store";
 import { Navigate, Outlet } from "react-router-dom";
 
 
