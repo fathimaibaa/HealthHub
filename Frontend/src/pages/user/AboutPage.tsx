@@ -1,7 +1,7 @@
 import React from 'react';
-import Footer from '../../Components/User/Footer/Footer';
-import Navbar from '../../Components/User/Navbar/Navbar';
-import AboutUsPage from '../../Components/User/Aboutus';
+import Footer from '../../zzzz/User/Footer/Footer';
+import Navbar from '../../zzzz/User/Navbar/Navbar';
+import AboutUsPage from '../../zzzz/User/Aboutus';
 
 
 

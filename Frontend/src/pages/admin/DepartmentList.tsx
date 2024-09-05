@@ -1,8 +1,8 @@
 import React ,{useState}from 'react';
-import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';
-import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
+import AdminHeader from '../../zzzz/Admin/HeaderSidebar/Header';
+import AdminSidebar from '../../zzzz/Admin/HeaderSidebar/Sidebar';
 import useDepartments from '../../Hooks/UseDepartments';
-import DepartmentData from '../../Components/Admin/DepartmentData';
+import DepartmentData from '../../zzzz/Admin/DepartmentData';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

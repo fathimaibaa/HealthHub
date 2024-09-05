@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../../Components/User/Navbar/Navbar";
-import OnlineDoctors from "../../Components/User/Online-consultation"
+import Navbar from "../../zzzz/User/Navbar/Navbar";
+import OnlineDoctors from "../../zzzz/User/Online-consultation"
 
 const OnlinePage: React.FC = () => {
   return (

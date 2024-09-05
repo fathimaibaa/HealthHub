@@ -1,8 +1,8 @@
 import React from 'react'
-import Banner from '../Components/User/Banner'
-import Footer from '../Components/User/Footer/Footer'
-import Navbar from '../Components/User/Navbar/Navbar'
-import Body from '../Components/User/Body'
+import Banner from '../zzzz/User/Banner'
+import Footer from '../zzzz/User/Footer/Footer'
+import Navbar from '../zzzz/User/Navbar/Navbar'
+import Body from '../zzzz/User/Body'
  
 const Home:React.FC = () => {
   return ( 

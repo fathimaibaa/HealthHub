@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../Components/User/Navbar/Navbar";
+import Navbar from "../../zzzz/User/Navbar/Navbar";
 import axiosJWT from "../../utils/AxiosService";
 import {CHAT_API ,USER_API } from "../../Constants/Index";
 import { useNavigate, useParams } from "react-router-dom";
