@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axiosJWT from '../../uuu/AxiosService';
+import axiosJWT from '../../Utils/AxiosService';
 import { ADMIN_API } from '../../Constants/Index';
 import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
 import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';

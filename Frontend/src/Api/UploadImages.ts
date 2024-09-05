@@ -1,6 +1,6 @@
 
 import { CLOUDINARY_UPLOAD_API, cloudinaryUploadPreset } from "../Constants/Index";
-import showToast from "../uuu/Toaster";
+import showToast from "../Utils/Toaster";
 
 const uploadImagesToCloudinary = async (imageFile: File | null) => {
   try {

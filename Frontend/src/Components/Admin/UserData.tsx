@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { UserInterface } from "../../Types/UserInterface";
-import axiosJWT from "../../uuu/AxiosService";
+import axiosJWT from "../../Utils/AxiosService";
 import { ADMIN_API } from "../../Constants/Index";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

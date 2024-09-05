@@ -1,6 +1,6 @@
 import { useEffect, useState, ChangeEvent } from "react";
-import axiosJWT from "../uuu/AxiosService";
-import showToast from "../uuu/Toaster";
+import axiosJWT from "../Utils/AxiosService";
+import showToast from "../Utils/Toaster";
 import { UserInterface } from '../Types/UserInterface';
 import { USER_API, nameRegex, phoneRegex } from "../Constants/Index";
 import { uploadImagesToCloudinary } from "../Api/UploadImages";

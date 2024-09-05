@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axiosJWT from "../uuu/AxiosService";
+import axiosJWT from "../Utils/AxiosService";
 import { UserInterface } from "../Types/UserInterface";
 import { ADMIN_API } from "../Constants/Index";
 

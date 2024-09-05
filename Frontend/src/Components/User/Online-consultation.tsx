@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axiosJWT from "../../uuu/AxiosService";
+import axiosJWT from "../../Utils/AxiosService";
 import { USER_API } from "../../Constants/Index";
 import { FaSearch, FaCalendarAlt } from "react-icons/fa";
 import DatePicker from "react-datepicker";

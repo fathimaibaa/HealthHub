@@ -5,8 +5,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { DOCTOR_API } from '../../Constants/Index';
-import showToast from "../../uuu/Toaster";
-import { validateSignUp } from "../../uuu/Validation";
+import showToast from "../../Utils/Toaster";
+import { validateSignUp } from "../../Utils/Validation";
 interface SignUpResponse {
   message: string;
 }

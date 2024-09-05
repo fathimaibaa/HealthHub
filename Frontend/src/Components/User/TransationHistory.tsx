@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axiosJWT from "../../uuu/AxiosService";
+import axiosJWT from "../../Utils/AxiosService";
 import { USER_API } from "../../Constants/Index";
-import showToast from "../../uuu/Toaster";
+import showToast from "../../Utils/Toaster";
 import { format } from "date-fns";
 
 interface Transaction {

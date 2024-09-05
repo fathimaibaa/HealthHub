@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DOCTOR_API } from "../../Constants/Index";
-import showToast from "../../uuu/Toaster";
+import showToast from "../../Utils/Toaster";
 
 interface VerifyEmailResponse {
   message: string;
