@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { DOCTOR_API } from "../../../constants/Index";
+import { DOCTOR_API } from "../../../Constants/Index";
 import showToast from "../../../utils/Toaster";
 import axiosJWT from "../../../utils/AxiosService";
 import { useSelector } from "react-redux";

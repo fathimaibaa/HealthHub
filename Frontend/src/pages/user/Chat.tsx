@@ -5,7 +5,7 @@ import Navbar from "../../Components/User/Navbar/Navbar";
 import { FiSend } from "react-icons/fi";
 import { useAppSelector } from "../../redux/store/Store";
 import axiosJWT from "../../utils/AxiosService";
-import { CHAT_API, USER_API } from "../../constants/Index";
+import { CHAT_API, USER_API } from "../../Constants/Index";
 
 import { useSocket } from "../../Context/SocketContext";
 
