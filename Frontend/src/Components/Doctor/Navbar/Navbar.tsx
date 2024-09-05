@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../Redux/Reducer/Reducer";
+import { RootState } from "../../../rrrr/Reducer/Reducer";
 import showToast from "../../../utils/Toaster";
-import { clearDoctor } from "../../../Redux/Slices/DoctorSlice";
+import { clearDoctor } from "../../../rrrr/Slices/DoctorSlice";
 import { removeItemFromLocalStorage } from "../../../utils/Setnget";
 import logo from '../../../Assets/Images/logo.png';
 
