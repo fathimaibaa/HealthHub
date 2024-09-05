@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../components/user/Navbar/Navbar";
+import Navbar from "../../Components/User/Navbar/Navbar";
 import { useAppSelector } from "../../redux/store/Store";
 import { USER_API } from "../../constants/Index";
 import axiosJWT from "../../utils/AxiosService";

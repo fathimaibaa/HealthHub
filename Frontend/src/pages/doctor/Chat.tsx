@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Conversation from "../../Chat/Doctor/Conversation";
 import Message from "../../Chat/Doctor/Message";
-import Navbar from "../../components/doctor/Navbar/Navbar";
+import Navbar from "../../Components/Doctor/Navbar/Navbar";
 import { FiSend } from "react-icons/fi";
 import { useAppSelector } from "../../redux/store/Store";
 import axiosJWT from "../../utils/AxiosService";

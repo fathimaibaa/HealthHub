@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../../components/doctor/Navbar/Navbar'
-import PatientListPage from '../../components/doctor/PatientList'
+import Navbar from '../../Components/Doctor/Navbar/Navbar'
+import PatientListPage from '../../Components/Doctor/PatientList'
 
 
 const ListPage:React.FC = () => {

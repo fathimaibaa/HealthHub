@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../../components/user/Navbar/Navbar";
-import Navbars from "../../components/user/Navbar/Navbar";
-import DocumentList from "../../components/user/DocumentList";
+import Navbar from "../../Components/User/Navbar/Navbar";
+import Navbars from "../../Components/User/Navbar/Navbar";
+import DocumentList from "../../Components/User/DocumentList";
 import { useAppSelector } from "../../redux/store/Store";
 
 const DocumentListPage: React.FC = () => {

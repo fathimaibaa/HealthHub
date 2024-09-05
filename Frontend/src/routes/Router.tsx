@@ -10,9 +10,9 @@ import Home from '../pages/Home'
 import ForgotPassword from '../pages/user/ForgotPassword'
 import ResetPassword from '../pages/user/ResetPassword'
 import DoctorDetailsUser from '../pages/user/SingleDoctorDetails'
- import AppointmentOnlineBookingPage from "../components/user/OnlineBookingPage"
+ import AppointmentOnlineBookingPage from "../Components/User/OnlineBookingPage"
 import PaymentCompleted from "../pages/user/PaymentCompleted";
-import OnlineDoctors from "../components/user/Online-consultation"
+import OnlineDoctors from "../Components/User/Online-consultation"
 import ProfileUser from '../pages/user/Profile'   
 import UploadForm from "../pages/user/LabRecord";  
 import DocumentListPageUser from "../pages/user/DocumentListPage";                          
