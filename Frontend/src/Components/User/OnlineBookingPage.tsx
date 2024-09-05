@@ -10,7 +10,7 @@ import { Calendar } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Navigate, useNavigate } from "react-router-dom";
 import {  useSelector } from "react-redux";
-import { RootState } from "../../rrrr/Reducer/Reducer";
+import { RootState } from "../../Redux/Reducer/Reducer";
 import { DepartmentInterface } from "../../types/DepartmentInterface";
 
 

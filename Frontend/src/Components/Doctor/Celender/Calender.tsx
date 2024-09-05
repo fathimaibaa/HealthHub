@@ -5,7 +5,7 @@ import { DOCTOR_API } from "../../../Constants/Index";
 import showToast from "../../../utils/Toaster";
 import axiosJWT from "../../../utils/AxiosService";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../rrrr/Reducer/Reducer";
+import { RootState } from "../../../Redux/Reducer/Reducer";
 import { RRule } from 'rrule';
 import moment from "moment";
 

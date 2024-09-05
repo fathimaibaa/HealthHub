@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logout from "../../../utils/AxiosService";
-import { useAppDispatch } from "../../../rrrr/Store/Store";
-import { clearUser } from "../../../rrrr/Slices/UserSlice";
+import { useAppDispatch } from "../../../Redux/Store/Store";
+import { clearUser } from "../../../Redux/Slices/UserSlice";
 import { Stethoscope } from "lucide-react";
 
 const AdminSidebar: React.FC = () => {

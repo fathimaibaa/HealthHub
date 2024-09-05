@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from "react-router-dom";
 import { MainRouter } from "./Routes/Router";
 import { Provider } from "react-redux";
-import store, { persistor } from "./rrrr/Store/Store";
+import store, { persistor } from "./Redux/Store/Store";
 import { PersistGate } from "redux-persist/integration/react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
