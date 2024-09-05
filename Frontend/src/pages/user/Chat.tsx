@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import Conversation from "../../hhh/User/Conversation";
-import Message from "../../hhh/User/Message";
+import Conversation from "../../Chat/User/Conversation";
+import Message from "../../Chat/User/Message";
 import Navbar from "../../Components/User/Navbar/Navbar";
 import { FiSend } from "react-icons/fi";
 import { useAppSelector } from "../../Redux/Store/Store";
