@@ -1,5 +1,5 @@
-import { googleSignInUserEntityType, userEntityType } from "../../entities/UserEntity";
-import { userRepositoryMongodbType } from "../../frameworks/database/repositories/UserRepositoryMongodb";
+import { googleSignInUserEntityType, userEntityType } from "../../Entities/UserEntity";
+import { userRepositoryMongodbType } from "../../Frameworks/Database/Repositories/UserRepositoryMongodb";
 
 
 export const userDbRepository = (

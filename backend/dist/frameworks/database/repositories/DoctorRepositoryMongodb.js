@@ -13,9 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.doctorRepositoryMongodb = void 0;
-const Doctor_1 = __importDefault(require("../models/Doctor"));
-const TimeSlots_1 = __importDefault(require("../models/TimeSlots"));
-const Booking_1 = __importDefault(require("../models/Booking"));
+const Doctor_1 = __importDefault(require("../Models/Doctor"));
+const TimeSlots_1 = __importDefault(require("../Models/TimeSlots"));
+const Booking_1 = __importDefault(require("../Models/Booking"));
 const doctorRepositoryMongodb = () => {
     const getDoctorById = (id) => __awaiter(void 0, void 0, void 0, function* () {
         try {
@@ -123,7 +123,6 @@ const doctorRepositoryMongodb = () => {
         const res = yield Booking_1.default.find({
             appoinmentStatus: { $in: ["Booked", "Consulted"] }
         });
-        console.log(res, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         return res;
     });
     return {

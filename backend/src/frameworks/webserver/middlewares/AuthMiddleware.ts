@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { HttpStatus } from "../../../types/HttpStatus";
+import { HttpStatus } from "../../../Types/HttpStatus";
 import configKeys from "../../../Config";
 
 declare global {

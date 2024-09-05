@@ -1,15 +1,15 @@
 import { NextFunction, Request, Response } from "express";
-import { doctorDbInterface } from "../app/interfaces/DoctorDBRepository";
-import { userDbInterface } from "../app/interfaces/UserDbRepository";
-import { AuthServiceInterfaceType } from "../app/service-interface/AuthServiceInterface";
-import { loginAdmin } from "../app/use-cases/Admin/AdminAuth";
-import { doctorRepositoryMongodbType } from "../frameworks/database/repositories/DoctorRepositoryMongodb";
-import { userRepositoryMongodbType } from "../frameworks/database/repositories/UserRepositoryMongodb";
-import { AuthService } from "../frameworks/services/AuthService";
-import { HttpStatus } from "../types/HttpStatus";
-import { blockDoctor, blockUser } from "../app/use-cases/Admin/AdminUpdate";
-import { getAllReports, getAllTheAppoinments, getAllTheDoctors, getDoctor, getDoctorRejected, getSingleDoctor, getUsers } from "../app/use-cases/Admin/AdminRead";
-import { IDepartmentRepository } from "../app/interfaces/DepartmentRepositoryInterface";
+import { doctorDbInterface } from "../App/Interfaces/DoctorDBRepository";
+import { userDbInterface } from "../App/Interfaces/UserDbRepository";
+import { AuthServiceInterfaceType } from "../App/Service-interface/AuthServiceInterface";
+import { loginAdmin } from "../App/Use-cases/Admin/AdminAuth";
+import { doctorRepositoryMongodbType } from "../Frameworks/Database/Repositories/DoctorRepositoryMongodb";
+import { userRepositoryMongodbType } from "../Frameworks/Database/Repositories/UserRepositoryMongodb";
+import { AuthService } from "../Frameworks/Services/AuthService";
+import { HttpStatus } from "../Types/HttpStatus";
+import { blockDoctor, blockUser } from "../App/Use-cases/Admin/AdminUpdate";
+import { getAllReports, getAllTheAppoinments, getAllTheDoctors, getDoctor, getDoctorRejected, getSingleDoctor, getUsers } from "../App/Use-cases/Admin/AdminRead";
+import { IDepartmentRepository } from "../App/Interfaces/DepartmentRepositoryInterface";
 import {
   addDepartment,
   blockDepartment,
@@ -18,9 +18,9 @@ import {
   unblockDepartment,
   unlistDepartments,
   updateDepartment,
-} from "../app/use-cases/Admin/AdminDepartment";
-import { BookingDbRepositoryInterface } from "../app/interfaces/BookingDbRepository";
-import { BookingRepositoryMongodbType } from "../frameworks/database/repositories/BookingRepositoryMongodb";
+} from "../App/Use-cases/Admin/AdminDepartment";
+import { BookingDbRepositoryInterface } from "../App/Interfaces/BookingDbRepository";
+import { BookingRepositoryMongodbType } from "../Frameworks/Database/Repositories/BookingRepositoryMongodb";
 
 export default (
   authServiceInterface: AuthServiceInterfaceType,
@@ -285,7 +285,6 @@ export default (
   ) => {
     try {
       const appoinments = await getAllTheAppoinments(dbDoctorRepository);
-      console.log(appoinments,"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
       return res.status(HttpStatus.OK).json({ success: true, appoinments });
     } catch (error) {
       next(error);
@@ -299,7 +298,6 @@ export default (
     next: NextFunction
   ) => {
     try {
-      console.log('helooooooooooooooooooooooooooooooooooooooo')
       const reports = await getAllReports(dbBookingRepository);
       return res.status(HttpStatus.OK).json({ success: true, reports });
     } catch (error) {

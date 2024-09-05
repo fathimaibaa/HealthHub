@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { doctorDbInterface } from "../app/interfaces/DoctorDBRepository";
-import { userDbInterface } from "../app/interfaces/UserDbRepository";
-import { AuthServiceInterfaceType } from "../app/service-interface/AuthServiceInterface";
-import { getDoctorById } from "../app/use-cases/Doctor/AuthDoctor";
-import { getUserById } from "../app/use-cases/user/auth/UserAuth";
+import { doctorDbInterface } from "../App/Interfaces/DoctorDBRepository";
+import { userDbInterface } from "../App/Interfaces/UserDbRepository";
+import { AuthServiceInterfaceType } from "../App/Service-interface/AuthServiceInterface";
+import { getDoctorById } from "../App/Use-cases/Doctor/AuthDoctor";
+import { getUserById } from "../App/Use-cases/User/Auth/UserAuth";
 import configKeys from "../Config";
-import { doctorRepositoryMongodbType } from "../frameworks/database/repositories/DoctorRepositoryMongodb";
-import { userRepositoryMongodbType } from "../frameworks/database/repositories/UserRepositoryMongodb";
-import { AuthService } from "../frameworks/services/AuthService";
-import { HttpStatus } from "../types/HttpStatus";
+import { doctorRepositoryMongodbType } from "../Frameworks/Database/Repositories/DoctorRepositoryMongodb";
+import { userRepositoryMongodbType } from "../Frameworks/Database/Repositories/UserRepositoryMongodb";
+import { AuthService } from "../Frameworks/Services/AuthService";
+import { HttpStatus } from "../Types/HttpStatus";
 
 const tokenContoller = (
   authServiceInterface: AuthServiceInterfaceType,

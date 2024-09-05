@@ -13,11 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDoctorById = exports.getDoctorProfile = exports.doctorLogin = exports.verifyAccount = exports.addNewDoctor = void 0;
-const DoctorEntity_1 = __importDefault(require("../../../entities/DoctorEntity"));
-const HttpStatus_1 = require("../../../types/HttpStatus");
-const CustomError_1 = __importDefault(require("../../../utils/CustomError"));
-const DoctorVerifyEmailPage_1 = require("../../../utils/DoctorVerifyEmailPage");
-const SendMail_1 = __importDefault(require("../../../utils/SendMail"));
+const DoctorEntity_1 = __importDefault(require("../../../Entities/DoctorEntity"));
+const HttpStatus_1 = require("../../../Types/HttpStatus");
+const CustomError_1 = __importDefault(require("../../../Utils/CustomError"));
+const DoctorVerifyEmailPage_1 = require("../../../Utils/DoctorVerifyEmailPage");
+const SendMail_1 = __importDefault(require("../../../Utils/SendMail"));
 const addNewDoctor = (doctorData, doctorRepository, authService) => __awaiter(void 0, void 0, void 0, function* () {
     const { doctorName, email, phoneNumber, password } = doctorData;
     const isEmailExist = yield doctorRepository.getDoctorByEmail(email);

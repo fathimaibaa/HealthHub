@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllReports = exports.getAllTheAppoinments = exports.getDoctorRejected = exports.getDoctor = exports.getSingleUser = exports.getSingleDoctor = exports.getDoctors = exports.getAllTheDoctors = exports.getUsers = void 0;
-const SendMail_1 = __importDefault(require("../../../utils/SendMail"));
-const DocRejectionEmail_1 = require("../../../utils/DocRejectionEmail");
+const SendMail_1 = __importDefault(require("../../../Utils/SendMail"));
+const DocRejectionEmail_1 = require("../../../Utils/DocRejectionEmail");
 const getUsers = (userDbRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield userDbRepository.getAllUsers(); });
 exports.getUsers = getUsers;
 const getAllTheDoctors = (doctorDbRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield doctorDbRepository.getAllDoctors(); });

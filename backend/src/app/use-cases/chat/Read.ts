@@ -1,4 +1,4 @@
-import { ChatDbRepositoryInterace } from "../../interfaces/ChatDbRepository";
+import { ChatDbRepositoryInterace } from "../../Interfaces/ChatDbRepository";
 
 export const getChats = async (
   senderId: string,

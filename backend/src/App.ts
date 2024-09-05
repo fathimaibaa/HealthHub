@@ -1,13 +1,13 @@
 import express, { Application, NextFunction } from "express";
 import http from "http";
-import serverConfig from "./frameworks/webserver/Server";
-import routes from "./frameworks/webserver/routes/Index";
-import connectDb from "./frameworks/database/Connection";
-import expressConfig from "./frameworks/webserver/ExpressConfig";
-import errorHandlingMiddleware from "./frameworks/webserver/middlewares/ErrorhandleMiddleware";
-import CustomError from "./utils/CustomError";
+import serverConfig from "./Frameworks/Webserver/Server";
+import routes from "./Frameworks/Webserver/Routes/Index";
+import connectDb from "./Frameworks/Database/Connection";
+import expressConfig from "./Frameworks/Webserver/ExpressConfig";
+import errorHandlingMiddleware from "./Frameworks/Webserver/Middlewares/ErrorhandleMiddleware";
+import CustomError from "./Utils/CustomError";
 import { Server } from "socket.io";
-import socketConfig from "./frameworks/webserver/webSocket/Socket";
+import socketConfig from "./Frameworks/Webserver/WebSocket/Socket";
 import path from "path";
 
 
@@ -28,7 +28,7 @@ const io = new Server(server, {
   });
 
   app.use(
-    express.static(path.join(__dirname, "../../client/Dine_Delight_Client/dist"))
+    express.static(path.join(__dirname, "../../Frontend/dist"))
   );
 
 

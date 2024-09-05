@@ -13,9 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.bookingRepositoryMongodb = void 0;
-const Booking_1 = __importDefault(require("../models/Booking"));
-const Wallet_1 = __importDefault(require("../models/Wallet"));
-const Transaction_1 = __importDefault(require("../models/Transaction"));
+const Booking_1 = __importDefault(require("../Models/Booking"));
+const Wallet_1 = __importDefault(require("../Models/Wallet"));
+const Transaction_1 = __importDefault(require("../Models/Transaction"));
 const bookingRepositoryMongodb = () => {
     const createBooking = (data) => __awaiter(void 0, void 0, void 0, function* () {
         return yield Booking_1.default.create({

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
-import { ChatDbRepositoryInterace } from "../app/interfaces/ChatDbRepository";
-import { addNewChat, newMessage } from "../app/use-cases/chat/Add";
-import { getChats, getMessages } from "../app/use-cases/chat/Read";
-import { ChatRepositoryMongodbType } from "../frameworks/database/repositories/ChatRepositoryMongodb";
-import { HttpStatus } from "../types/HttpStatus";
+import { ChatDbRepositoryInterace } from "../App/Interfaces/ChatDbRepository";
+import { addNewChat, newMessage } from "../App/Use-cases/Chat/Add";
+import { getChats, getMessages } from "../App/Use-cases/Chat/Read";
+import { ChatRepositoryMongodbType } from "../Frameworks/Database/Repositories/ChatRepositoryMongodb";
+import { HttpStatus } from "../Types/HttpStatus";
 
 
 const chatController = (

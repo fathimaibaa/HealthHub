@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../redux/reducer/Reducer";
-import showToast from "../../../utils/Toaster";
-import { clearUser } from "../../../redux/slices/UserSlice";
-import logo from '../../../assets/images/logo.png';
-import { removeItemFromLocalStorage } from "../../../utils/Setnget";
-import { FiMenu, FiX } from 'react-icons/fi'; // Importing icons from react-icons
+import { RootState } from "../../../Redux/Reducer/Reducer";
+import showToast from "../../../Utils/Toaster";
+import { clearUser } from "../../../Redux/Slices/UserSlice";
+import logo from '../../../Assets/Images/logo.png';
+import { removeItemFromLocalStorage } from "../../../Utils/Setnget";
+import { FiMenu, FiX } from 'react-icons/fi'; 
 
 const Navbar: React.FC = () => {
   const user = useSelector((state: RootState) => state.UserSlice);

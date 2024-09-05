@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../../components/user/Navbar/Navbar";
-import AppointmentsListPage from "../../components/user/AppoinmentList";
+import Navbar from "../../Components/User/Navbar/Navbar";
+import AppointmentsListPage from "../../Components/User/AppoinmentList";
 
 const AppoinmentListPage: React.FC = () => {
   return (

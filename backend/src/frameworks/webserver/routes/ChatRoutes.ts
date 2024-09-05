@@ -1,7 +1,7 @@
 import { Router } from "express";
-import chatController from "../../../adapters/ChatController";
-import chatDbRepository from "../../../app/interfaces/ChatDbRepository";
-import { chatRepositoryMongodb } from "../../database/repositories/ChatRepositoryMongodb";
+import chatController from "../../../Adapters/ChatController";
+import chatDbRepository from "../../../App/Interfaces/ChatDbRepository";
+import { chatRepositoryMongodb } from "../../Database/Repositories/ChatRepositoryMongodb";
 
 const chatRoute = () => {
   const router = Router();

@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userRepositoryMongodb = void 0;
-const Otp_1 = __importDefault(require("../models/Otp"));
-const User_1 = __importDefault(require("../models/User"));
-const Wallet_1 = __importDefault(require("../models/Wallet"));
-const Transaction_1 = __importDefault(require("../models/Transaction"));
+const Otp_1 = __importDefault(require("../Models/Otp"));
+const User_1 = __importDefault(require("../Models/User"));
+const Wallet_1 = __importDefault(require("../Models/Wallet"));
+const Transaction_1 = __importDefault(require("../Models/Transaction"));
 const userRepositoryMongodb = () => {
     const getUserbyEmail = (email) => __awaiter(void 0, void 0, void 0, function* () {
         const user = yield User_1.default.findOne({ email });

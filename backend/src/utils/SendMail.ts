@@ -1,4 +1,4 @@
-import transporter from "../frameworks/services/MailService";
+import transporter from "../Frameworks/Services/MailService";
 const sentMail = async (
   email: string,
   emailSubject: string,

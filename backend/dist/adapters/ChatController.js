@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Add_1 = require("../app/use-cases/chat/Add");
-const Read_1 = require("../app/use-cases/chat/Read");
-const HttpStatus_1 = require("../types/HttpStatus");
+const Add_1 = require("../App/Use-cases/Chat/Add");
+const Read_1 = require("../App/Use-cases/Chat/Read");
+const HttpStatus_1 = require("../Types/HttpStatus");
 const chatController = (chatDbRepository, chatDbRepositoryImpl) => {
     const chatRepository = chatDbRepository(chatDbRepositoryImpl());
     /*

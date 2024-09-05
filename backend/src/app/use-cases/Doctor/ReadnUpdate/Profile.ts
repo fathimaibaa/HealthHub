@@ -1,5 +1,5 @@
-import { DoctorInterface } from '../../../../types/DoctorInteface';
-import { doctorDbInterface } from '../../../interfaces/DoctorDBRepository';
+import { DoctorInterface } from '../../../../Types/DoctorInteface';
+import { doctorDbInterface } from '../../../Interfaces/DoctorDBRepository';
 
 export const getDoctorProfile = async(doctorID :string,DoctorRepository:ReturnType<doctorDbInterface>)=>{
     const doctor = await DoctorRepository.getDoctorById(doctorID);

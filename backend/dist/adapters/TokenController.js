@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const AuthDoctor_1 = require("../app/use-cases/Doctor/AuthDoctor");
-const UserAuth_1 = require("../app/use-cases/user/auth/UserAuth");
+const AuthDoctor_1 = require("../App/Use-cases/Doctor/AuthDoctor");
+const UserAuth_1 = require("../App/Use-cases/User/Auth/UserAuth");
 const Config_1 = __importDefault(require("../Config"));
-const HttpStatus_1 = require("../types/HttpStatus");
+const HttpStatus_1 = require("../Types/HttpStatus");
 const tokenContoller = (authServiceInterface, authServiceImpl, userDbRepository, userDbRepositoryImpl, doctorDbRepository, doctorDbRepositoryImpl) => {
     const authService = authServiceInterface(authServiceImpl());
     const dbRepositoryUser = userDbRepository(userDbRepositoryImpl());

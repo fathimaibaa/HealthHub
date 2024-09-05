@@ -1,18 +1,18 @@
 import { Router } from "express";
-import adminController from "../../../adapters/AdminController";
+import adminController from "../../../Adapters/AdminController";
 
-import { doctorDbRepository } from "../../../app/interfaces/DoctorDBRepository";
-import { userDbRepository } from "../../../app/interfaces/UserDbRepository";
-import { authServiceInterface } from "../../../app/service-interface/AuthServiceInterface";
-import { departmentDbRepository } from "../../../app/interfaces/DepartmentRepositoryInterface";
-import { departmentRepositoryMongodb } from "../../database/repositories/DepartmentRepositoryMongodb";
+import { doctorDbRepository } from "../../../App/Interfaces/DoctorDBRepository";
+import { userDbRepository } from "../../../App/Interfaces/UserDbRepository";
+import { authServiceInterface } from "../../../App/Service-interface/AuthServiceInterface";
+import { departmentDbRepository } from "../../../App/Interfaces/DepartmentRepositoryInterface";
+import { departmentRepositoryMongodb } from "../../Database/Repositories/DepartmentRepositoryMongodb";
 
-import { doctorRepositoryMongodb } from "../../database/repositories/DoctorRepositoryMongodb";
-import { userRepositoryMongodb } from "../../database/repositories/UserRepositoryMongodb";
-import { authService } from "../../services/AuthService";
-import { authenticateAdmin } from "../middlewares/AuthMiddleware";
-import { bookingDbRepository } from '../../../app/interfaces/BookingDbRepository'
-import { bookingRepositoryMongodb } from '../../database/repositories/BookingRepositoryMongodb'
+import { doctorRepositoryMongodb } from "../../Database/Repositories/DoctorRepositoryMongodb";
+import { userRepositoryMongodb } from "../../Database/Repositories/UserRepositoryMongodb";
+import { authService } from "../../Services/AuthService";
+import { authenticateAdmin } from "../Middlewares/AuthMiddleware";
+import { bookingDbRepository } from '../../../App/Interfaces/BookingDbRepository'
+import { bookingRepositoryMongodb } from '../../Database/Repositories/BookingRepositoryMongodb'
 
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import doc from '../../assets/images/doc.png';
+import doc from '../../Assets/Images/doc.png';
 
 const AboutPage: React.FC = () => {
   const navigate = useNavigate();

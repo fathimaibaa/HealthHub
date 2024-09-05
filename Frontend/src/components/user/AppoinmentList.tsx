@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import axiosJWT from "../../utils/AxiosService";
-import { USER_API } from "../../constants/Index";
-import { DoctorInterface } from "../../types/DoctorInterface";
-import { DepartmentInterface } from "../../types/DepartmentInterface";
+import axiosJWT from "../../Utils/AxiosService";
+import { USER_API } from "../../Constants/Index";
+import { DoctorInterface } from "../../Types/DoctorInterface";
+import { DepartmentInterface } from "../../Types/DepartmentInterface";
 import axios from "axios";
 
 const AppointmentsListPage = () => {

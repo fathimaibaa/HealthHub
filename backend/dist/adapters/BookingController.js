@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const BookingUser_1 = require("../app/use-cases/user/Booking/BookingUser");
-const HttpStatus_1 = require("../types/HttpStatus");
-const UserAuth_1 = require("../app/use-cases/user/auth/UserAuth");
+const BookingUser_1 = require("../App/Use-cases/User/Booking/BookingUser");
+const HttpStatus_1 = require("../Types/HttpStatus");
+const UserAuth_1 = require("../App/Use-cases/User/Auth/UserAuth");
 const BookingController = (userDbRepository, userRepositoryImpl, doctorDbRepository, doctorDbRepositoryImpl, timeSlotDbRepository, timeSlotDbRepositoryImpl, bookingDbRepository, bookingDbRepositoryImpl) => {
     const dbRepositoryUser = userDbRepository(userRepositoryImpl());
     const dbDoctorRepository = doctorDbRepository(doctorDbRepositoryImpl());

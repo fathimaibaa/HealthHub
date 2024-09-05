@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { USER_API, emailRegex } from "../../constants/Index";
+import { USER_API, emailRegex } from "../../Constants/Index";
 import { useFormik } from "formik";
 import axios from "axios";
-import showToast from "../../utils/Toaster";
+import showToast from "../../Utils/Toaster";
 
 
 

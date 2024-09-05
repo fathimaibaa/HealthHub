@@ -4,17 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const AdminController_1 = __importDefault(require("../../../adapters/AdminController"));
-const DoctorDBRepository_1 = require("../../../app/interfaces/DoctorDBRepository");
-const UserDbRepository_1 = require("../../../app/interfaces/UserDbRepository");
-const AuthServiceInterface_1 = require("../../../app/service-interface/AuthServiceInterface");
-const DepartmentRepositoryInterface_1 = require("../../../app/interfaces/DepartmentRepositoryInterface");
-const DepartmentRepositoryMongodb_1 = require("../../database/repositories/DepartmentRepositoryMongodb");
-const DoctorRepositoryMongodb_1 = require("../../database/repositories/DoctorRepositoryMongodb");
-const UserRepositoryMongodb_1 = require("../../database/repositories/UserRepositoryMongodb");
-const AuthService_1 = require("../../services/AuthService");
-const BookingDbRepository_1 = require("../../../app/interfaces/BookingDbRepository");
-const BookingRepositoryMongodb_1 = require("../../database/repositories/BookingRepositoryMongodb");
+const AdminController_1 = __importDefault(require("../../../Adapters/AdminController"));
+const DoctorDBRepository_1 = require("../../../App/Interfaces/DoctorDBRepository");
+const UserDbRepository_1 = require("../../../App/Interfaces/UserDbRepository");
+const AuthServiceInterface_1 = require("../../../App/Service-interface/AuthServiceInterface");
+const DepartmentRepositoryInterface_1 = require("../../../App/Interfaces/DepartmentRepositoryInterface");
+const DepartmentRepositoryMongodb_1 = require("../../Database/Repositories/DepartmentRepositoryMongodb");
+const DoctorRepositoryMongodb_1 = require("../../Database/Repositories/DoctorRepositoryMongodb");
+const UserRepositoryMongodb_1 = require("../../Database/Repositories/UserRepositoryMongodb");
+const AuthService_1 = require("../../Services/AuthService");
+const BookingDbRepository_1 = require("../../../App/Interfaces/BookingDbRepository");
+const BookingRepositoryMongodb_1 = require("../../Database/Repositories/BookingRepositoryMongodb");
 exports.default = () => {
     const router = (0, express_1.Router)();
     const controller = (0, AdminController_1.default)(AuthServiceInterface_1.authServiceInterface, AuthService_1.authService, UserDbRepository_1.userDbRepository, UserRepositoryMongodb_1.userRepositoryMongodb, BookingDbRepository_1.bookingDbRepository, BookingRepositoryMongodb_1.bookingRepositoryMongodb, DoctorDBRepository_1.doctorDbRepository, DoctorRepositoryMongodb_1.doctorRepositoryMongodb, DepartmentRepositoryInterface_1.departmentDbRepository, DepartmentRepositoryMongodb_1.departmentRepositoryMongodb);

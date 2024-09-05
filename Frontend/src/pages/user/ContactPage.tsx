@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import aboutus from '../../assets/images/aboutus.png';
-import Footer from '../../components/user/Footer/Footer';
-import Navbar from '../../components/user/Navbar/Navbar';
+import aboutus from '../../Assets/Images/aboutus.png';
+import Footer from '../../Components/User/Footer/Footer';
+import Navbar from '../../Components/User/Navbar/Navbar';
 
 interface FormData {
   name: string;

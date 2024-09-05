@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { BookingDbRepositoryInterface } from "../../interfaces/BookingDbRepository";
+import { BookingDbRepositoryInterface } from "../../Interfaces/BookingDbRepository";
 
 
 

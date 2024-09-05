@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
-import { userDbInterface } from "../../../../interfaces/UserDbRepository";
-import { UserInterface } from "../../../../../types/UserInterface";
+import { userDbInterface } from "../../../../Interfaces/UserDbRepository";
+import { UserInterface } from "../../../../../Types/UserInterface";
 
 export const getUserProfile = async (
   userID: string,

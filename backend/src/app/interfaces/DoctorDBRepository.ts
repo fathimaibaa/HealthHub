@@ -1,6 +1,6 @@
-import { doctorEntityType, googleSignInUserEntityType } from "../../entities/DoctorEntity";
-import { doctorRepositoryMongodbType } from "../../frameworks/database/repositories/DoctorRepositoryMongodb";
-import { DoctorInterface } from "../../types/DoctorInteface";
+import { doctorEntityType, googleSignInUserEntityType } from "../../Entities/DoctorEntity";
+import { doctorRepositoryMongodbType } from "../../Frameworks/Database/Repositories/DoctorRepositoryMongodb";
+import { DoctorInterface } from "../../Types/DoctorInteface";
 
 
 interface DoctorFilterParams {

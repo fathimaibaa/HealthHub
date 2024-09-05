@@ -1,4 +1,4 @@
-import { HttpStatus } from "../types/HttpStatus";
+import { HttpStatus } from "../Types/HttpStatus";
 class CustomError extends Error {
     statusCode: number;
     status:string;

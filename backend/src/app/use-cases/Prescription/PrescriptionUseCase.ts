@@ -1,4 +1,4 @@
-import { PrescriptionDbInterface } from "../../interfaces/PrescriptionDbRepository";
+import { PrescriptionDbInterface } from "../../Interfaces/PrescriptionDbRepository";
 
 export const addPrescriptionToUser = async (
     data:any,

@@ -36,11 +36,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserById = exports.authenticateGoogleSignInUser = exports.verifyTokenAndRestPassword = exports.sendResetVerificationCode = exports.deleteOtp = exports.verifyOtpUser = exports.login = exports.userRegister = void 0;
-const UserEntity_1 = __importStar(require("../../../../entities/UserEntity"));
-const HttpStatus_1 = require("../../../../types/HttpStatus");
-const CustomError_1 = __importDefault(require("../../../../utils/CustomError"));
-const SendMail_1 = __importDefault(require("../../../../utils/SendMail"));
-const UserEmail_1 = require("../../../../utils/UserEmail");
+const UserEntity_1 = __importStar(require("../../../../Entities/UserEntity"));
+const HttpStatus_1 = require("../../../../Types/HttpStatus");
+const CustomError_1 = __importDefault(require("../../../../Utils/CustomError"));
+const SendMail_1 = __importDefault(require("../../../../Utils/SendMail"));
+const UserEmail_1 = require("../../../../Utils/UserEmail");
 const userRegister = (user, userRepository, authService) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, email, phoneNumber, password } = user;
     const authenticationMethod = "password";

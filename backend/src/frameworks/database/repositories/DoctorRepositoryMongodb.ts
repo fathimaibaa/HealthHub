@@ -1,10 +1,10 @@
 
-import { doctorEntityType, googleSignInUserEntityType } from "../../../entities/DoctorEntity";
-import { DoctorInterface } from "../../../types/DoctorInteface";
-import Doctor from '../models/Doctor';
-import department from "../models/Department";
-import timeSlots from '../models/TimeSlots'
-import Booking from "../models/Booking";
+import { doctorEntityType, googleSignInUserEntityType } from "../../../Entities/DoctorEntity";
+import { DoctorInterface } from "../../../Types/DoctorInteface";
+import Doctor from '../Models/Doctor';
+import department from "../Models/Department";
+import timeSlots from '../Models/TimeSlots'
+import Booking from "../Models/Booking";
 
 export const doctorRepositoryMongodb = () => {
 
@@ -158,7 +158,6 @@ export const doctorRepositoryMongodb = () => {
             const res = await Booking.find({ 
                 appoinmentStatus: { $in: ["Booked", "Consulted"] } 
               });
-              console.log(res,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
               return res
         } 
 

@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.departmentRepositoryMongodb = void 0;
-const Department_1 = __importDefault(require("../models/Department"));
+const Department_1 = __importDefault(require("../Models/Department"));
 const departmentRepositoryMongodb = () => {
     const Departments = () => __awaiter(void 0, void 0, void 0, function* () { return yield Department_1.default.find({ isListed: true }); });
     const getDepartmentbyName = (departmentName) => __awaiter(void 0, void 0, void 0, function* () {

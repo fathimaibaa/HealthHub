@@ -13,9 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.unlistDepartments = exports.listDepartments = exports.unblockDepartment = exports.blockDepartment = exports.updateDepartment = exports.getAllDepartments = exports.addDepartment = void 0;
-const HttpStatus_1 = require("../../../types/HttpStatus");
-const CustomError_1 = __importDefault(require("../../../utils/CustomError"));
-const DepartmentEntity_1 = __importDefault(require("../../../entities/DepartmentEntity"));
+const HttpStatus_1 = require("../../../Types/HttpStatus");
+const CustomError_1 = __importDefault(require("../../../Utils/CustomError"));
+const DepartmentEntity_1 = __importDefault(require("../../../Entities/DepartmentEntity"));
 const addDepartment = (department, departmentDbRepository) => __awaiter(void 0, void 0, void 0, function* () {
     const { departmentName } = department;
     const deparmentAlreadyExist = yield departmentDbRepository.getDepartmentbyName(departmentName);

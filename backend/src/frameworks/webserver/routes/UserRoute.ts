@@ -1,26 +1,26 @@
 import express from "express";
-import userController from "../../../adapters/UserController";
+import userController from "../../../Adapters/UserController";
 
-import { userDbRepository } from "../../../app/interfaces/UserDbRepository";
-import { authService } from "../../services/AuthService";
-import { userRepositoryMongodb } from "../../database/repositories/UserRepositoryMongodb";
-import { authServiceInterface } from "../../../app/service-interface/AuthServiceInterface";
-import { doctorDbRepository } from "../../../app/interfaces/DoctorDBRepository";
-import { doctorRepositoryMongodb } from "../../database/repositories/DoctorRepositoryMongodb";
+import { userDbRepository } from "../../../App/Interfaces/UserDbRepository";
+import { authService } from "../../Services/AuthService";
+import { userRepositoryMongodb } from "../../Database/Repositories/UserRepositoryMongodb";
+import { authServiceInterface } from "../../../App/Service-interface/AuthServiceInterface";
+import { doctorDbRepository } from "../../../App/Interfaces/DoctorDBRepository";
+import { doctorRepositoryMongodb } from "../../Database/Repositories/DoctorRepositoryMongodb";
 
-import { timeSlotDbRepository } from "../../../app/interfaces/TimeSlotDbRepository";
-import {  timeSlotRepositoryMongodb } from "../../database/repositories/TimeSlotRepositoryMongodb";
+import { timeSlotDbRepository } from "../../../App/Interfaces/TimeSlotDbRepository";
+import {  timeSlotRepositoryMongodb } from "../../Database/Repositories/TimeSlotRepositoryMongodb";
 
-import BookingController from "../../../adapters/BookingController";
-import { bookingDbRepository } from "../../../app/interfaces/BookingDbRepository";
-import { bookingRepositoryMongodb } from "../../database/repositories/BookingRepositoryMongodb";
-import { prescriptionDbRepository } from "../../../app/interfaces/PrescriptionDbRepository";
-import { prescriptionRepositoryMongodb } from "../../database/repositories/PrescriptionRepositoryMongodb";
+import BookingController from "../../../Adapters/BookingController";
+import { bookingDbRepository } from "../../../App/Interfaces/BookingDbRepository";
+import { bookingRepositoryMongodb } from "../../Database/Repositories/BookingRepositoryMongodb";
+import { prescriptionDbRepository } from "../../../App/Interfaces/PrescriptionDbRepository";
+import { prescriptionRepositoryMongodb } from "../../Database/Repositories/PrescriptionRepositoryMongodb";
 
 
-import { departmentDbRepository } from "../../../app/interfaces/DepartmentRepositoryInterface";
-import { departmentRepositoryMongodb } from "../../database/repositories/DepartmentRepositoryMongodb";
-import authenticateUser from '../middlewares/AuthMiddleware';
+import { departmentDbRepository } from "../../../App/Interfaces/DepartmentRepositoryInterface";
+import { departmentRepositoryMongodb } from "../../Database/Repositories/DepartmentRepositoryMongodb";
+import authenticateUser from '../Middlewares/AuthMiddleware';
 
 
 

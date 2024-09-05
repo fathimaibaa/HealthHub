@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { validateLogin } from "../../utils/Validation";
-import { DOCTOR_API } from "../../constants/Index";
-import showToast from "../../utils/Toaster";
+import { validateLogin } from "../../Utils/Validation";
+import { DOCTOR_API } from "../../Constants/Index";
+import showToast from "../../Utils/Toaster";
 import axios from "axios";
-import { useAppDispatch } from "../../redux/store/Store";
-import login from '../../assets/images/login.jpg';
-import { setDoctor } from "../../redux/slices/DoctorSlice";
-import { setItemToLocalStorage } from "../../utils/Setnget";
+import { useAppDispatch } from "../../Redux/Store/Store";
+import login from '../../Assets/Images/login.jpg';
+import { setDoctor } from "../../Redux/Slices/DoctorSlice";
+import { setItemToLocalStorage } from "../../Utils/Setnget";
 
 interface Doctor {
   doctorName: string;

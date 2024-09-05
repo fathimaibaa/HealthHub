@@ -1,9 +1,9 @@
 import { Request } from "express";
-import { userDbInterface } from "../../interfaces/UserDbRepository";
-import { doctorDbInterface } from "../../interfaces/DoctorDBRepository";
-import { BookingDbRepositoryInterface } from "../../interfaces/BookingDbRepository";
-import sentMail from "../../../utils/SendMail";
-import { doctorVerificationRejectedEmailPage } from "../../../utils/DocRejectionEmail";
+import { userDbInterface } from "../../Interfaces/UserDbRepository";
+import { doctorDbInterface } from "../../Interfaces/DoctorDBRepository";
+import { BookingDbRepositoryInterface } from "../../Interfaces/BookingDbRepository";
+import sentMail from "../../../Utils/SendMail";
+import { doctorVerificationRejectedEmailPage } from "../../../Utils/DocRejectionEmail";
 
 
 export const getUsers = async (userDbRepository: ReturnType<userDbInterface>) =>

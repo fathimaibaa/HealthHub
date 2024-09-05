@@ -1,8 +1,8 @@
-import TimeSlotEntity from "../../../entities/TimeSlotEntity";
-import { HttpStatus } from "../../../types/HttpStatus";
-import { TimeSlotDbInterface } from "../../interfaces/TimeSlotDbRepository";
-import { TimeSlotDataInterface } from "../../../types/TimeSlotInterface";
-import CustomError from "../../../utils/CustomError";
+import TimeSlotEntity from "../../../Entities/TimeSlotEntity";
+import { HttpStatus } from "../../../Types/HttpStatus";
+import { TimeSlotDbInterface } from "../../Interfaces/TimeSlotDbRepository";
+import { TimeSlotDataInterface } from "../../../Types/TimeSlotInterface";
+import CustomError from "../../../Utils/CustomError";
 
 export const addTimeSlot = async (
   data: any, 

@@ -1,5 +1,5 @@
-import { newMessageInterface } from "../../../types/Chat";
-import { ChatDbRepositoryInterace } from "../../interfaces/ChatDbRepository";
+import { newMessageInterface } from "../../../Types/Chat";
+import { ChatDbRepositoryInterace } from "../../Interfaces/ChatDbRepository";
 
 export const addNewChat = async (
   senderId: string,

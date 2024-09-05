@@ -1,8 +1,8 @@
-import { PrescriptionEntityType } from "../../../entities/PrescriptionEntity";
-import Booking from "../models/Booking";
-import Prescription from "../models/Prescription";
-import Document from "../models/Document";
-import { fetchPrescriptionForDoctor } from "../../../app/use-cases/Prescription/PrescriptionUseCase";
+import { PrescriptionEntityType } from "../../../Entities/PrescriptionEntity";
+import Booking from "../Models/Booking";
+import Prescription from "../Models/Prescription";
+import Document from "../Models/Document";
+import { fetchPrescriptionForDoctor } from "../../../App/Use-cases/Prescription/PrescriptionUseCase";
 
 export const prescriptionRepositoryMongodb = () => {
 

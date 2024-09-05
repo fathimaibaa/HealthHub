@@ -1,9 +1,9 @@
 import React, { useEffect,  useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axiosJWT from '../../utils/AxiosService';
-import { USER_API } from '../../constants/Index';
+import axiosJWT from '../../Utils/AxiosService';
+import { USER_API } from '../../Constants/Index';
 import { FaCalendarAlt } from 'react-icons/fa';
-import { DepartmentInterface } from '../../types/DepartmentInterface';
+import { DepartmentInterface } from '../../Types/DepartmentInterface';
 
 interface Doctor {
   profileImage: string;

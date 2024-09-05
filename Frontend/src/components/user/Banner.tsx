@@ -1,5 +1,5 @@
 import React from 'react';
-import doctorWindow from '../../assets/images/doctorWindow.png'; 
+import doctorWindow from '../../Assets/Images/doctorWindow.png'; 
 
 const Banner: React.FC = () => {
   return (

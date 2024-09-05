@@ -1,12 +1,12 @@
-import DoctorEntity, { doctorEntityType } from "../../../entities/DoctorEntity";
+import DoctorEntity, { doctorEntityType } from "../../../Entities/DoctorEntity";
 
-import { CreateDoctorInterfface } from "../../../types/DoctorInteface";
-import { HttpStatus } from "../../../types/HttpStatus";
-import CustomError from "../../../utils/CustomError";
-import { doctorVerifyEmailPage } from "../../../utils/DoctorVerifyEmailPage";
-import sentMail from "../../../utils/SendMail";
-import { doctorDbInterface } from "../../interfaces/DoctorDBRepository";
-import { AuthServiceInterfaceType } from "../../service-interface/AuthServiceInterface";
+import { CreateDoctorInterfface } from "../../../Types/DoctorInteface";
+import { HttpStatus } from "../../../Types/HttpStatus";
+import CustomError from "../../../Utils/CustomError";
+import { doctorVerifyEmailPage } from "../../../Utils/DoctorVerifyEmailPage";
+import sentMail from "../../../Utils/SendMail";
+import { doctorDbInterface } from "../../Interfaces/DoctorDBRepository";
+import { AuthServiceInterfaceType } from "../../Service-interface/AuthServiceInterface";
 
 
 export const addNewDoctor = async(

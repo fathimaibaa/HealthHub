@@ -1,6 +1,6 @@
-import { TimeSlotEntityType } from "../../../entities/TimeSlotEntity";
-import { SlotTimeInterface, TimeSlotDataInterface } from "../../../types/TimeSlotInterface";
-import TimeSlot from "../models/TimeSlots";
+import { TimeSlotEntityType } from "../../../Entities/TimeSlotEntity";
+import { SlotTimeInterface, TimeSlotDataInterface } from "../../../Types/TimeSlotInterface";
+import TimeSlot from "../Models/TimeSlots";
 
 
 

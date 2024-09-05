@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axiosJWT from "../utils/AxiosService";
-import { UserInterface } from "../types/UserInterface";
-import { ADMIN_API } from "../constants/Index";
+import axiosJWT from "../Utils/AxiosService";
+import { UserInterface } from "../Types/UserInterface";
+import { ADMIN_API } from "../Constants/Index";
 
 interface UsersResponse {
   users: UserInterface[];

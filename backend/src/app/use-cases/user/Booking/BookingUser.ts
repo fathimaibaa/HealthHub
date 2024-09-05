@@ -1,11 +1,11 @@
-import bookingEntity from "../../../../entities/BookingEntity";
-import { BookingDbRepositoryInterface } from "../../../interfaces/BookingDbRepository";
-import { doctorDbInterface, doctorDbRepository } from "../../../interfaces/DoctorDBRepository";
+import bookingEntity from "../../../../Entities/BookingEntity";
+import { BookingDbRepositoryInterface } from "../../../Interfaces/BookingDbRepository";
+import { doctorDbInterface, doctorDbRepository } from "../../../Interfaces/DoctorDBRepository";
 import configKeys from "../../../../Config";
-import { TimeSlotDbInterface } from "../../../interfaces/TimeSlotDbRepository";
-import { userDbInterface } from "../../../interfaces/UserDbRepository";
-import CustomError from "../../../../utils/CustomError";
-import { HttpStatus } from "../../../../types/HttpStatus";
+import { TimeSlotDbInterface } from "../../../Interfaces/TimeSlotDbRepository";
+import { userDbInterface } from "../../../Interfaces/UserDbRepository";
+import CustomError from "../../../../Utils/CustomError";
+import { HttpStatus } from "../../../../Types/HttpStatus";
 import { Types } from "mongoose";
 import { ObjectId } from "mongoose";
 import Stripe from "stripe";

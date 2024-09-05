@@ -1,14 +1,14 @@
 import  { useState, useEffect } from 'react';
-import axiosJWT from '../../utils/AxiosService';
+import axiosJWT from '../../Utils/AxiosService';
 import { useNavigate, useParams } from 'react-router-dom';
-import { CHAT_API, DOCTOR_API, USER_API } from '../../constants/Index';
+import { CHAT_API, DOCTOR_API, USER_API } from '../../Constants/Index';
 import { RiFileAddLine } from 'react-icons/ri';
-import showToast from '../../utils/Toaster';
+import showToast from '../../Utils/Toaster';
 import { AiOutlineFileText, AiOutlineVideoCamera } from 'react-icons/ai';
 import { FiMessageSquare } from 'react-icons/fi';
 import { ZIM } from "zego-zim-web";
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
-import { useAppSelector } from '../../redux/store/Store';
+import { useAppSelector } from '../../Redux/Store/Store';
 import axios from 'axios';
 
 const PatientDetailPage = () => {
@@ -123,8 +123,7 @@ function invite() {
         senderId: patient.userId,
         recieverId: doctor.id,
       })
-      .then(({ data }) => {
-        console.log(data,"dataaaaaaaa")
+      .then(({  }) => {
         navigate("/doctor/chat");
       })
       .catch(() => {

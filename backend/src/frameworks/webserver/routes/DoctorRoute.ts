@@ -1,22 +1,22 @@
 import express from 'express'
-import doctorController from '../../../adapters/DoctorController'
-import { doctorDbRepository } from '../../../app/interfaces/DoctorDBRepository'
-import { userRepositoryMongodb } from '../../database/repositories/UserRepositoryMongodb'
-import { authService } from '../../services/AuthService'
-import { doctorRepositoryMongodb } from '../../database/repositories/DoctorRepositoryMongodb'
-import { userDbRepository } from "../../../app/interfaces/UserDbRepository"
-import { authServiceInterface } from '../../../app/service-interface/AuthServiceInterface'
-import { authenticateDoctor } from '../middlewares/AuthMiddleware'
-import { departmentDbRepository } from '../../../app/interfaces/DepartmentRepositoryInterface'
-import { departmentRepositoryMongodb } from '../../database/repositories/DepartmentRepositoryMongodb'
-import { timeSlotRepositoryMongodb } from '../../database/repositories/TimeSlotRepositoryMongodb'
-import { timeSlotDbRepository } from '../../../app/interfaces/TimeSlotDbRepository'
-import { prescriptionDbRepository } from "../../../app/interfaces/PrescriptionDbRepository";
-import { PrescriptionRepositoryMongodbType, prescriptionRepositoryMongodb } from "../../database/repositories/PrescriptionRepositoryMongodb";
+import doctorController from '../../../Adapters/DoctorController'
+import { doctorDbRepository } from '../../../App/Interfaces/DoctorDBRepository'
+import { userRepositoryMongodb } from '../../Database/Repositories/UserRepositoryMongodb'
+import { authService } from '../../Services/AuthService'
+import { doctorRepositoryMongodb } from '../../Database/Repositories/DoctorRepositoryMongodb'
+import { userDbRepository } from "../../../App/Interfaces/UserDbRepository"
+import { authServiceInterface } from '../../../App/Service-interface/AuthServiceInterface'
+import { authenticateDoctor } from '../Middlewares/AuthMiddleware'
+import { departmentDbRepository } from '../../../App/Interfaces/DepartmentRepositoryInterface'
+import { departmentRepositoryMongodb } from '../../Database/Repositories/DepartmentRepositoryMongodb'
+import { timeSlotRepositoryMongodb } from '../../Database/Repositories/TimeSlotRepositoryMongodb'
+import { timeSlotDbRepository } from '../../../App/Interfaces/TimeSlotDbRepository'
+import { prescriptionDbRepository } from "../../../App/Interfaces/PrescriptionDbRepository";
+import { PrescriptionRepositoryMongodbType, prescriptionRepositoryMongodb } from "../../Database/Repositories/PrescriptionRepositoryMongodb";
 
-import bookingController from "../../../adapters/BookingController";
-import { bookingDbRepository } from '../../../app/interfaces/BookingDbRepository'
-import { bookingRepositoryMongodb } from '../../database/repositories/BookingRepositoryMongodb'
+import bookingController from "../../../Adapters/BookingController";
+import { bookingDbRepository } from '../../../App/Interfaces/BookingDbRepository'
+import { bookingRepositoryMongodb } from '../../Database/Repositories/BookingRepositoryMongodb'
 
 
 const doctorRoutes = () => {

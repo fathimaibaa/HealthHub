@@ -1,12 +1,12 @@
 
 import express from "express";
-import tokenController from "../../../adapters/TokenController";
-import { doctorDbRepository } from "../../../app/interfaces/DoctorDBRepository";
-import { userDbRepository } from "../../../app/interfaces/UserDbRepository";
-import { authServiceInterface } from "../../../app/service-interface/AuthServiceInterface";
-import { doctorRepositoryMongodb } from "../../database/repositories/DoctorRepositoryMongodb";
-import { userRepositoryMongodb } from "../../database/repositories/UserRepositoryMongodb";
-import { authService } from "../../services/AuthService";
+import tokenController from "../../../Adapters/TokenController";
+import { doctorDbRepository } from "../../../App/Interfaces/DoctorDBRepository";
+import { userDbRepository } from "../../../App/Interfaces/UserDbRepository";
+import { authServiceInterface } from "../../../App/Service-interface/AuthServiceInterface";
+import { doctorRepositoryMongodb } from "../../Database/Repositories/DoctorRepositoryMongodb";
+import { userRepositoryMongodb } from "../../Database/Repositories/UserRepositoryMongodb";
+import { authService } from "../../Services/AuthService";
 
 const refreshTokenRoute = () => {
   const router = express.Router();

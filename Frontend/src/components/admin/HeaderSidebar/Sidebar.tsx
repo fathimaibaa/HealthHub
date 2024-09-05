@@ -1,18 +1,33 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logout from "../../../utils/Logout";
-import { useAppDispatch } from "../../../redux/store/Store";
-import { clearUser } from "../../../redux/slices/UserSlice";
-import {  Stethoscope } from "lucide-react";
+import logout from "../../../Utils/AxiosService";
+import { useAppDispatch } from "../../../Redux/Store/Store";
+import { clearUser } from "../../../Redux/Slices/UserSlice";
+import { Stethoscope } from "lucide-react";
 
 const AdminSidebar: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    dispatch(clearUser());
-    logout("Logout success");
-    navigate("/admin/login");
+  const handleLogout = async () => {
+    try {
+      dispatch(clearUser());
+
+      // Assuming `logout` is an Axios request, provide the correct configuration
+      await logout({
+        method: 'POST',
+        url: '/api/logout',
+      });
+
+      // Display success message
+      alert("Logout success");
+
+      // Navigate to the admin login page
+      navigate("/admin/login");
+    } catch (error) {
+      console.error("Logout failed", error);
+      // Handle the error appropriately
+    }
   };
 
   return (
@@ -122,10 +137,10 @@ const AdminSidebar: React.FC = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
+                d="M1 8h10m0 0L7 4m4 4-4 4M13 15V1"
               />
             </svg>
-            <span className="flex-1 ms-3 whitespace-nowrap">Sign out</span>
+            <span className="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
           </a>
         </li>
       </ul>

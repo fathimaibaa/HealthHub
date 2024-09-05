@@ -9,14 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const HttpStatus_1 = require("../types/HttpStatus");
-const AuthDoctor_1 = require("../app/use-cases/Doctor/AuthDoctor");
-const Profile_1 = require("../app/use-cases/Doctor/ReadnUpdate/Profile");
-const AdminDepartment_1 = require("../app/use-cases/Admin/AdminDepartment");
-const Timeslot_1 = require("../app/use-cases/Doctor/Timeslot");
-const DoctorRead_1 = require("../app/use-cases/Doctor/DoctorRead");
-const PrescriptionUseCase_1 = require("../app/use-cases/Prescription/PrescriptionUseCase");
-const AdminRead_1 = require("../app/use-cases/Admin/AdminRead");
+const HttpStatus_1 = require("../Types/HttpStatus");
+const AuthDoctor_1 = require("../App/Use-cases/Doctor/AuthDoctor");
+const Profile_1 = require("../App/Use-cases/Doctor/ReadnUpdate/Profile");
+const AdminDepartment_1 = require("../App/Use-cases/Admin/AdminDepartment");
+const Timeslot_1 = require("../App/Use-cases/Doctor/Timeslot");
+const DoctorRead_1 = require("../App/Use-cases/Doctor/DoctorRead");
+const PrescriptionUseCase_1 = require("../App/Use-cases/Prescription/PrescriptionUseCase");
+const AdminRead_1 = require("../App/Use-cases/Admin/AdminRead");
 const doctorController = (authServiceInterface, authServiceImpl, userDbRepository, userRepositoryImpl, doctorDbRepository, doctorDbRepositoryImpl, departmentDbRepository, departmentDbRepositoryImpl, timeSlotDbRepository, timeSlotDbRepositoryImpl, prescriptionDbRepository, prescriptionDbRepositoryImpl, bookingDbRepository, bookingDbRepositoryImpl) => {
     const authService = authServiceInterface(authServiceImpl());
     const dbRepositoryUser = userDbRepository(userRepositoryImpl());

@@ -2,14 +2,14 @@ import React from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { useFormik } from 'formik';
-import { validateSignUp } from "../../utils/Validation";
+import { validateSignUp } from "../../Utils/Validation";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import showToast from '../../utils/Toaster';
-import { USER_API } from '../../constants/Index';
+import showToast from '../../Utils/Toaster';
+import { USER_API } from '../../Constants/Index';
 import axios from 'axios';
-import { setItemToLocalStorage } from '../../utils/Setnget';
-import login from "../../assets/images/login.jpg";
+import { setItemToLocalStorage } from '../../Utils/Setnget';
+import login from "../../Assets/Images/login.jpg";
 
 const Register: React.FC = () => {
     const navigate = useNavigate();

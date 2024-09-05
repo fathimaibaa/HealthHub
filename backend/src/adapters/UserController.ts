@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import asynchandler from "express-async-handler";
-import { userDbInterface } from "../app/interfaces/UserDbRepository";
-import { AuthServiceInterfaceType } from "../app/service-interface/AuthServiceInterface";
-import { HttpStatus } from "../types/HttpStatus";
-import { IDepartmentRepository } from "../app/interfaces/DepartmentRepositoryInterface";
-import { listDepartments } from "../app/use-cases/Admin/AdminDepartment";
+import { userDbInterface } from "../App/Interfaces/UserDbRepository";
+import { AuthServiceInterfaceType } from "../App/Service-interface/AuthServiceInterface";
+import { HttpStatus } from "../Types/HttpStatus";
+import { IDepartmentRepository } from "../App/Interfaces/DepartmentRepositoryInterface";
+import { listDepartments } from "../App/Use-cases/Admin/AdminDepartment";
 
 import {
     
@@ -18,22 +18,22 @@ import {
  
 
     
-  } from "../app/use-cases/user/auth/UserAuth";
-import { userRepositoryMongodbType } from "../frameworks/database/repositories/UserRepositoryMongodb";
-import { GoogleResponseType } from "../types/GoogleResponseType";
+  } from "../App/Use-cases/User/Auth/UserAuth";
+import { userRepositoryMongodbType } from "../Frameworks/Database/Repositories/UserRepositoryMongodb";
+import { GoogleResponseType } from "../Types/GoogleResponseType";
 
-import { AuthService } from "../frameworks/services/AuthService";
-import {doctorRepositoryMongodbType} from '../frameworks/database/repositories/DoctorRepositoryMongodb'
-import {doctorDbInterface} from '../app/interfaces/DoctorDBRepository'
-import { getDoctors,getSingleDoctor } from "../app/use-cases/Admin/AdminRead";
-import { TimeSlotDbInterface } from "../app/interfaces/TimeSlotDbRepository";
-import { TimeSlotRepositoryMongodbType } from "../frameworks/database/repositories/TimeSlotRepositoryMongodb";
-import { getAllTimeSlot } from "../app/use-cases/user/timeslots/Get and Update";
-import { getAllTimeSlotsByDoctorId, getDateSlotsByDoctorId } from "../app/use-cases/Doctor/Timeslot";
-import { getUserProfile, getWalletUser, updateUser, WalletTransactions } from "../app/use-cases/user/auth/read&update/Profile";
-import { fetchPrescriptionUsecase,uploadLabDocuments,getDocuments, deleteSingleDocument } from "../app/use-cases/Prescription/PrescriptionUseCase";
-import { PrescriptionDbInterface } from "../app/interfaces/PrescriptionDbRepository";
-import { PrescriptionRepositoryMongodbType } from "../frameworks/database/repositories/PrescriptionRepositoryMongodb";
+import { AuthService } from "../Frameworks/Services/AuthService";
+import {doctorRepositoryMongodbType} from '../Frameworks/Database/Repositories/DoctorRepositoryMongodb'
+import {doctorDbInterface} from '../App/Interfaces/DoctorDBRepository'
+import { getDoctors,getSingleDoctor } from "../App/Use-cases/Admin/AdminRead";
+import { TimeSlotDbInterface } from "../App/Interfaces/TimeSlotDbRepository";
+import { TimeSlotRepositoryMongodbType } from "../Frameworks/Database/Repositories/TimeSlotRepositoryMongodb";
+import { getAllTimeSlot } from "../App/Use-cases/User/Timeslots/Get and Update";
+import { getAllTimeSlotsByDoctorId, getDateSlotsByDoctorId } from "../App/Use-cases/Doctor/Timeslot";
+import { getUserProfile, getWalletUser, updateUser, WalletTransactions } from "../App/Use-cases/User/Auth/Read&Update/Profile";
+import { fetchPrescriptionUsecase,uploadLabDocuments,getDocuments, deleteSingleDocument } from "../App/Use-cases/Prescription/PrescriptionUseCase";
+import { PrescriptionDbInterface } from "../App/Interfaces/PrescriptionDbRepository";
+import { PrescriptionRepositoryMongodbType } from "../Frameworks/Database/Repositories/PrescriptionRepositoryMongodb";
 
 
 

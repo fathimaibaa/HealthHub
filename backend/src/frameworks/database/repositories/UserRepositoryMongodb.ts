@@ -1,9 +1,9 @@
-import { googleSignInUserEntityType, userEntityType } from "../../../entities/UserEntity";
-import { UserInterface } from "../../../types/UserInterface";
-import OTPModel from "../models/Otp";
-import User from "../models/User";
-import wallet from "../models/Wallet";
-import transations from "../models/Transaction";
+import { googleSignInUserEntityType, userEntityType } from "../../../Entities/UserEntity";
+import { UserInterface } from "../../../Types/UserInterface";
+import OTPModel from "../Models/Otp";
+import User from "../Models/User";
+import wallet from "../Models/Wallet";
+import transations from "../Models/Transaction";
 
 export const userRepositoryMongodb = () =>{
     const getUserbyEmail = async (email: string)=>{

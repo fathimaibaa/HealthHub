@@ -13,9 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.prescriptionRepositoryMongodb = void 0;
-const Booking_1 = __importDefault(require("../models/Booking"));
-const Prescription_1 = __importDefault(require("../models/Prescription"));
-const Document_1 = __importDefault(require("../models/Document"));
+const Booking_1 = __importDefault(require("../Models/Booking"));
+const Prescription_1 = __importDefault(require("../Models/Prescription"));
+const Document_1 = __importDefault(require("../Models/Document"));
 const prescriptionRepositoryMongodb = () => {
     const addPrescriptions = (data) => __awaiter(void 0, void 0, void 0, function* () {
         const { appointmentId, prescriptionDate, medicines } = data;

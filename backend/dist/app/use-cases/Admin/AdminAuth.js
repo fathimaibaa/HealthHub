@@ -14,8 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginAdmin = void 0;
 const Config_1 = __importDefault(require("../../../Config"));
-const HttpStatus_1 = require("../../../types/HttpStatus");
-const CustomError_1 = __importDefault(require("../../../utils/CustomError"));
+const HttpStatus_1 = require("../../../Types/HttpStatus");
+const CustomError_1 = __importDefault(require("../../../Utils/CustomError"));
 const loginAdmin = (email, password, authService) => __awaiter(void 0, void 0, void 0, function* () {
     if (email === Config_1.default.ADMIN_EMAIL && password === Config_1.default.ADMIN_PASSWORD) {
         const { accessToken, refreshToken } = authService.createTokens(email, "Admin_User", "admin");

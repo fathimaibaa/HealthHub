@@ -9,11 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const AdminAuth_1 = require("../app/use-cases/Admin/AdminAuth");
-const HttpStatus_1 = require("../types/HttpStatus");
-const AdminUpdate_1 = require("../app/use-cases/Admin/AdminUpdate");
-const AdminRead_1 = require("../app/use-cases/Admin/AdminRead");
-const AdminDepartment_1 = require("../app/use-cases/Admin/AdminDepartment");
+const AdminAuth_1 = require("../App/Use-cases/Admin/AdminAuth");
+const HttpStatus_1 = require("../Types/HttpStatus");
+const AdminUpdate_1 = require("../App/Use-cases/Admin/AdminUpdate");
+const AdminRead_1 = require("../App/Use-cases/Admin/AdminRead");
+const AdminDepartment_1 = require("../App/Use-cases/Admin/AdminDepartment");
 exports.default = (authServiceInterface, authServiceImpl, userDbRepository, userDbRepositoryImpl, bookingDbRepository, bookingDbRepositoryImpl, doctorDbRepository, doctorDbRepositoryImpl, departmentDbRepository, departmentDbRepositoryImpl) => {
     const dbUserRepository = userDbRepository(userDbRepositoryImpl());
     const dbBookingRepository = bookingDbRepository(bookingDbRepositoryImpl());
@@ -189,7 +189,6 @@ exports.default = (authServiceInterface, authServiceImpl, userDbRepository, user
     const getAllAppoinments = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const appoinments = yield (0, AdminRead_1.getAllTheAppoinments)(dbDoctorRepository);
-            console.log(appoinments, "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
             return res.status(HttpStatus_1.HttpStatus.OK).json({ success: true, appoinments });
         }
         catch (error) {
@@ -198,7 +197,6 @@ exports.default = (authServiceInterface, authServiceImpl, userDbRepository, user
     });
     const getReports = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            console.log('helooooooooooooooooooooooooooooooooooooooo');
             const reports = yield (0, AdminRead_1.getAllReports)(dbBookingRepository);
             return res.status(HttpStatus_1.HttpStatus.OK).json({ success: true, reports });
         }

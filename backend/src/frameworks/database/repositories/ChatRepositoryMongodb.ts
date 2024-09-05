@@ -1,6 +1,6 @@
-import { newMessageInterface } from "../../../types/Chat";
-import Conversation from "../models/Conversation";
-import Message from "../models/Message";
+import { newMessageInterface } from "../../../Types/Chat";
+import Conversation from "../Models/Conversation";
+import Message from "../Models/Message";
 
 export const chatRepositoryMongodb = () => {
      

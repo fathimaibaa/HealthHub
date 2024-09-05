@@ -1,7 +1,7 @@
 import configKeys from '../../../Config'
-import {HttpStatus} from '../../../types/HttpStatus';
-import CustomError from '../../../utils/CustomError';
-import { AuthServiceInterfaceType } from '../../service-interface/AuthServiceInterface';
+import {HttpStatus} from '../../../Types/HttpStatus';
+import CustomError from '../../../Utils/CustomError';
+import { AuthServiceInterfaceType } from '../../Service-interface/AuthServiceInterface';
 
 export const loginAdmin = async(
     email:string,

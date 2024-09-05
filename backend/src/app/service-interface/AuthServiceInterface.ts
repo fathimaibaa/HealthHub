@@ -1,4 +1,4 @@
-import { AuthserviceReturn } from "../../frameworks/services/AuthService";
+import { AuthserviceReturn } from "../../Frameworks/Services/AuthService";
 
 export const authServiceInterface = (service:AuthserviceReturn) =>{
 

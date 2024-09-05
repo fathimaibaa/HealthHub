@@ -1,12 +1,12 @@
-import createUserEntity, { googleSignInUserEntity, googleSignInUserEntityType, userEntityType } from "../../../../entities/UserEntity";
-import { GoogleResponseType } from "../../../../types/GoogleResponseType";
-import { HttpStatus } from "../../../../types/HttpStatus";
-import { CreateUserInterface, UserInterface } from "../../../../types/UserInterface";
-import CustomError from "../../../../utils/CustomError";
-import sentMail from "../../../../utils/SendMail";
-import {  forgotPasswordEmail,otpEmail } from "../../../../utils/UserEmail";
-import { userDbInterface } from "../../../interfaces/UserDbRepository";
-import { AuthServiceInterfaceType } from "../../../service-interface/AuthServiceInterface";
+import createUserEntity, { googleSignInUserEntity, googleSignInUserEntityType, userEntityType } from "../../../../Entities/UserEntity";
+import { GoogleResponseType } from "../../../../Types/GoogleResponseType";
+import { HttpStatus } from "../../../../Types/HttpStatus";
+import { CreateUserInterface, UserInterface } from "../../../../Types/UserInterface";
+import CustomError from "../../../../Utils/CustomError";
+import sentMail from "../../../../Utils/SendMail";
+import {  forgotPasswordEmail,otpEmail } from "../../../../Utils/UserEmail";
+import { userDbInterface } from "../../../Interfaces/UserDbRepository";
+import { AuthServiceInterfaceType } from "../../../Service-interface/AuthServiceInterface";
 
 
 

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { USER_API } from "../../constants/Index";
-import axiosJWT from "../../utils/AxiosService";
+import { USER_API } from "../../Constants/Index";
+import axiosJWT from "../../Utils/AxiosService";
 import { useParams } from "react-router-dom";
 import Modal from "react-modal";
-import showToast from "../../utils/Toaster";
+import showToast from "../../Utils/Toaster";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Calendar } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Navigate, useNavigate } from "react-router-dom";
 import {  useSelector } from "react-redux";
-import { RootState } from "../../redux/reducer/Reducer";
-import { DepartmentInterface } from "../../types/DepartmentInterface";
+import { RootState } from "../../Redux/Reducer/Reducer";
+import { DepartmentInterface } from "../../Types/DepartmentInterface";
 
 
 const AppointmentOnlineBookingPage: React.FC = () => {

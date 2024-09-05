@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.changeWallet = exports.changeWalletAmounti = exports.walletDebit = exports.getWalletBalance = exports.updateBookingStatusPayment = exports.getBookingByDoctorId = exports.changeAppoinmentstaus = exports.getBookingByUserId = exports.getBookingByBookingId = exports.updateBookingStatus = exports.createPayment = exports.checkIsBooked = exports.appoinmentBooking = void 0;
-const BookingEntity_1 = __importDefault(require("../../../../entities/BookingEntity"));
+const BookingEntity_1 = __importDefault(require("../../../../Entities/BookingEntity"));
 const Config_1 = __importDefault(require("../../../../Config"));
 const stripe_1 = __importDefault(require("stripe"));
 const appoinmentBooking = (data, userId, bookingDbRepository, doctorDbRepository) => __awaiter(void 0, void 0, void 0, function* () {

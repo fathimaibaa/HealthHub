@@ -1,5 +1,5 @@
-import { PrescriptionRepositoryMongodbType } from "../../frameworks/database/repositories/PrescriptionRepositoryMongodb";
-import { PrescriptionEntityType } from "../../entities/PrescriptionEntity";
+import { PrescriptionRepositoryMongodbType } from "../../Frameworks/Database/Repositories/PrescriptionRepositoryMongodb";
+import { PrescriptionEntityType } from "../../Entities/PrescriptionEntity";
 
 export const prescriptionDbRepository = (
   repository: ReturnType<PrescriptionRepositoryMongodbType>

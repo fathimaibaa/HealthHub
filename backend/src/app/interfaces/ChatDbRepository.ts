@@ -1,5 +1,5 @@
-import { ChatRepositoryMongodbType } from "../../frameworks/database/repositories/ChatRepositoryMongodb";
-import { newMessageInterface } from "../../types/Chat";
+import { ChatRepositoryMongodbType } from "../../Frameworks/Database/Repositories/ChatRepositoryMongodb";
+import { newMessageInterface } from "../../Types/Chat";
 
 export default function chatDbRepository(
     repository: ReturnType<ChatRepositoryMongodbType>

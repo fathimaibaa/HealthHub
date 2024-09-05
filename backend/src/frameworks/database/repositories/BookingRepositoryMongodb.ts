@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import { BookingEntityType } from "../../../entities/BookingEntity";
-import Booking from "../models/Booking";
+import { BookingEntityType } from "../../../Entities/BookingEntity";
+import Booking from "../Models/Booking";
 import { Types } from "mongoose";
 import { get } from "mongoose";
-import wallet from "../models/Wallet";
-import Transactions  from "../models/Transaction";
+import wallet from "../Models/Wallet";
+import Transactions  from "../Models/Transaction";
 
 
 export const bookingRepositoryMongodb = () => {

@@ -1,5 +1,5 @@
 
-import { departmentRepositoryMongodbType } from "../../frameworks/database/repositories/DepartmentRepositoryMongodb";
+import { departmentRepositoryMongodbType } from "../../Frameworks/Database/Repositories/DepartmentRepositoryMongodb";
 
 export const departmentDbRepository = (repository: ReturnType<departmentRepositoryMongodbType>) => {
 

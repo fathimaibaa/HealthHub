@@ -1,6 +1,6 @@
 
-import { DepartmentEntityType } from'../../../entities/DepartmentEntity';
-import Department from "../models/Department";
+import { DepartmentEntityType } from'../../../Entities/DepartmentEntity';
+import Department from "../Models/Department";
 
 export const departmentRepositoryMongodb = () => {
     const Departments =  async () => await Department.find({ isListed: true }); 

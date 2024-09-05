@@ -13,14 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
-const HttpStatus_1 = require("../types/HttpStatus");
-const AdminDepartment_1 = require("../app/use-cases/Admin/AdminDepartment");
-const UserAuth_1 = require("../app/use-cases/user/auth/UserAuth");
-const AdminRead_1 = require("../app/use-cases/Admin/AdminRead");
-const Get_and_Update_1 = require("../app/use-cases/user/timeslots/Get and Update");
-const Timeslot_1 = require("../app/use-cases/Doctor/Timeslot");
-const Profile_1 = require("../app/use-cases/user/auth/read&update/Profile");
-const PrescriptionUseCase_1 = require("../app/use-cases/Prescription/PrescriptionUseCase");
+const HttpStatus_1 = require("../Types/HttpStatus");
+const AdminDepartment_1 = require("../App/Use-cases/Admin/AdminDepartment");
+const UserAuth_1 = require("../App/Use-cases/User/Auth/UserAuth");
+const AdminRead_1 = require("../App/Use-cases/Admin/AdminRead");
+const Get_and_Update_1 = require("../App/Use-cases/User/Timeslots/Get and Update");
+const Timeslot_1 = require("../App/Use-cases/Doctor/Timeslot");
+const Profile_1 = require("../App/Use-cases/User/Auth/Read&Update/Profile");
+const PrescriptionUseCase_1 = require("../App/Use-cases/Prescription/PrescriptionUseCase");
 const userController = (authServiceInterface, authServiceImpl, userDbRepository, userRepositoryImpl, doctorDbRepository, doctorDbRepositoryImpl, timeSlotDbRepository, timeSlotDbRepositoryImpl, prescriptionDbRepository, prescriptionDbRepositoryImpl, departmentDbRepository, departmentDbRepositoryImpl) => {
     const authService = authServiceInterface(authServiceImpl());
     const dbRepositoryUser = userDbRepository(userRepositoryImpl());

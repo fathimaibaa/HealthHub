@@ -1,5 +1,5 @@
-import { BookingEntityType } from "../../entities/BookingEntity";
-import { BookingRepositoryMongodbType } from "../../frameworks/database/repositories/BookingRepositoryMongodb";
+import { BookingEntityType } from "../../Entities/BookingEntity";
+import { BookingRepositoryMongodbType } from "../../Frameworks/Database/Repositories/BookingRepositoryMongodb";
 
 export const bookingDbRepository = (
     repository: ReturnType<BookingRepositoryMongodbType>

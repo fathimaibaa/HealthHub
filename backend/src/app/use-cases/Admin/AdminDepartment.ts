@@ -1,10 +1,10 @@
-import { HttpStatus } from "../../../types/HttpStatus";
-import CustomError from "../../../utils/CustomError";
+import { HttpStatus } from "../../../Types/HttpStatus";
+import CustomError from "../../../Utils/CustomError";
 
 
-import DepartmentEntity, { DepartmentEntityType } from "../../../entities/DepartmentEntity";
-import { CreateDepartmentInterface } from "../../../types/DepartmentInterface";
-import { IDepartmentRepository } from "../../interfaces/DepartmentRepositoryInterface";
+import DepartmentEntity, { DepartmentEntityType } from "../../../Entities/DepartmentEntity";
+import { CreateDepartmentInterface } from "../../../Types/DepartmentInterface";
+import { IDepartmentRepository } from "../../Interfaces/DepartmentRepositoryInterface";
 
 export const addDepartment = async (
   department: CreateDepartmentInterface, 

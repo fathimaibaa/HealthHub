@@ -1,5 +1,5 @@
-import { doctorDbInterface } from "../../interfaces/DoctorDBRepository";
-import { userDbInterface } from "../../interfaces/UserDbRepository";
+import { doctorDbInterface } from "../../Interfaces/DoctorDBRepository";
+import { userDbInterface } from "../../Interfaces/UserDbRepository";
 
 export const blockUser = async (
     id: string,

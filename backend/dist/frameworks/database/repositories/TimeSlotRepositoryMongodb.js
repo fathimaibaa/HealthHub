@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.timeSlotRepositoryMongodb = void 0;
-const TimeSlots_1 = __importDefault(require("../models/TimeSlots"));
+const TimeSlots_1 = __importDefault(require("../Models/TimeSlots"));
 const transformSlotTime = (slotTime) => {
     return Object.entries(slotTime).map(([day, times]) => ({
         day: parseInt(day, 10),

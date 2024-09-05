@@ -1,9 +1,9 @@
 
 import { useEffect, useState } from "react";
-import axiosJWT from "../utils/AxiosService";
-import showToast from "../utils/Toaster";
-import { DoctorInterface } from "../types/DoctorInterface";
-import { DOCTOR_API, nameRegex, phoneRegex } from "../constants/Index";
+import axiosJWT from "../Utils/AxiosService";
+import showToast from "../Utils/Toaster";
+import { DoctorInterface } from "../Types/DoctorInterface";
+import { DOCTOR_API, nameRegex, phoneRegex } from "../Constants/Index";
 import { uploadImagesToCloudinary, uploadCertificateToCloudinary } from "../Api/UploadImages";
 import { useNavigate } from 'react-router-dom';
 

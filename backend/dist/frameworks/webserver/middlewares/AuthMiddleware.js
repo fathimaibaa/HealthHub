@@ -16,7 +16,7 @@ exports.default = authenticateUser;
 exports.authenticateDoctor = authenticateDoctor;
 exports.authenticateAdmin = authenticateAdmin;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const HttpStatus_1 = require("../../../types/HttpStatus");
+const HttpStatus_1 = require("../../../Types/HttpStatus");
 const Config_1 = __importDefault(require("../../../Config"));
 function authenticateUser(req, res, next) {
     const authHeader = req.headers.authorization;

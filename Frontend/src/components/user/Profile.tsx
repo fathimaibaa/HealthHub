@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar/Navbar';
-import Footer from '../../components/user/Footer/Footer';
-import useProfile from "../../hooks/UserProfile";
+import Footer from '../../Components/User/Footer/Footer';
+import useProfile from "../../Hooks/UserProfile";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { BsWallet } from "react-icons/bs";
 import { Link } from "react-router-dom";

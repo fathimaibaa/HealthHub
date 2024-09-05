@@ -1,5 +1,5 @@
-import { TimeSlotRepositoryMongodbType } from "../../frameworks/database/repositories/TimeSlotRepositoryMongodb";
-import { TimeSlotEntityType } from "../../entities/TimeSlotEntity";
+import { TimeSlotRepositoryMongodbType } from "../../Frameworks/Database/Repositories/TimeSlotRepositoryMongodb";
+import { TimeSlotEntityType } from "../../Entities/TimeSlotEntity";
 
 export const timeSlotDbRepository = (
   repository: ReturnType<TimeSlotRepositoryMongodbType>

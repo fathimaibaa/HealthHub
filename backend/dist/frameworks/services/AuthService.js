@@ -13,17 +13,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authService = void 0;
-const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const Config_1 = __importDefault(require("../../Config"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const crypto_1 = __importDefault(require("crypto"));
 const authService = () => {
     const encryptPassword = (password) => __awaiter(void 0, void 0, void 0, function* () {
-        const salt = yield bcryptjs_1.default.genSalt(10);
-        return yield bcryptjs_1.default.hash(password, salt);
+        const salt = yield bcrypt_1.default.genSalt(10);
+        return yield bcrypt_1.default.hash(password, salt);
     });
     const comparePassword = (inputPassword, password) => __awaiter(void 0, void 0, void 0, function* () {
-        return yield bcryptjs_1.default.compare(inputPassword, password);
+        return yield bcrypt_1.default.compare(inputPassword, password);
     });
     const getRandomString = () => crypto_1.default.randomUUID();
     const generateOTP = () => {

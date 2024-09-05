@@ -3,11 +3,11 @@ import {
   AiOutlineFilePdf,
   AiOutlineClose,
 } from "react-icons/ai";
-import axiosJWT from "../../utils/AxiosService";
+import axiosJWT from "../../Utils/AxiosService";
 import { useParams } from "react-router-dom";
-import { USER_API } from "../../constants/Index";
-import showToast from "../../utils/Toaster"; 
-import { useAppSelector } from "../../redux/store/Store";
+import { USER_API } from "../../Constants/Index";
+import showToast from "../../Utils/Toaster"; // Adjust import path
+import { useAppSelector } from "../../Redux/Store/Store";
 
 const DocumentList = () => {
   const { id } = useParams<{ id: string }>();
@@ -107,7 +107,7 @@ const DocumentList = () => {
         </div>
       ) : (
         <div className="flex justify-center items-center h-64">
-          <p className="text-lg text-gray-700">There is no documents uploaded</p>
+          <p className="text-lg text-gray-700">There are no documents uploaded</p>
         </div>
       )}
 

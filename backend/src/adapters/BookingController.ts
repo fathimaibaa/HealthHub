@@ -1,15 +1,15 @@
 import { Request,Response,NextFunction } from "express";
-import { doctorDbInterface } from "../app/interfaces/DoctorDBRepository";
-import { doctorRepositoryMongodbType } from "../frameworks/database/repositories/DoctorRepositoryMongodb";
-import { userDbInterface } from "../app/interfaces/UserDbRepository";
-import { userRepositoryMongodbType } from "../frameworks/database/repositories/UserRepositoryMongodb";
-import { TimeSlotDbInterface } from "../app/interfaces/TimeSlotDbRepository";
-import { TimeSlotRepositoryMongodbType } from "../frameworks/database/repositories/TimeSlotRepositoryMongodb";
-import { BookingDbRepositoryInterface} from "../app/interfaces/BookingDbRepository";
-import { BookingRepositoryMongodbType } from "../frameworks/database/repositories/BookingRepositoryMongodb";
-import { appoinmentBooking, changeAppoinmentstaus,  changeWallet,  changeWalletAmounti,  checkIsBooked, createPayment, getBookingByBookingId, getBookingByDoctorId, getBookingByUserId,  getWalletBalance,  updateBookingStatus, updateBookingStatusPayment, walletDebit } from "../app/use-cases/user/Booking/BookingUser";
-import { HttpStatus } from "../types/HttpStatus";
-import { getUserById } from "../app/use-cases/user/auth/UserAuth";
+import { doctorDbInterface } from "../App/Interfaces/DoctorDBRepository";
+import { doctorRepositoryMongodbType } from "../Frameworks/Database/Repositories/DoctorRepositoryMongodb";
+import { userDbInterface } from "../App/Interfaces/UserDbRepository";
+import { userRepositoryMongodbType } from "../Frameworks/Database/Repositories/UserRepositoryMongodb";
+import { TimeSlotDbInterface } from "../App/Interfaces/TimeSlotDbRepository";
+import { TimeSlotRepositoryMongodbType } from "../Frameworks/Database/Repositories/TimeSlotRepositoryMongodb";
+import { BookingDbRepositoryInterface} from "../App/Interfaces/BookingDbRepository";
+import { BookingRepositoryMongodbType } from "../Frameworks/Database/Repositories/BookingRepositoryMongodb";
+import { appoinmentBooking, changeAppoinmentstaus,  changeWallet,  changeWalletAmounti,  checkIsBooked, createPayment, getBookingByBookingId, getBookingByDoctorId, getBookingByUserId,  getWalletBalance,  updateBookingStatus, updateBookingStatusPayment, walletDebit } from "../App/Use-cases/User/Booking/BookingUser";
+import { HttpStatus } from "../Types/HttpStatus";
+import { getUserById } from "../App/Use-cases/User/Auth/UserAuth";
 
 
 

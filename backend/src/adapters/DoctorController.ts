@@ -1,32 +1,32 @@
 import { NextFunction, Request, Response } from "express";
-import { doctorDbInterface } from "../app/interfaces/DoctorDBRepository";
-import { userDbInterface } from "../app/interfaces/UserDbRepository";
+import { doctorDbInterface } from "../App/Interfaces/DoctorDBRepository";
+import { userDbInterface } from "../App/Interfaces/UserDbRepository";
 import {
   AuthServiceInterfaceType
-} from "../app/service-interface/AuthServiceInterface";
-import { HttpStatus } from "../types/HttpStatus";
-import { userRepositoryMongodbType } from "../frameworks/database/repositories/UserRepositoryMongodb";
-import { AuthService } from "../frameworks/services/AuthService";
+} from "../App/Service-interface/AuthServiceInterface";
+import { HttpStatus } from "../Types/HttpStatus";
+import { userRepositoryMongodbType } from "../Frameworks/Database/Repositories/UserRepositoryMongodb";
+import { AuthService } from "../Frameworks/Services/AuthService";
 import {
     addNewDoctor,
     doctorLogin,
     verifyAccount
     
-  } from "../app/use-cases/Doctor/AuthDoctor";
-  import { doctorRepositoryMongodbType } from "../frameworks/database/repositories/DoctorRepositoryMongodb";
-import { getDoctorProfile, updateDoctor } from "../app/use-cases/Doctor/ReadnUpdate/Profile";
-import { listDepartments } from "../app/use-cases/Admin/AdminDepartment";
-import { IDepartmentRepository } from "../app/interfaces/DepartmentRepositoryInterface";
-import { addTimeSlot, deleteTimeSlot, getTimeSlotsByDoctorId } from "../app/use-cases/Doctor/Timeslot";
-import { TimeSlotDbInterface, timeSlotDbRepository } from "../app/interfaces/TimeSlotDbRepository";
-import { TimeSlotRepositoryMongodbType } from "../frameworks/database/repositories/TimeSlotRepositoryMongodb";
-import { getPatientFullDetails, getPatients } from "../app/use-cases/Doctor/DoctorRead";
-import { bookingDbRepository, BookingDbRepositoryInterface } from "../app/interfaces/BookingDbRepository";
-import { BookingRepositoryMongodbType } from "../frameworks/database/repositories/BookingRepositoryMongodb";
-import { PrescriptionDbInterface } from "../app/interfaces/PrescriptionDbRepository";
-import { PrescriptionRepositoryMongodbType } from "../frameworks/database/repositories/PrescriptionRepositoryMongodb";
-import { addPrescriptionToUser, deletePrescriptionData, fetchPrescriptionForDoctor, fetchPrescriptionUsecase } from "../app/use-cases/Prescription/PrescriptionUseCase";
-import { getSingleUser } from "../app/use-cases/Admin/AdminRead";
+  } from "../App/Use-cases/Doctor/AuthDoctor";
+  import { doctorRepositoryMongodbType } from "../Frameworks/Database/Repositories/DoctorRepositoryMongodb";
+import { getDoctorProfile, updateDoctor } from "../App/Use-cases/Doctor/ReadnUpdate/Profile";
+import { listDepartments } from "../App/Use-cases/Admin/AdminDepartment";
+import { IDepartmentRepository } from "../App/Interfaces/DepartmentRepositoryInterface";
+import { addTimeSlot, deleteTimeSlot, getTimeSlotsByDoctorId } from "../App/Use-cases/Doctor/Timeslot";
+import { TimeSlotDbInterface, timeSlotDbRepository } from "../App/Interfaces/TimeSlotDbRepository";
+import { TimeSlotRepositoryMongodbType } from "../Frameworks/Database/Repositories/TimeSlotRepositoryMongodb";
+import { getPatientFullDetails, getPatients } from "../App/Use-cases/Doctor/DoctorRead";
+import { bookingDbRepository, BookingDbRepositoryInterface } from "../App/Interfaces/BookingDbRepository";
+import { BookingRepositoryMongodbType } from "../Frameworks/Database/Repositories/BookingRepositoryMongodb";
+import { PrescriptionDbInterface } from "../App/Interfaces/PrescriptionDbRepository";
+import { PrescriptionRepositoryMongodbType } from "../Frameworks/Database/Repositories/PrescriptionRepositoryMongodb";
+import { addPrescriptionToUser, deletePrescriptionData, fetchPrescriptionForDoctor, fetchPrescriptionUsecase } from "../App/Use-cases/Prescription/PrescriptionUseCase";
+import { getSingleUser } from "../App/Use-cases/Admin/AdminRead";
 
 
 

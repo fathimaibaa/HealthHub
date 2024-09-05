@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.chatRepositoryMongodb = void 0;
-const Conversation_1 = __importDefault(require("../models/Conversation"));
-const Message_1 = __importDefault(require("../models/Message"));
+const Conversation_1 = __importDefault(require("../Models/Conversation"));
+const Message_1 = __importDefault(require("../Models/Message"));
 const chatRepositoryMongodb = () => {
     const isChatExists = (senderId, recieverId) => __awaiter(void 0, void 0, void 0, function* () { return yield Conversation_1.default.findOne({ members: { $all: [senderId, recieverId] } }); });
     const addNewChat = (members) => __awaiter(void 0, void 0, void 0, function* () {

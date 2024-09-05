@@ -1,7 +1,7 @@
 import  { FC, useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
-import axiosJWT from '../../../utils/AxiosService';
-import { ADMIN_API } from '../../../constants/Index';
+import axiosJWT from '../../../Utils/AxiosService';
+import { ADMIN_API } from '../../../Constants/Index';
 
 const DonutChart: FC = () => {
     const [doctors, setDoctors] = useState<[]>([]);
@@ -30,7 +30,6 @@ const DonutChart: FC = () => {
     const fetchUsers = async () => {
       try {
         const response:any = await axiosJWT.get(`${ADMIN_API}/users`);
-        console.log(response,"userssssssssss")
         if (Array.isArray(response.data.users)) {
           setUsers(response.data.users);
         }
@@ -42,7 +41,6 @@ const DonutChart: FC = () => {
     const fetchAppoinments = async () => {
       try {
         const response :any= await axiosJWT.get(`${ADMIN_API}/appoinments`);
-        console.log(response,"appoinments")
         if (Array.isArray(response.data.appoinments)) {
           setAppoinments(response.data.appoinments);
         }

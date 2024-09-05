@@ -2,16 +2,16 @@ import React from "react";
 import { useFormik } from "formik";
 import { useState } from "react";
 import axios from "axios";
-import { useAppDispatch } from "../../redux/store/Store";
-import { setUser } from "../../redux/slices/UserSlice";
-import showToast from "../../utils/Toaster";
+import { useAppDispatch } from "../../Redux/Store/Store";
+import { setUser } from "../../Redux/Slices/UserSlice";
+import showToast from "../../Utils/Toaster";
 import { useNavigate, Link } from "react-router-dom";
-import { validateLogin } from "../../utils/Validation";
-import { USER_API } from "../../constants/Index";
+import { validateLogin } from "../../Utils/Validation";
+import { USER_API } from "../../Constants/Index";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import { setItemToLocalStorage } from "../../utils/Setnget";
-import login from '../../assets/images/login.jpg'
+import { setItemToLocalStorage } from "../../Utils/Setnget";
+import login from '../../Assets/Images/login.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 

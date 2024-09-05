@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosJWT from '../../utils/AxiosService';
-import { ADMIN_API } from '../../constants/Index';
-import AdminHeader from '../../components/admin/HeaderSidebar/Header';
-import AdminSidebar from '../../components/admin/HeaderSidebar/Sidebar';
-import showToast from "../../utils/Toaster";
+import axiosJWT from '../../Utils/AxiosService';
+import { ADMIN_API } from '../../Constants/Index';
+import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';
+import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
+import showToast from "../../Utils/Toaster";
 
 const AddDepartmentPage: React.FC = () => {
   const [departmentName, setDepartmentName] = useState('');
