@@ -1,7 +1,7 @@
 import showToast, { ToastType } from "./Toaster";
-import store from "../redux/store/Store";
-import { clearUser } from "../redux/slices/UserSlice";
-import { clearDoctor } from "../redux/slices/DoctorSlice";
+import store from "../Redux/Store/Store";
+import { clearUser } from "../Redux/Slices/UserSlice";
+import { clearDoctor } from "../Redux/Slices/DoctorSlice";
 
 const logout = (message: string, type: ToastType = "success"): void => {
   store.dispatch(clearUser());
