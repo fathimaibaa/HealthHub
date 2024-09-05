@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/User/Navbar/Navbar";
 import { useAppSelector } from "../../Redux/Store/Store";
-import { USER_API } from "../../Constants/Index";
+import { USER_API } from "../../cccc/Index";
 import axiosJWT from "../../utils/AxiosService";
 
 const WalletPage: React.FC = () => {

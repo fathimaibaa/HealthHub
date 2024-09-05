@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { DOCTOR_API } from '../../Constants/Index';
+import { DOCTOR_API } from '../../cccc/Index';
 import showToast from "../../utils/Toaster";
 import { validateSignUp } from "../../utils/Validation";
 interface SignUpResponse {

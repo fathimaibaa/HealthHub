@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axiosJWT from "../../utils/AxiosService";
-import { USER_API } from "../../Constants/Index";
+import { USER_API } from "../../cccc/Index";
 import { DoctorInterface } from "../../types/DoctorInterface";
 import { DepartmentInterface } from "../../types/DepartmentInterface";
 import axios from "axios";

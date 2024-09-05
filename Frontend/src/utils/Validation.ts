@@ -1,7 +1,7 @@
 import {
     nameRegex,
     emailRegex,
-} from "../Constants/Index";
+} from "../cccc/Index";
 
 type SignupValidation = Partial<{
 name: string;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ADMIN_API } from '../../Constants/Index';
+import { ADMIN_API } from '../../cccc/Index';
 import axiosJWT from '../../utils/AxiosService';
 import { DoctorInterface } from '../../types/DoctorInterface';
 import { toast } from 'react-toastify';

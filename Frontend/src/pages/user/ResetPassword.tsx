@@ -2,7 +2,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { validateResetPassword } from "../../utils/Validation";
 import axios from "axios";
-import { USER_API } from "../../Constants/Index";
+import { USER_API } from "../../cccc/Index";
 import showToast from "../../utils/Toaster";
 import { useFormik } from "formik";
 
