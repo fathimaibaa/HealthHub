@@ -1,7 +1,7 @@
 
 import React from 'react';
-import Navbar from '../../zzzz/Doctor/Navbar/Navbar';
-import Footer from '../../zzzz/Doctor/Footer/Footer';
+import Navbar from '../../Components/Doctor/Navbar/Navbar';
+import Footer from '../../Components/Doctor/Footer/Footer';
 import { MdOutlineModeEdit } from "react-icons/md";
 import useDoctorProfile from "../../Hooks/UseDoctorProfile";
 

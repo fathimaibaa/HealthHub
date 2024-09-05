@@ -1,7 +1,7 @@
 import React from 'react';
-import Footer from '../../zzzz/User/Footer/Footer';
-import Navbar from '../../zzzz/User/Navbar/Navbar';
-import DoctorListingPage from '../../zzzz/User/DoctorListPage';
+import Footer from '../../Components/User/Footer/Footer';
+import Navbar from '../../Components/User/Navbar/Navbar';
+import DoctorListingPage from '../../Components/User/DoctorListPage';
 
 
 

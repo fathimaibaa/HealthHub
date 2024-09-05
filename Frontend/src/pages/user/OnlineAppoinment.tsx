@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../../zzzz/User/Navbar/Navbar";
+import Navbar from "../../Components/User/Navbar/Navbar";
 
-import AppointmentOnlineBookingPage from "../../zzzz/User/OnlineBookingPage";
+import AppointmentOnlineBookingPage from "../../Components/User/OnlineBookingPage";
 
 const Appoinment: React.FC = () => {
   return (

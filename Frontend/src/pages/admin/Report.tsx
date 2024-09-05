@@ -1,7 +1,7 @@
 import React ,  { useState } from 'react';
-import ReportData from "../../zzzz/Admin/ReportData";
-import AdminHeader from '../../zzzz/Admin/HeaderSidebar/Header';
-import AdminSidebar from '../../zzzz/Admin/HeaderSidebar/Sidebar';
+import ReportData from "../../Components/Admin/ReportData";
+import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';
+import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useReports from '../../Hooks/UseReport';

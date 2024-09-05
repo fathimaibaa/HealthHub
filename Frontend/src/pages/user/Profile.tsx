@@ -1,5 +1,5 @@
 import React from 'react';
-import Profile from '../../zzzz/User/Profile';
+import Profile from '../../Components/User/Profile';
 
 
 

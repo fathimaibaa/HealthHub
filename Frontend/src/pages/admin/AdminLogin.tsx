@@ -1,4 +1,4 @@
-import Login from "../../zzzz/Admin/Login";
+import Login from "../../Components/Admin/Login";
 
 const AdminLogin: React.FC = () => <Login />;
 export default AdminLogin;

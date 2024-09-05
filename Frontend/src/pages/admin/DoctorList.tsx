@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import AdminHeader from '../../zzzz/Admin/HeaderSidebar/Header';
-import AdminSidebar from '../../zzzz/Admin/HeaderSidebar/Sidebar';
+import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';
+import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
 import useDoctors from '../../Hooks/Usedoctors';
-import DoctorData from '../../zzzz/Admin/DoctorData';
+import DoctorData from '../../Components/Admin/DoctorData';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaSearch } from 'react-icons/fa';

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import AdminHeader from '../../zzzz/Admin/HeaderSidebar/Header';
-import AdminSidebar from '../../zzzz/Admin/HeaderSidebar/Sidebar';
+import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';
+import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
 import useDoctors from '../../Hooks/Usedoctors';
-import ReqDoctorData from '../../zzzz/Admin/ReqDoctorData';
+import ReqDoctorData from '../../Components/Admin/ReqDoctorData';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
