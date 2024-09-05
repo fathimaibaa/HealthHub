@@ -5,7 +5,7 @@ import { ADMIN_API } from '../../Constants/Index';
 import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
 import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';
 import toast from 'react-hot-toast';
-import { DepartmentInterface } from '../../types/DepartmentInterface';
+import { DepartmentInterface } from '../../ttt/DepartmentInterface';
 
 const DoctorDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();

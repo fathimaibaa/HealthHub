@@ -11,7 +11,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Navigate, useNavigate } from "react-router-dom";
 import {  useSelector } from "react-redux";
 import { RootState } from "../../Redux/Reducer/Reducer";
-import { DepartmentInterface } from "../../types/DepartmentInterface";
+import { DepartmentInterface } from "../../ttt/DepartmentInterface";
 
 
 const AppointmentOnlineBookingPage: React.FC = () => {
