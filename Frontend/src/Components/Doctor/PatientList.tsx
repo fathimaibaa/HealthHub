@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axiosJWT from "../../utils/AxiosService";
-import { DOCTOR_API } from "../../cccc/Index";
+import { DOCTOR_API } from "../../Constants/Index";
 import { RootState } from "../../Redux/Reducer/Reducer";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

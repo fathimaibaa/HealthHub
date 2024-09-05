@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosJWT from "../utils/AxiosService";
-import { ADMIN_API } from "../cccc/Index";
+import { ADMIN_API } from "../Constants/Index";
 
 interface Department {
   _id: string; 

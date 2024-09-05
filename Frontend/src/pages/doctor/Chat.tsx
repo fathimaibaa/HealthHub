@@ -5,7 +5,7 @@ import Navbar from "../../Components/Doctor/Navbar/Navbar";
 import { FiSend } from "react-icons/fi";
 import { useAppSelector } from "../../Redux/Store/Store";
 import axiosJWT from "../../utils/AxiosService";
-import { CHAT_API, DOCTOR_API } from "../../cccc/Index";
+import { CHAT_API, DOCTOR_API } from "../../Constants/Index";
 import { useSocket } from "../../Context/SocketContext";
 
 const Chat: React.FC = () => {

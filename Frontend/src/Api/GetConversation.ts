@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CHAT_API } from "../cccc/Index";
+import { CHAT_API } from "../Constants/Index";
 
 export default async function getConversations(
   conversationId: string,

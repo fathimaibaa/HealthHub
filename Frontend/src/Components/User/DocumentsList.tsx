@@ -5,7 +5,7 @@ import {
 } from "react-icons/ai";
 import axiosJWT from "../../utils/AxiosService";
 import { useParams } from "react-router-dom";
-import { USER_API } from "../../cccc/Index";
+import { USER_API } from "../../Constants/Index";
 import showToast from "../../utils/Toaster"; // Adjust import path
 import { useAppSelector } from "../../Redux/Store/Store";
 

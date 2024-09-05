@@ -6,7 +6,7 @@ import { validateSignUp } from "../../utils/Validation";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import showToast from '../../utils/Toaster';
-import { USER_API } from '../../cccc/Index';
+import { USER_API } from '../../Constants/Index';
 import axios from 'axios';
 import { setItemToLocalStorage } from '../../utils/Setnget';
 import login from "../../Assets/Images/login.jpg";
