@@ -53,7 +53,6 @@ const Navbar: React.FC = () => {
             Home
           </Link>
           
-          <Link to="/user/profile" className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white hover:text-purple-900 md:ml-2">Profile</Link>
 
           <Link
             to="/user/doctor"
@@ -68,6 +67,9 @@ const Navbar: React.FC = () => {
           {/* Profile and Login/Logout */}
           {user.isAuthenticated && user.role === "user" ? (
             <>
+<Link to="/user/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</Link>
+
+<Link to="/user/wallet" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Wallet</Link>
               <Link
                 to="/user/appoinmentlist"
                 className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white hover:text-purple-900 md:ml-2"
@@ -118,6 +120,8 @@ const Navbar: React.FC = () => {
             >
               About Us
             </Link>
+
+            <Link to="/user/contact" className="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white hover:text-purple-900 md:ml-2">Contact us</Link>
             <Link
               to="/user/doctor"
               className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white hover:text-purple-900"
