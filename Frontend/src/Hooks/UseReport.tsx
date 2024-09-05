@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosJWT from "../utils/AxiosService";
-import { BookingInterface } from "../ttt/BookingInterface";
+import { BookingInterface } from "../Types/BookingInterface";
 import { ADMIN_API } from "../Constants/Index";
 
 interface ReportsResponse {

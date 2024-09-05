@@ -1,7 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { TOKEN_API } from "../Constants/Index";
-import { Payload } from "../ttt/PropsType";
+import { Payload } from "../Types/PropsType";
 import logout, { doctorlogout } from "./Logout";
 import { getItemFromLocalStorage } from "./Setnget";
 
