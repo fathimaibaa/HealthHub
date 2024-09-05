@@ -4,7 +4,7 @@ import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';
 import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useReports from '../../hhh/UseReport';
+import useReports from '../../Hooks/UseReport';
 
 
 const ReportList: React.FC = () => {

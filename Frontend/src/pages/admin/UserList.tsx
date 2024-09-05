@@ -1,6 +1,6 @@
 import React ,  { useState } from 'react';
 import UserData from "../../Components/Admin/UserData";
-import useUsers from "../../hhh/UseUsers";
+import useUsers from "../../Hooks/UseUsers";
 import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';
 import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
 import { ToastContainer } from 'react-toastify';
