@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { USER_API } from "../../Constants/Index";
-import axiosJWT from "../../Utils/AxiosService";
+import { USER_API } from "../../constants/Index";
+import axiosJWT from "../../utils/AxiosService";
 import { useParams } from "react-router-dom";
 import Modal from "react-modal";
-import showToast from "../../Utils/Toaster";
+import showToast from "../../utils/Toaster";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Calendar } from "lucide-react";

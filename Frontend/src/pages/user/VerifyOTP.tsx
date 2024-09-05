@@ -1,5 +1,5 @@
 import React from "react"
-import OTPForm from "../../Components/User/OTPForm"
+import OTPForm from "../../components/user/OTPForm"
 
 const VerifytOTP :React.FC =() => (
     <OTPForm/>

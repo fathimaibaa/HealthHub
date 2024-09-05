@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../../Components/Doctor/Navbar/Navbar'
-import Calender from '../../Components/Doctor/Celender/Calender'
+import Navbar from '../../components/doctor/Navbar/Navbar'
+import Calender from '../../components/doctor/celender/Calender'
 
 const SlotPage:React.FC = () => {
   return (

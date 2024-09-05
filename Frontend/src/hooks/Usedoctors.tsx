@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axiosJWT from "../Utils/AxiosService";
+import axiosJWT from "../utils/AxiosService";
 import { DoctorInterface } from "../types/DoctorInterface";
-import { ADMIN_API } from "../Constants/Index";
+import { ADMIN_API } from "../constants/Index";
 
 interface DoctorsResponse {
   doctors: DoctorInterface[];

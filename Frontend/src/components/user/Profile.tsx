@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar/Navbar';
-import Footer from '../../Components/User/Footer/Footer';
+import Footer from './Footer/Footer';
 import useProfile from "../../Hooks/UserProfile";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { BsWallet } from "react-icons/bs";

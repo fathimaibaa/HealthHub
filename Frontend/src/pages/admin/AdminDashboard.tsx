@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';
-import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
-import LineGraph from '../../Components/Admin/Graph/LineChart';
-import DonutChart from '../../Components/Admin/Graph/DonutChart';
-import axiosJWT from '../../Utils/AxiosService';
-import { ADMIN_API } from '../../Constants/Index';
+import AdminHeader from '../../components/admin/HeaderSidebar/Header';
+import AdminSidebar from '../../components/admin/HeaderSidebar/Sidebar';
+import LineGraph from '../../components/admin/Graph/LineChart';
+import DonutChart from '../../components/admin/Graph/DonutChart';
+import axiosJWT from '../../utils/AxiosService';
+import { ADMIN_API } from '../../constants/Index';
 import { useNavigate } from 'react-router-dom';
 import { FaClipboardList } from 'react-icons/fa'; 
 

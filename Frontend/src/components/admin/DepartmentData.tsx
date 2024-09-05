@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DepartmentInterface } from "../../types/DepartmentInterface";
-import axiosJWT from "../../Utils/AxiosService";
-import { ADMIN_API } from "../../Constants/Index";
+import axiosJWT from "../../utils/AxiosService";
+import { ADMIN_API } from "../../constants/Index";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

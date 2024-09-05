@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../Components/User/Navbar/Navbar";
-import axiosJWT from "../../Utils/AxiosService";
-import {CHAT_API ,USER_API } from "../../Constants/Index";
+import Navbar from "../../components/user/Navbar/Navbar";
+import axiosJWT from "../../utils/AxiosService";
+import {CHAT_API ,USER_API } from "../../constants/Index";
 import { useNavigate, useParams } from "react-router-dom";
-import showToast from "../../Utils/Toaster";
+import showToast from "../../utils/Toaster";
 import { FaFilePdf, FaPlus, FaTimes, FaTrash } from "react-icons/fa";
 import { FaFileUpload } from "react-icons/fa";
 import { uploadDocumentToCloudinary } from "../../Api/UploadImages";

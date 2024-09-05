@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useAppSelector } from "../redux/store/Store";
 import { Navigate,Outlet } from "react-router-dom";
-import ZegoCloud from "../Utils/ZegoService";
+import ZegoCloud from "../utils/ZegoService";
 
 
 const ProtectedRoute: FC = () => {

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/reducer/Reducer";
-import showToast from "../../../Utils/Toaster";
+import showToast from "../../../utils/Toaster";
 import { clearUser } from "../../../redux/slices/UserSlice";
 import logo from '../../../Assets/Images/logo.png';
-import { removeItemFromLocalStorage } from "../../../Utils/Setnget";
+import { removeItemFromLocalStorage } from "../../../utils/Setnget";
 import { FiMenu, FiX } from 'react-icons/fi'; 
 
 const Navbar: React.FC = () => {

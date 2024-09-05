@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logout from "../../../Utils/AxiosService";
+import logout from "../../../utils/AxiosService";
 import { useAppDispatch } from "../../../redux/store/Store";
 import { clearUser } from "../../../redux/slices/UserSlice";
 import { Stethoscope } from "lucide-react";

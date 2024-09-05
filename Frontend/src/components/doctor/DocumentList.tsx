@@ -3,10 +3,10 @@ import {
   AiOutlineFilePdf,
   AiOutlineClose,
 } from "react-icons/ai";
-import axiosJWT from "../../Utils/AxiosService";
+import axiosJWT from "../../utils/AxiosService";
 import { useParams } from "react-router-dom";
-import { USER_API } from "../../Constants/Index";
-import showToast from "../../Utils/Toaster"; 
+import { USER_API } from "../../constants/Index";
+import showToast from "../../utils/Toaster"; 
 import { useAppSelector } from "../../redux/store/Store";
 
 const DocumentList = () => {

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axiosJWT from '../../Utils/AxiosService';
-import { ADMIN_API } from '../../Constants/Index';
-import AdminSidebar from '../../Components/Admin/HeaderSidebar/Sidebar';
-import AdminHeader from '../../Components/Admin/HeaderSidebar/Header';
+import axiosJWT from '../../utils/AxiosService';
+import { ADMIN_API } from '../../constants/Index';
+import AdminSidebar from '../../components/admin/HeaderSidebar/Sidebar';
+import AdminHeader from '../../components/admin/HeaderSidebar/Header';
 import toast from 'react-hot-toast';
 import { DepartmentInterface } from '../../types/DepartmentInterface';
 

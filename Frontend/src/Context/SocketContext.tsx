@@ -1,6 +1,6 @@
 import { ReactNode, useContext, createContext } from "react";
 import { io, Socket } from "socket.io-client";
-import { SERVER_URL } from "../Constants/Index";
+import { SERVER_URL } from "../constants/Index";
 
 const SocketContext = createContext<Socket | null>(null);
 SocketContext.displayName = "Socket Context";

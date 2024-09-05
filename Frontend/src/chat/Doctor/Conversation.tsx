@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axiosJWT from "../../Utils/AxiosService";
-import { DOCTOR_API} from "../../Constants/Index";
+import axiosJWT from "../../utils/AxiosService";
+import { DOCTOR_API} from "../../constants/Index";
 
 interface ConversationProps {
     conversation: {

@@ -1,9 +1,9 @@
 
 import { useNavigate, useParams } from "react-router-dom";
-import { validateResetPassword } from "../../Utils/Validation";
+import { validateResetPassword } from "../../utils/Validation";
 import axios from "axios";
-import { USER_API } from "../../Constants/Index";
-import showToast from "../../Utils/Toaster";
+import { USER_API } from "../../constants/Index";
+import showToast from "../../utils/Toaster";
 import { useFormik } from "formik";
 
 interface ResetPasswordResponse {

@@ -1,9 +1,9 @@
 import  { useState, useEffect } from 'react';
-import axiosJWT from '../../Utils/AxiosService';
+import axiosJWT from '../../utils/AxiosService';
 import { useNavigate, useParams } from 'react-router-dom';
-import { CHAT_API, DOCTOR_API, USER_API } from '../../Constants/Index';
+import { CHAT_API, DOCTOR_API, USER_API } from '../../constants/Index';
 import { RiFileAddLine } from 'react-icons/ri';
-import showToast from '../../Utils/Toaster';
+import showToast from '../../utils/Toaster';
 import { AiOutlineFileText, AiOutlineVideoCamera } from 'react-icons/ai';
 import { FiMessageSquare } from 'react-icons/fi';
 import { ZIM } from "zego-zim-web";

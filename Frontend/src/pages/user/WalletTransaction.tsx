@@ -1,6 +1,6 @@
 import React from "react"
-import Transaction from "../../Components/User/TransationHistory"
-import Navbar from "../../Components/User/Navbar/Navbar";
+import Transaction from "../../components/user/TransationHistory"
+import Navbar from "../../components/user/Navbar/Navbar";
 
 
 const walletHistroy :React.FC =() => (

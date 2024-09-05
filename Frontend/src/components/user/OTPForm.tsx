@@ -1,13 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { USER_API } from "../../Constants/Index";
+import { USER_API } from "../../constants/Index";
 import { useFormik } from "formik";
 import {
   getItemFromLocalStorage,
   removeItemFromLocalStorage,
-} from "../../Utils/Setnget";
-import showToast from "../../Utils/Toaster";
+} from "../../utils/Setnget";
+import showToast from "../../utils/Toaster";
 import { useNavigate } from "react-router-dom";
 interface VerifyOtpResponse {
   message: string;

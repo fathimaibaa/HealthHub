@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../../Components/User/Navbar/Navbar";
-import DoctorDetailsPage from "../../Components/User/SingleDoctor";
+import Navbar from "../../components/user/Navbar/Navbar";
+import DoctorDetailsPage from "../../components/user/SingleDoctor";
 
 const singleDoctorDetails: React.FC = () => {
   return (
