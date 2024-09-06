@@ -126,7 +126,7 @@ useEffect(()=>{
             const timeSlotsForDay = response.data.timeSlots[0].slots.find(
               (slot: any) => slot.day === selectedDay
             );
-
+console.log(timeSlotsForDay,"qwertypqwertyuiopwertyuiopqwertyuiopqwertyuiop")
 
             let availableSlots = timeSlotsForDay
             ? timeSlotsForDay.times.map((time: any) => ({
@@ -134,7 +134,7 @@ useEffect(()=>{
                 end: time.end,
               }))
             : [];
-
+console.log(availableSlots,"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
 
 
 
@@ -147,7 +147,7 @@ useEffect(()=>{
               });
             }
 
-
+console.log(availableSlots,"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm")
 
             setTimeSlots(
               availableSlots.length > 0
