@@ -142,19 +142,26 @@ if (selectedDate.toDateString() === new Date().toDateString()) {
   const currentTime = new Date();
 
   availableSlots = availableSlots.filter((slot: any) => {
-    const [startHour, startMinutes] = slot.start.split(":").map(Number);
-    console.log(startHour,startMinutes,"????????????????????????????????????????")
+    const [hourPart, minutePart] = slot.start.split(":");
+
+    // Extract AM/PM from the time string
     const isPM = slot.start.includes("PM");
+    const startHour = parseInt(hourPart, 10);
+    const startMinutes = minutePart
+      ? parseInt(minutePart.slice(0, 2), 10)
+      : 0; // Default to 0 minutes if not provided
+
+    console.log(startHour, startMinutes, "Parsed time components");
 
     // Convert time to 24-hour format
     const hourIn24Format =
-      isPM && startHour !== 12 ? startHour + 12 : startHour === 12 && !isPM ? 0 : startHour;
+      isPM && startHour !== 12 ? startHour + 12 : !isPM && startHour === 12 ? 0 : startHour;
 
     const slotTime = new Date(selectedDate);
-
     slotTime.setHours(hourIn24Format, startMinutes, 0, 0);
-    console.log(slotTime.getTime(),"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-    console.log(currentTime.getTime(),"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+
+    console.log(slotTime.getTime(), "Slot time in milliseconds");
+    console.log(currentTime.getTime(), "Current time in milliseconds");
 
     return slotTime.getTime() > currentTime.getTime();
   });
