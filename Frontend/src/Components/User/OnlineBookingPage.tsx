@@ -143,6 +143,7 @@ if (selectedDate.toDateString() === new Date().toDateString()) {
 
   availableSlots = availableSlots.filter((slot: any) => {
     const [startHour, startMinutes] = slot.start.split(":").map(Number);
+    console.log(startHour,startMinutes,"????????????????????????????????????????")
     const isPM = slot.start.includes("PM");
 
     // Convert time to 24-hour format
@@ -150,7 +151,10 @@ if (selectedDate.toDateString() === new Date().toDateString()) {
       isPM && startHour !== 12 ? startHour + 12 : startHour === 12 && !isPM ? 0 : startHour;
 
     const slotTime = new Date(selectedDate);
+
     slotTime.setHours(hourIn24Format, startMinutes, 0, 0);
+    console.log(slotTime.getTime(),"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    console.log(currentTime.getTime(),"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
 
     return slotTime.getTime() > currentTime.getTime();
   });
