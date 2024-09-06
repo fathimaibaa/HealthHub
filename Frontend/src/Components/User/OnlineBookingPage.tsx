@@ -126,7 +126,6 @@ useEffect(()=>{
             const timeSlotsForDay = response.data.timeSlots[0].slots.find(
               (slot: any) => slot.day === selectedDay
             );
-console.log(timeSlotsForDay,"qwertypqwertyuiopwertyuiopqwertyuiopqwertyuiop")
 
             let availableSlots = timeSlotsForDay
             ? timeSlotsForDay.times.map((time: any) => ({
@@ -134,7 +133,6 @@ console.log(timeSlotsForDay,"qwertypqwertyuiopwertyuiopqwertyuiopqwertyuiop")
                 end: time.end,
               }))
             : [];
-console.log(availableSlots,"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
 
 
 
@@ -144,16 +142,13 @@ if (selectedDate.toDateString() === new Date().toDateString()) {
   availableSlots = availableSlots.filter((slot: any) => {
     const [hourPart, minutePart] = slot.start.split(":");
 
-    // Extract AM/PM from the time string
     const isPM = slot.start.includes("PM");
     const startHour = parseInt(hourPart, 10);
     const startMinutes = minutePart
       ? parseInt(minutePart.slice(0, 2), 10)
-      : 0; // Default to 0 minutes if not provided
+      : 0; 
 
-    console.log(startHour, startMinutes, "Parsed time components");
 
-    // Convert time to 24-hour format
     const hourIn24Format =
       isPM && startHour !== 12 ? startHour + 12 : !isPM && startHour === 12 ? 0 : startHour;
 
@@ -167,7 +162,6 @@ if (selectedDate.toDateString() === new Date().toDateString()) {
   });
 }
 
-console.log(availableSlots,"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm")
 
 setTimeSlots(
   availableSlots.length > 0
@@ -175,13 +169,7 @@ setTimeSlots(
     : []
 );
 
-            // setTimeSlots(
-            //   timeSlotsForDay
-            //     ? timeSlotsForDay.times.map(
-            //         (time: any) => `${time.start} - ${time.end}`
-            //       )
-            //     : []
-            // );
+           
           } else {
             setTimeSlots([]);
           }
