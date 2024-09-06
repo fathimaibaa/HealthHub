@@ -126,13 +126,43 @@ useEffect(()=>{
             const timeSlotsForDay = response.data.timeSlots[0].slots.find(
               (slot: any) => slot.day === selectedDay
             );
+
+
+            let availableSlots = timeSlotsForDay
+            ? timeSlotsForDay.times.map((time: any) => ({
+                start: time.start,
+                end: time.end,
+              }))
+            : [];
+
+
+
+
+            if (selectedDate.toDateString() === new Date().toDateString()) {
+              const currentTime = new Date().getTime();
+              availableSlots = availableSlots.filter((slot: any) => {
+                const [hours, minutes] = slot.start.split(":").map(Number);
+                const slotTime = new Date().setHours(hours, minutes, 0, 0);
+                return slotTime > currentTime;
+              });
+            }
+
+
+
             setTimeSlots(
-              timeSlotsForDay
-                ? timeSlotsForDay.times.map(
-                    (time: any) => `${time.start} - ${time.end}`
-                  )
+              availableSlots.length > 0
+                ? availableSlots.map((slot: any) => `${slot.start} - ${slot.end}`)
                 : []
             );
+
+
+            // setTimeSlots(
+            //   timeSlotsForDay
+            //     ? timeSlotsForDay.times.map(
+            //         (time: any) => `${time.start} - ${time.end}`
+            //       )
+            //     : []
+            // );
           } else {
             setTimeSlots([]);
           }
