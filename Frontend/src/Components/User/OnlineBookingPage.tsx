@@ -138,23 +138,31 @@ console.log(availableSlots,"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
 
 
 
-            if (selectedDate.toDateString() === new Date().toDateString()) {
-              const currentTime = new Date().getTime();
-              availableSlots = availableSlots.filter((slot: any) => {
-                const [hours, minutes] = slot.start.split(":").map(Number);
-                const slotTime = new Date().setHours(hours, minutes, 0, 0);
-                return slotTime > currentTime;
-              });
-            }
+if (selectedDate.toDateString() === new Date().toDateString()) {
+  const currentTime = new Date();
+
+  availableSlots = availableSlots.filter((slot: any) => {
+    const [startHour, startMinutes] = slot.start.split(":").map(Number);
+    const isPM = slot.start.includes("PM");
+
+    // Convert time to 24-hour format
+    const hourIn24Format =
+      isPM && startHour !== 12 ? startHour + 12 : startHour === 12 && !isPM ? 0 : startHour;
+
+    const slotTime = new Date(selectedDate);
+    slotTime.setHours(hourIn24Format, startMinutes, 0, 0);
+
+    return slotTime.getTime() > currentTime.getTime();
+  });
+}
 
 console.log(availableSlots,"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm")
 
-            setTimeSlots(
-              availableSlots.length > 0
-                ? availableSlots.map((slot: any) => `${slot.start} - ${slot.end}`)
-                : []
-            );
-
+setTimeSlots(
+  availableSlots.length > 0
+    ? availableSlots.map((slot: any) => `${slot.start} - ${slot.end}`)
+    : []
+);
 
             // setTimeSlots(
             //   timeSlotsForDay
