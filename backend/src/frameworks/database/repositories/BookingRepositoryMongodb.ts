@@ -130,7 +130,13 @@ export const bookingRepositoryMongodb = () => {
     }
     const getReports = async () => await Booking.find({ paymentStatus: "Success" });
 
- 
+    const changeBookingAppoinmentStatus = async (appoinmentStatus: string,id: string) => {
+      try {
+        await Booking.findByIdAndUpdate(id, { appoinmentStatus: appoinmentStatus});
+      } catch (error) {
+        console.error('Error updating booking status:', error);
+      }
+    };
     return{
         createBooking,
         getAllPatients,
@@ -147,7 +153,8 @@ export const bookingRepositoryMongodb = () => {
         getWalletBalance,
         amountDebit,
         amountCredit,
-        getReports
+        getReports,
+        changeBookingAppoinmentStatus
     }    
 
 }

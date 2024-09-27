@@ -11,8 +11,8 @@ export const ZegoCloud = ({ children }: { children: ReactNode }) => {
     if (user.id && user.name) {
       const userID = user.id;
       const userName = user.name;
-      const appID = 2032275435;
-      const serverSecret = '77364187d39f3d32201e089b3ba0a5d0';
+      const appID = 1444652730;
+      const serverSecret = '6da2f62533cbfbc00a886eea383c39e9';
 
       const TOKEN = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, "", userID, userName);
 

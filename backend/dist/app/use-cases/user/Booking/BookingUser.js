@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.changeWallet = exports.changeWalletAmounti = exports.walletDebit = exports.getWalletBalance = exports.updateBookingStatusPayment = exports.getBookingByDoctorId = exports.changeAppoinmentstaus = exports.getBookingByUserId = exports.getBookingByBookingId = exports.updateBookingStatus = exports.createPayment = exports.checkIsBooked = exports.appoinmentBooking = void 0;
+exports.changeWallet = exports.changeWalletAmounti = exports.walletDebit = exports.getWalletBalance = exports.updateBookingStatusPayment = exports.getBookingByDoctorId = exports.changeAppoinmentStatus = exports.changeAppoinmentstaus = exports.getBookingByUserId = exports.getBookingByBookingId = exports.updateBookingStatus = exports.createPayment = exports.checkIsBooked = exports.appoinmentBooking = void 0;
 const BookingEntity_1 = __importDefault(require("../../../../Entities/BookingEntity"));
 const Config_1 = __importDefault(require("../../../../Config"));
 const stripe_1 = __importDefault(require("stripe"));
@@ -81,18 +81,51 @@ const getBookingByUserId = (userId, bookingRepository) => __awaiter(void 0, void
     return { bookingDetails };
 });
 exports.getBookingByUserId = getBookingByUserId;
+// export const changeAppoinmentstaus = async (
+//   appoinmentStatus:string,
+//   cancelReason:string,
+//   id:any,
+//   bookingRepository:ReturnType<BookingDbRepositoryInterface>
+// )=>{
+//   const changeStatus = await bookingRepository.changeBookingstatus(appoinmentStatus,cancelReason,id);
+// const booking = await bookingRepository.getBookingById(id);
+// const fee:any = booking?.fee;
+// const UserId:any = booking?.userId;
+//   const changeWalletAmount = await bookingRepository.changeWallet(fee, UserId);
+//    const walletTransaction = await bookingRepository.creditAmount(fee,UserId);
+//    return {changeStatus,
+//     changeWalletAmount
+//    };
+// }
 const changeAppoinmentstaus = (appoinmentStatus, cancelReason, id, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () {
     const changeStatus = yield bookingRepository.changeBookingstatus(appoinmentStatus, cancelReason, id);
     const booking = yield bookingRepository.getBookingById(id);
+    // const timeSlot = booking?.timeSlot
+    // const date = booking?.date
+    // const doctorId = booking?.doctorId
+    // if(booking){
+    //   await dbTimeSlotRepository.UpdateTheTimeslot(doctorId,timeSlot,date);
+    // }
+    //ivide vech time date oka kond timeslot matta
+    //@ts-ignore
     const fee = booking === null || booking === void 0 ? void 0 : booking.fee;
+    //@ts-ignore
     const UserId = booking === null || booking === void 0 ? void 0 : booking.userId;
+    //@ts-ignore
+    const doctorId = booking === null || booking === void 0 ? void 0 : booking.doctorId;
+    //@ts-ignore
+    const timeSlot = booking === null || booking === void 0 ? void 0 : booking.timeSlot;
+    //@ts-ignore
+    const date = booking === null || booking === void 0 ? void 0 : booking.date;
+    //@ts-ignore
     const changeWalletAmount = yield bookingRepository.changeWallet(fee, UserId);
     const walletTransaction = yield bookingRepository.creditAmount(fee, UserId);
-    return { changeStatus,
-        changeWalletAmount
+    return { doctorId, timeSlot, date
     };
 });
 exports.changeAppoinmentstaus = changeAppoinmentstaus;
+const changeAppoinmentStatus = (appoinmentStatus, id, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield bookingRepository.changeBookingAppoinmentStatus(appoinmentStatus, id); });
+exports.changeAppoinmentStatus = changeAppoinmentStatus;
 const getBookingByDoctorId = (doctorId, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () {
     const bookingDetails = yield bookingRepository.getAllBookingByDoctorId(doctorId);
     return { bookingDetails };

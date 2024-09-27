@@ -28,6 +28,11 @@ const socketConfig = (io) => {
             });
             io.emit("updateLastMessage", { conversationId: conversationId, lastMessage: { text, senderId, createdAt: Date.now() } });
         });
+        socket.on("typing", ({ receiverId, isTyping, userId }) => {
+            var _a;
+            const user = getUser(receiverId);
+            io.to((_a = user === null || user === void 0 ? void 0 : user.socketId) !== null && _a !== void 0 ? _a : "").emit("senderTyping", isTyping, userId);
+        });
         socket.on("disconnect", () => {
             removeUser(socket.id);
             console.log("A user has been disconnected");

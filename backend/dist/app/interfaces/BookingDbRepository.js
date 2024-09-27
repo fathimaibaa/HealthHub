@@ -36,6 +36,7 @@ const bookingDbRepository = (repository) => {
         const amount = yield repository.amountCredit(fee, UserId);
     });
     const getReports = () => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getReports(); });
+    const changeBookingAppoinmentStatus = (appoinmentStatus, id) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.changeBookingAppoinmentStatus(appoinmentStatus, id); });
     return {
         createBooking,
         getAllPatients,
@@ -52,7 +53,8 @@ const bookingDbRepository = (repository) => {
         getBalanceAmount,
         debitAmount,
         creditAmount,
-        getReports
+        getReports,
+        changeBookingAppoinmentStatus
     };
 };
 exports.bookingDbRepository = bookingDbRepository;

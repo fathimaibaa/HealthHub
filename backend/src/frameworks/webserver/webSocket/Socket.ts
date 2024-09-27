@@ -40,6 +40,12 @@ const socketConfig = (io: Server) => {
       io.emit("updateLastMessage", { conversationId: conversationId, lastMessage: { text, senderId, createdAt: Date.now() } });
     });
 
+    socket.on("typing", ({ receiverId, isTyping, userId }) => {
+      const user = getUser(receiverId)
+
+      io.to(user?.socketId ?? "").emit("senderTyping", isTyping, userId)
+    })
+
     socket.on("disconnect", () => {
       removeUser(socket.id);
       console.log("A user has been disconnected");

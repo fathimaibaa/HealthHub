@@ -48,6 +48,7 @@ export const checkIsBooked = async(
   userId:any,
   bookingDbRepository: ReturnType<BookingDbRepositoryInterface>,
 )=>{
+  
   const { doctorId, patientDetails: { patientName, patientAge, patientNumber, patientGender }, consultationType, fee, paymentStatus,appoinmentStatus,appoinmentCancelReason, date, timeSlot } = data;
   const appoinment = bookingEntity(
       userId,
@@ -147,6 +148,32 @@ export const createPayment = async (
   };
 
 
+  // export const changeAppoinmentstaus = async (
+  //   appoinmentStatus:string,
+  //   cancelReason:string,
+  //   id:any,
+  //   bookingRepository:ReturnType<BookingDbRepositoryInterface>
+  // )=>{
+  //   const changeStatus = await bookingRepository.changeBookingstatus(appoinmentStatus,cancelReason,id);
+
+  // const booking = await bookingRepository.getBookingById(id);
+
+  // const fee:any = booking?.fee;
+  // const UserId:any = booking?.userId;
+
+
+  //   const changeWalletAmount = await bookingRepository.changeWallet(fee, UserId);
+
+
+  //    const walletTransaction = await bookingRepository.creditAmount(fee,UserId);
+   
+  //    return {changeStatus,
+  //     changeWalletAmount
+  //    };
+  // }
+ 
+
+ 
   export const changeAppoinmentstaus = async (
     appoinmentStatus:string,
     cancelReason:string,
@@ -157,26 +184,49 @@ export const createPayment = async (
 
   const booking = await bookingRepository.getBookingById(id);
 
+  // const timeSlot = booking?.timeSlot
+  // const date = booking?.date
+  // const doctorId = booking?.doctorId
+
+  // if(booking){
+  //   await dbTimeSlotRepository.UpdateTheTimeslot(doctorId,timeSlot,date);
+  // }
+
+
+
+  //ivide vech time date oka kond timeslot matta
+
+  //@ts-ignore
   const fee:any = booking?.fee;
-  const UserId:any = booking?.userId;
+   //@ts-ignore
+  const UserId = booking?.userId;
+   //@ts-ignore
+   const doctorId:any = booking?.doctorId;
+   //@ts-ignore
+  const timeSlot = booking?.timeSlot;
+   //@ts-ignore
+   const date:any = booking?.date;
 
 
-    const changeWalletAmount = await bookingRepository.changeWallet(fee, UserId);
 
+   //@ts-ignore
+  const changeWalletAmount = await bookingRepository.changeWallet(fee,UserId);
 
-     const walletTransaction = await bookingRepository.creditAmount(fee,UserId);
-   
-     return {changeStatus,
-      changeWalletAmount
+  const walletTransaction = await bookingRepository.creditAmount(fee,UserId);
+
+     return {doctorId,timeSlot,date
      };
   }
- 
-
- 
 
 
 
  
+  export const changeAppoinmentStatus = async (
+    appoinmentStatus:string,
+    id:any,
+    bookingRepository:ReturnType<BookingDbRepositoryInterface>
+  )=> await bookingRepository.changeBookingAppoinmentStatus(appoinmentStatus,id);
+
 
 
  

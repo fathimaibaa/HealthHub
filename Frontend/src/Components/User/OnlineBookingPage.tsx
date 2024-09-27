@@ -42,8 +42,13 @@ useEffect(()=>{
   const fetchDoctorsAndDepartments = async () => {
     try {
       const response:any = await axiosJWT.get(`${USER_API}/doctor/${id}`);
-      setDoctor(response.data.doctor);
-
+     
+     
+      if (response.data.doctor) {
+        setDoctor(response.data.doctor);
+      } else {
+        navigate("/error"); // Redirect to error page if doctor is not found
+      }
       const deptResponse:any = await axiosJWT.get(`${USER_API}/department/list`);
       const listedDepartments = deptResponse.data.departments.filter(
         (dept: DepartmentInterface) => dept.isListed
@@ -81,12 +86,13 @@ useEffect(()=>{
         console.error("Error fetching scheduled dates:", error);
       }
     } catch (error) {
-      console.error("Error fetching doctor n department details:", error);
+      console.error("Error fetching doctor and department details:", error);
+      navigate("/error"); // Redirect to error page if there's an issue fetching doctor details
     }
   };
   fetchDoctorsAndDepartments();
 
-},[id]);
+},[id,navigate]);
 
 
 

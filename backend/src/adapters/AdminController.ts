@@ -50,6 +50,7 @@ export default (
     try {
    
       const { email, password } = req.body;
+      console.log(email, password,"lllllllllllllllllllllllllllllllllllllll")
       const { accessToken, refreshToken } = await loginAdmin(email, password, authService);
 
 

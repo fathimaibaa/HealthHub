@@ -74,6 +74,24 @@ export const timeSlotRepositoryMongodb = () => {
 }
 const getAllTimeSlot = async () => await TimeSlot.find({ available: true }); 
 
+const UpdateTheTimeslot = async (doctorId: string, timeSlot: string, date: string) => {
+  try {
+      const result = await TimeSlot.findOneAndUpdate(
+          { 
+              doctorId:doctorId,
+              slotTime: timeSlot,
+              date: new Date(date),
+          },
+          { $set: { available: true } },
+          { new: true }
+      );
+
+      return result;
+  } catch (error) {
+      console.error("Error updating timeslot availability:", error);
+      throw error;
+  }
+};
 
 
   return {
@@ -85,6 +103,7 @@ const getAllTimeSlot = async () => await TimeSlot.find({ available: true });
     existingSlotAvailable,
     getAllTimeSlotsByDate,
     getAllTimeSlot,
+    UpdateTheTimeslot
   };
 };
 

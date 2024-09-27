@@ -220,7 +220,7 @@ const AboutPage: React.FC = () => {
       <Navbar />
       <div className="relative w-full h-[70vh] bg-purple-900 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-5xl font-medium text-white mb-6">Contact QuickDoc</h1>
+          <h1 className="text-5xl font-medium text-white mb-6">Contact HealthHub</h1>
           <h2 className="text-2xl font-semibold text-white mb-8">
             Help us enable the best healthcare experience in India.
           </h2>

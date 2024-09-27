@@ -11,6 +11,10 @@ interface DoctorDataProps extends DoctorInterface {
   status: string;
 }
 
+interface ApiResponse {
+  success: boolean;
+}
+
 const DoctorData: React.FC<DoctorDataProps> = ({
   serialNo,
   _id,
@@ -25,38 +29,25 @@ const DoctorData: React.FC<DoctorDataProps> = ({
   const handleCheckboxChange = () => {
     setShowConfirmModal(true);
   };
-  interface ApiResponse {
-    success: boolean;
-    message?: string;
-  }
-  
+
   const handleConfirm = () => {
-    const apiEndpoint = isChecked
-      ? `${ADMIN_API}/unblock_doctor/${_id}`
-      : `${ADMIN_API}/block_doctor/${_id}`;
-  
-    axiosJWT.patch<ApiResponse>(apiEndpoint)
+    axiosJWT.patch<ApiResponse>(ADMIN_API + `/block_doctor/${_id}`)
       .then(response => {
         if (response.data.success) {
-          const newIsChecked = !isChecked;
-          setIsChecked(newIsChecked);
-          const message = newIsChecked
+          setIsChecked(!isChecked);
+          const message = !isChecked
             ? "Doctor blocked successfully"
             : "Doctor unblocked successfully";
           toast.success(message, { position: "top-center", autoClose: 3000 });
-        } else {
-          toast.error("Something went wrong, please try again.", { position: "top-center", autoClose: 3000 });
         }
+        setShowConfirmModal(false); // Set modal state in `.then()`
       })
       .catch((err) => {
-        console.error("An error occurred:", err);
-        toast.error("An error occurred, please try again.", { position: "top-center", autoClose: 3000 });
-      })
-      .then(() => {
-        setShowConfirmModal(false);
+        console.log(err);
+        setShowConfirmModal(false); // Set modal state in `.catch()`
       });
   };
-  
+
   return (
     <>
       {showConfirmModal && (
@@ -95,9 +86,7 @@ const DoctorData: React.FC<DoctorDataProps> = ({
         <td className="px-6 py-4 text-left">
           <div className="flex items-center gap-2">
             <div
-              className={`w-3 h-3 rounded-full ${
-                isChecked ? "bg-red-500" : "bg-green-400"
-              }`}
+              className={`w-3 h-3 rounded-full ${isChecked ? "bg-red-500" : "bg-green-400"}`}
             ></div>
             <p>{isChecked ? "Blocked" : "Active"}</p>
           </div>
@@ -112,14 +101,10 @@ const DoctorData: React.FC<DoctorDataProps> = ({
                 className="sr-only"
               />
               <div
-                className={`box block h-6 w-10 rounded-full ${
-                  isChecked ? "bg-red-500" : "bg-green-500"
-                }`}
+                className={`box block h-6 w-10 rounded-full ${isChecked ? "bg-red-500" : "bg-green-500"}`}
               ></div>
               <div
-                className={`absolute left-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-white transition ${
-                  isChecked ? "translate-x-full" : ""
-                }`}
+                className={`absolute left-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-white transition ${isChecked ? "translate-x-full" : ""}`}
               ></div>
             </div>
           </label>

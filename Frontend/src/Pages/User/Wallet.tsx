@@ -36,7 +36,7 @@ const WalletPage: React.FC = () => {
           <div className="text-center text-2xl text-gray-700">
             Your wallet amount is:
             <span className="block text-4xl font-bold text-green-500 mt-2">
-              ${walletAmount}
+              ₹{walletAmount}
             </span>
           </div>
           <button

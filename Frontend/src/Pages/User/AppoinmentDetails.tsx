@@ -43,8 +43,8 @@ const AppointmentDetails: React.FC = () => {
 
   const userID = user.id; 
 const userName = user.name;
-const appID = 2032275435;
-const serverSecret = '77364187d39f3d32201e089b3ba0a5d0';
+const appID = 1444652730;
+const serverSecret = '6da2f62533cbfbc00a886eea383c39e9';
 const TOKEN = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, "", userID || "defaultUserID", userName || "defaultUserName");
 
 
@@ -57,6 +57,11 @@ zp.addPlugins({ ZIM });
     const fetchBookingDetails = async () => {
       try {
         const response:any = await axiosJWT.get(`${USER_API}/bookingdetails/${id}`);
+        
+        if (!response.data.data.bookingDetails) {
+          throw new Error("Invalid booking ID");
+        }
+        
         const bookingData = response.data.data.bookingDetails;
         setBookingDetails(bookingData);
 
@@ -66,10 +71,11 @@ zp.addPlugins({ ZIM });
         setDoctorDetails(doctorResponse.data.doctor);
       } catch (error) {
         console.error("Error fetching booking details:", error);
+        navigate("/error");
       }
     };
     fetchBookingDetails();
-  }, [id]);
+  }, [id, navigate]);
 
   const handleCancelAppointment = async () => {
     try {
@@ -89,11 +95,7 @@ zp.addPlugins({ ZIM });
   };
 
   const handleReschedule = () => {
-    if (bookingDetails.consultationType === "Online") {
-      navigate(`/user/appoinmentOnline/${bookingDetails.doctorId}`);
-    } else if (bookingDetails.consultationType === "Offline") {
-      navigate(`/user/appoinmentOffline/${bookingDetails.doctorId}`);
-    }
+    navigate(`/user/appoinmentOnline/${bookingDetails.doctorId}`);
   };
 
   const renderStatus = () => {

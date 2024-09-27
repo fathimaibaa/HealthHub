@@ -63,6 +63,20 @@ const timeSlotRepositoryMongodb = () => {
         return yield TimeSlots_1.default.findOne({ doctorId, startDate, endDate });
     });
     const getAllTimeSlot = () => __awaiter(void 0, void 0, void 0, function* () { return yield TimeSlots_1.default.find({ available: true }); });
+    const UpdateTheTimeslot = (doctorId, timeSlot, date) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const result = yield TimeSlots_1.default.findOneAndUpdate({
+                doctorId: doctorId,
+                slotTime: timeSlot,
+                date: new Date(date),
+            }, { $set: { available: true } }, { new: true });
+            return result;
+        }
+        catch (error) {
+            console.error("Error updating timeslot availability:", error);
+            throw error;
+        }
+    });
     return {
         addTimeSlots,
         getAllTimeSlots,
@@ -72,6 +86,7 @@ const timeSlotRepositoryMongodb = () => {
         existingSlotAvailable,
         getAllTimeSlotsByDate,
         getAllTimeSlot,
+        UpdateTheTimeslot
     };
 };
 exports.timeSlotRepositoryMongodb = timeSlotRepositoryMongodb;

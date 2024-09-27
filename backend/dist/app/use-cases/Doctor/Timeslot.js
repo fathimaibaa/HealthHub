@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDateSlotsByDoctorId = exports.deleteTimeSlot = exports.getTimeSlotsByDoctorId = exports.getAllTimeSlotsByDoctorId = exports.addTimeSlot = void 0;
+exports.UpdateTheTimeslot = exports.getDateSlotsByDoctorId = exports.deleteTimeSlot = exports.getTimeSlotsByDoctorId = exports.getAllTimeSlotsByDoctorId = exports.addTimeSlot = void 0;
 const addTimeSlot = (data, dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () {
     const { doctorId, startDate, endDate, slotTime } = data;
     const existingSlot = yield dbTimeSlotRepository.exsitingSlotAvailables(doctorId, startDate, endDate);
@@ -32,3 +32,5 @@ const deleteTimeSlot = (timeSlotId, dbTimeSlotRepository) => __awaiter(void 0, v
 exports.deleteTimeSlot = deleteTimeSlot;
 const getDateSlotsByDoctorId = (doctorId, dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield dbTimeSlotRepository.getAllDateSlots(doctorId); });
 exports.getDateSlotsByDoctorId = getDateSlotsByDoctorId;
+const UpdateTheTimeslot = (doctorId, timeSlot, date, dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield dbTimeSlotRepository.UpdateTheTimeslot(doctorId, timeSlot, date); });
+exports.UpdateTheTimeslot = UpdateTheTimeslot;

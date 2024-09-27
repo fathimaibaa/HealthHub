@@ -49,4 +49,12 @@ export const addTimeSlot = async (
     dbTimeSlotRepository: ReturnType<TimeSlotDbInterface>
   ) => await dbTimeSlotRepository.getAllDateSlots(doctorId);
 
+  export const UpdateTheTimeslot = async (
+    doctorId: string,
+    timeSlot:string,
+    date: string,
+    dbTimeSlotRepository: ReturnType<TimeSlotDbInterface>
+  ) => await dbTimeSlotRepository.UpdateTheTimeslot(doctorId,timeSlot,date);
+  
+  
   

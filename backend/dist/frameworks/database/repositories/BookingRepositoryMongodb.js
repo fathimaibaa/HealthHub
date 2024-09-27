@@ -98,6 +98,14 @@ const bookingRepositoryMongodb = () => {
         });
     });
     const getReports = () => __awaiter(void 0, void 0, void 0, function* () { return yield Booking_1.default.find({ paymentStatus: "Success" }); });
+    const changeBookingAppoinmentStatus = (appoinmentStatus, id) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            yield Booking_1.default.findByIdAndUpdate(id, { appoinmentStatus: appoinmentStatus });
+        }
+        catch (error) {
+            console.error('Error updating booking status:', error);
+        }
+    });
     return {
         createBooking,
         getAllPatients,
@@ -114,7 +122,8 @@ const bookingRepositoryMongodb = () => {
         getWalletBalance,
         amountDebit,
         amountCredit,
-        getReports
+        getReports,
+        changeBookingAppoinmentStatus
     };
 };
 exports.bookingRepositoryMongodb = bookingRepositoryMongodb;

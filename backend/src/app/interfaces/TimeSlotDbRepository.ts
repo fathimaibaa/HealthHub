@@ -35,6 +35,8 @@ export const timeSlotDbRepository = (
     await repository.removeTimeSlotbyId(timeSlotId);
 
   const getAllTimeSlot = async () => await repository.getAllTimeSlot();
+  const UpdateTheTimeslot =  async (doctorId: string, timeSlot: string , date:string) =>
+    await repository.UpdateTheTimeslot(doctorId,timeSlot,date);
 
   return {
     addtimeSlot,
@@ -45,6 +47,7 @@ export const timeSlotDbRepository = (
     exsitingSlotAvailables,
     getAllTimeSlotsBydate,
     getAllTimeSlot,
+    UpdateTheTimeslot
   };
 };
 export type TimeSlotDbInterface = typeof timeSlotDbRepository;

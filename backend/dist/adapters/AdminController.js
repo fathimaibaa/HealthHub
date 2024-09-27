@@ -23,6 +23,7 @@ exports.default = (authServiceInterface, authServiceImpl, userDbRepository, user
     const adminLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const { email, password } = req.body;
+            console.log(email, password, "lllllllllllllllllllllllllllllllllllllll");
             const { accessToken, refreshToken } = yield (0, AdminAuth_1.loginAdmin)(email, password, authService);
             return res.status(HttpStatus_1.HttpStatus.OK).json({
                 success: true,

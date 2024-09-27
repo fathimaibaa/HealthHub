@@ -58,6 +58,9 @@ export const bookingDbRepository = (
   }
 
   const getReports = async () => await repository.getReports();
+ 
+  const changeBookingAppoinmentStatus = async (appoinmentStatus:string,id:string)=>
+    await repository.changeBookingAppoinmentStatus(appoinmentStatus,id);
 
 
     return {
@@ -76,7 +79,8 @@ export const bookingDbRepository = (
         getBalanceAmount,
         debitAmount,
         creditAmount,
-        getReports 
+        getReports,
+        changeBookingAppoinmentStatus 
        
     }
   }

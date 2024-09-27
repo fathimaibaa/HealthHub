@@ -24,6 +24,7 @@ const timeSlotDbRepository = (repository) => {
     const getAllDateSlots = (doctorId) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getAllDateSlots(doctorId); });
     const removeTimeSlotbyId = (timeSlotId) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.removeTimeSlotbyId(timeSlotId); });
     const getAllTimeSlot = () => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getAllTimeSlot(); });
+    const UpdateTheTimeslot = (doctorId, timeSlot, date) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.UpdateTheTimeslot(doctorId, timeSlot, date); });
     return {
         addtimeSlot,
         isTimeSlotExist,
@@ -33,6 +34,7 @@ const timeSlotDbRepository = (repository) => {
         exsitingSlotAvailables,
         getAllTimeSlotsBydate,
         getAllTimeSlot,
+        UpdateTheTimeslot
     };
 };
 exports.timeSlotDbRepository = timeSlotDbRepository;

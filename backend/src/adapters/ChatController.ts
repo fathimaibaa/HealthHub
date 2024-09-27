@@ -18,7 +18,7 @@ const chatController = (
    */
   const createNewChat = async (
     req: Request,
-    res: Response,
+    res: Response, 
     next: NextFunction
   ) => {
     try {
