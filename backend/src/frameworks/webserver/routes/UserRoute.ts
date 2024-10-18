@@ -72,44 +72,63 @@ const userRoutes = () => {
    
 
     router.post("/google_signIn", controller.googleSignIn);
+
+
+
     router.post("/login",controller.userLogin)
+
+
+
     router.get("/doctors",controller.doctorPage)
     router.get("/doctor/:id",controller.doctorDetails)
 
-    router.get("/timeslots",authenticateUser,controller.getAllTimeSlots);
-    router.get("/timeslots/:id",authenticateUser,controller.getTimeslots);
-    router.get("/time-slots/:id/dates",authenticateUser,controller.getDateSlots);
+    // router.get("/timeslots",authenticateUser,controller.getAllTimeSlots);
+    // router.get("/timeslots/:id",authenticateUser,controller.getTimeslots);
+    // router.get("/time-slots/:id/dates",authenticateUser,controller.getDateSlots);
     router.get('/department/list', controller.listDepartmentsHandler);
 
-    router.post("/fetchPrescription",authenticateUser,controller.fetchPrescription);
+    // router.post("/fetchPrescription",authenticateUser,controller.fetchPrescription);
     router.post("/uploadDocuments",authenticateUser,controller.labRecords);
 router.get("/documents/:id",authenticateUser,controller.fetchDocuments);
 router.delete("/documents/:id",authenticateUser,controller.deleteDocument);
 
-
-
-
-
-  
 /*  Booking Routes for booking Controller  */
-router.post("/appointments",authenticateUser,_bookingController.BookAppoinment);
-router.get("/allAppoinments",authenticateUser,_bookingController.getAllAppoinments);
-router.patch("/payment_status/:id",authenticateUser,_bookingController.updatePaymentStatus);
+// router.post("/appointments",authenticateUser,_bookingController.BookAppoinment);
+// router.get("/allAppoinments",authenticateUser,_bookingController.getAllAppoinments);
+// router.patch("/payment_status/:id",authenticateUser,_bookingController.updatePaymentStatus);
 
-router.get("/bookingdetails/:id",authenticateUser,_bookingController.getBookingDetails);
-router.get("/bookings/:id",authenticateUser,_bookingController.getAllBookingDetails);
-router.put("/bookingdetails/:id",authenticateUser,_bookingController.cancelAppoinment);
+// router.get("/bookingdetails/:id",authenticateUser,_bookingController.getBookingDetails);
+// router.get("/bookings/:id",authenticateUser,_bookingController.getAllBookingDetails);
+// router.put("/bookingdetails/:id",authenticateUser,_bookingController.cancelAppoinment);
 
    
-router.get("/fetchWallet/:id",authenticateUser,controller.getWallet);
-router.get("/transactions", authenticateUser, controller.getTransactions);
+// router.get("/fetchWallet/:id",authenticateUser,controller.getWallet);
+// router.get("/transactions", authenticateUser, controller.getTransactions);
 
-router.post("/walletPayment",authenticateUser,_bookingController.walletPayment);
-router.put("/updateWallet",authenticateUser,_bookingController.changeWalletAmount);
+// router.post("/walletPayment",authenticateUser,_bookingController.walletPayment);
+// router.put("/updateWallet",authenticateUser,_bookingController.changeWalletAmount);
 
 
+// 
+
+router.get("/time-slots/:id",authenticateUser,controller.getTimeslots);
+router.get("/time-slots/:id/dates",authenticateUser,controller.getDateSlots);
     
+router.get("/fetchWallet/:id",authenticateUser,controller.getWallet);
+ router.get("/transactions", authenticateUser, controller.getTransactions);
+   
+ router.post("/fetchPrescription",authenticateUser,controller.fetchPrescription);
 
+ router.post("/appointments",authenticateUser,_bookingController.BookAppoinment);//last booking ......
+ router.get("/allAppoinments",authenticateUser,_bookingController.getAllAppoinments);
+ router.patch("/payment/status/:id",authenticateUser,_bookingController.updatePaymentStatus);
+
+ router.post("/walletPayment",authenticateUser,_bookingController.walletPayment);
+ router.put("/updateWallet",authenticateUser,_bookingController.changeWalletAmount);
+
+ router.get("/bookingdetails/:id",authenticateUser,_bookingController.getBookingDetails);//id-bookingid
+ router.get("/bookings/:id",authenticateUser,_bookingController.getAllBookingDetails);
+ router.put("/bookingdetails/:id",authenticateUser,_bookingController.cancelAppoinment);
 
 
     return router

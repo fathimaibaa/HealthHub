@@ -15,9 +15,9 @@ export const bookingRepositoryMongodb = () => {
           doctorId: data.getDoctorId(),
           patientName: data.getPatientName(),
           patientAge: data.getPatientAge(),
-          patientNumber: data.getPatientNumber(),
           patientGender:data.getPatientGender(),
-          consultationType:data.getConsultationType(),
+          patientNumber: data.getPatientNumber(),
+          patientProblem:data.getPatientProblem(),
           fee:data.getFee(),
           paymentStatus:data.getPaymentStatus(),
           appoinmentStatus:data.getAppoinmentStatus(),
@@ -30,8 +30,11 @@ export const bookingRepositoryMongodb = () => {
 
       const getAllPatients = async () => await Booking.find();
 
-      const deleteSlot = async(doctorId:string,date:string,timeSlot:string) => 
+      const checkBookingStatus = async(doctorId:string,date:string,timeSlot:string) => 
         await Booking.findOne({doctorId: doctorId, timeSlot:timeSlot,date:date,})
+
+      // const deleteSlot = async(doctorId:string,date:string,timeSlot:string) => 
+      //   await Booking.findOne({doctorId: doctorId, timeSlot:timeSlot,date:date,})
           
       
 
@@ -63,6 +66,14 @@ export const bookingRepositoryMongodb = () => {
       }
     };
 
+    const changeBookingAppoinmentStatus = async (appoinmentStatus: string,id: string) => {
+      try {
+        await Booking.findByIdAndUpdate(id, { appoinmentStatus: appoinmentStatus});
+      } catch (error) {
+        console.error('Error updating booking status:', error);
+      }
+    };
+    
     const changeBookingstatusPayment = async (id: string) => {
       return await Booking.findByIdAndUpdate(id, { paymentStatus: "Success" });
     };
@@ -72,12 +83,13 @@ export const bookingRepositoryMongodb = () => {
       if (!walletData) {
         throw new Error('Wallet not found for the user');
       }
-
-   
+       // Calculate the new balance
+       //@ts-ignore
     const newBalance = walletData.balance + fee;
-
-  
-    walletData.balance = newBalance;
+    // Update the wallet with the new balance
+    //@ts-ignore
+    walletData?.balance = newBalance;
+    //@ts-ignore
     await walletData.save();  
     }
 
@@ -90,7 +102,8 @@ export const bookingRepositoryMongodb = () => {
       }
 
       const newBalance = walletData.balance-fees;
-      walletData.balance= newBalance;
+      //@ts-ignore
+      walletData?.balance= newBalance;
       await walletData.save()
     }
 
@@ -130,7 +143,7 @@ export const bookingRepositoryMongodb = () => {
     }
     const getReports = async () => await Booking.find({ paymentStatus: "Success" });
 
- 
+    
     return{
         createBooking,
         getAllPatients,
@@ -138,8 +151,9 @@ export const bookingRepositoryMongodb = () => {
         updateBooking,
         getBookingById,
         getAllBookingByUserId,
-        deleteSlot,
+        // deleteSlot,
         changeBookingStatus,
+        changeBookingAppoinmentStatus,
         getAllBookingByDoctorId,
         changeBookingstatusPayment,
         changeWalletMoney,
@@ -147,7 +161,8 @@ export const bookingRepositoryMongodb = () => {
         getWalletBalance,
         amountDebit,
         amountCredit,
-        getReports
+        checkBookingStatus,
+        getReports,
     }    
 
 }

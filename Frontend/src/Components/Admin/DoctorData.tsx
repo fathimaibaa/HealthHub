@@ -10,6 +10,10 @@ interface DoctorDataProps extends DoctorInterface {
   serialNo: number;
   status: string;
 }
+interface ResponseData {
+  success: boolean;
+  message?: string; // Optional field in case you want to return a message
+}
 
 const DoctorData: React.FC<DoctorDataProps> = ({
   serialNo,
@@ -25,36 +29,25 @@ const DoctorData: React.FC<DoctorDataProps> = ({
   const handleCheckboxChange = () => {
     setShowConfirmModal(true);
   };
-  interface ApiResponse {
-    success: boolean;
-    message?: string;
-  }
   
   const handleConfirm = () => {
-    const apiEndpoint = isChecked
-      ? `${ADMIN_API}/unblock_doctor/${_id}`
-      : `${ADMIN_API}/block_doctor/${_id}`;
+    axiosJWT
+    .patch<ResponseData>(ADMIN_API + `/block_doctor/${_id}`)
+    .then((response) => {
+      if (response.data.success) {
+        setIsChecked(!isChecked);
+        const message = !isChecked
+          ? "Doctor blocked successfully"
+          : "Doctor unblocked successfully";
+        toast.success(message, { position: "top-center", autoClose: 3000 });
+      }
+      setShowConfirmModal(false);  // Move this inside .then()
+    })
+    .catch((err) => {
+      console.log(err);
+      setShowConfirmModal(false);  // Also handle it in .catch()
+    });
   
-    axiosJWT.patch<ApiResponse>(apiEndpoint)
-      .then(response => {
-        if (response.data.success) {
-          const newIsChecked = !isChecked;
-          setIsChecked(newIsChecked);
-          const message = newIsChecked
-            ? "Doctor blocked successfully"
-            : "Doctor unblocked successfully";
-          toast.success(message, { position: "top-center", autoClose: 3000 });
-        } else {
-          toast.error("Something went wrong, please try again.", { position: "top-center", autoClose: 3000 });
-        }
-      })
-      .catch((err) => {
-        console.error("An error occurred:", err);
-        toast.error("An error occurred, please try again.", { position: "top-center", autoClose: 3000 });
-      })
-      .then(() => {
-        setShowConfirmModal(false);
-      });
   };
   
   return (
@@ -77,7 +70,7 @@ const DoctorData: React.FC<DoctorDataProps> = ({
               </button>
               <button
                 onClick={handleConfirm}
-                className="px-4 py-2 bg-green-500 text-white rounded"
+                className="px-4 py-2 bg-purple-500 text-white rounded"
               >
                 Confirm
               </button>
@@ -96,7 +89,7 @@ const DoctorData: React.FC<DoctorDataProps> = ({
           <div className="flex items-center gap-2">
             <div
               className={`w-3 h-3 rounded-full ${
-                isChecked ? "bg-red-500" : "bg-green-400"
+                isChecked ? "bg-red-500" : "bg-purple-400"
               }`}
             ></div>
             <p>{isChecked ? "Blocked" : "Active"}</p>
@@ -113,7 +106,7 @@ const DoctorData: React.FC<DoctorDataProps> = ({
               />
               <div
                 className={`box block h-6 w-10 rounded-full ${
-                  isChecked ? "bg-red-500" : "bg-green-500"
+                  isChecked ? "bg-red-500" : "bg-purple-500"
                 }`}
               ></div>
               <div

@@ -10,9 +10,7 @@ import Home from '../Pages/Home'
 import ForgotPassword from '../Pages/User/ForgotPassword'
 import ResetPassword from '../Pages/User/ResetPassword'
 import DoctorDetailsUser from '../Pages/User/SingleDoctorDetails'
- import AppointmentOnlineBookingPage from "../Components/User/OnlineBookingPage"
 import PaymentCompleted from "../Pages/User/PaymentCompleted";
-import OnlineDoctors from "../Components/User/Online-consultation"
 import ProfileUser from '../Pages/User/Profile'   
 import UploadForm from "../Pages/User/LabRecord";  
 import DocumentListPageUser from "../Pages/User/DocumentListPage";                          
@@ -21,19 +19,24 @@ import WalletPage from "../Pages/User/Wallet";
 import Transaction from '../Pages/User/WalletTransaction'
 import AboutPage from "../Pages/User/AboutPage";
 import ContactPage from '../Pages/User/ContactPage'
+import AppoinmentBookingPage from "../Pages/User/Appoinment"
+import CheckoutPage from "../Pages/User/CheckOutPage"
+import SuccessPage from "../Pages/User/SuccessPage"
+
+import AppoinmentDetails from "../Pages/User/AppoinmentDetails"
+import AppoinmentListPage from "../Pages/User/GetAppoinmentsAll"
+import DoctorList from "../Pages/User/DoctorPage"
 
 import DoctorhomePage from '../Pages/Doctor/DoctorDashbord'
 import DoctorSignup from '../Pages/Doctor/DoctorSignup' 
 import EmailVerificationPage from '../Pages/Doctor/EmailVerification'          
 import DoctorLogin from '../Pages/Doctor/DoctorLogin'
 import ProfileDoctor from '../Pages/Doctor/Profile'
-import DoctorList from '../Pages/User/DoctorPage'
 import DoctorSlotPage from '../Pages/Doctor/SlotPage'
 import PatientListPage from '../Pages/Doctor/PatientListPage'
-import SinglePagePatient from "../Pages/Doctor/SinglePagePatient";
 import DoctorChat from "../Pages/Doctor/Chat"
 import DocumentListPage from "../Pages/Doctor/DocumentListPage";
-
+import SinglePagePatient from "../Pages/Doctor/SinglePagePatient"
 
 
 import AdminLogin from '../Pages/Admin/AdminLogin'
@@ -44,10 +47,8 @@ import RequestedDoctors from '../Pages/Admin/ReqDoctorList'
 import AdminDoctorDetails from '../Pages/Admin/DoctorDetails'
 import AdminDepartmentList from '../Pages/Admin/DepartmentList'
 import AddDepartmentList from '../Pages/Admin/AddDepartmentPage'
-import AppoinmentDetails from "../Pages/User/AppoinmentDetails";
 
 import EditDepartment from "../Pages/Admin/EditDepartment";
-import AppoinmentListPage from "../Pages/User/GetAppoinmentsAll";
 import AdminReport from "../Pages/Admin/Report"
 
 import NotFoundPage from "../Pages/Error404";
@@ -75,17 +76,18 @@ export const MainRouter = () => {
       <Route path="/user/doctor" element={<DoctorList />} />
       <Route path="/user/profile" element={<ProfileUser />} />
       <Route path="/user/doctor/:id" element={<DoctorDetailsUser />} />
-      <Route path="/user/appoinmentOnline/:id" element={<AppointmentOnlineBookingPage />} />
       <Route path="/appoinmentDetails/:id" element={<AppoinmentDetails/>} />
       <Route path ="/user/appoinmentlist" element={<AppoinmentListPage/>}/>
       <Route path="/payment_status/:id" element={<PaymentCompleted />} />
-      <Route path="/user/online-consultation" element={<OnlineDoctors/>}/>
       <Route path ="/user/labrecord" element={<UploadForm/>}/>
       <Route path ="/user/documents/:id" element={<DocumentListPageUser/>}/>
       <Route path="/user/chat" element={<Chat />} />
       <Route path="/user/wallet" element={<WalletPage/>}/>
       <Route path="/user/walletHistory" element={<Transaction/>}/>
-       
+      <Route path="/user/appoinment/:id" element={<AppoinmentBookingPage />} />       
+      <Route path="/user/checkout/:id" element={<CheckoutPage />} />
+      <Route path='/payment_status/:id' element={<SuccessPage/>}/>
+      <Route path="/user/doctor" element={<DoctorList />} />
        
       </Route>
 
@@ -103,6 +105,7 @@ export const MainRouter = () => {
 
             {/*Doctor Routes - private*/ }
             <Route path="" element={<DoctorProtectedRoute />}>
+            <Route path="/patient_details/:id" element={<SinglePagePatient/>} />
 
             <Route path="/doctor" element={<DoctorhomePage/>}/>
             <Route path="/doctor/Profile" element ={<ProfileDoctor/>}/>

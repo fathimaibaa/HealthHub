@@ -36,25 +36,39 @@ const userRoutes = () => {
     router.post("/login", controller.userLogin);
     router.get("/doctors", controller.doctorPage);
     router.get("/doctor/:id", controller.doctorDetails);
-    router.get("/timeslots", AuthMiddleware_1.default, controller.getAllTimeSlots);
-    router.get("/timeslots/:id", AuthMiddleware_1.default, controller.getTimeslots);
-    router.get("/time-slots/:id/dates", AuthMiddleware_1.default, controller.getDateSlots);
+    // router.get("/timeslots",authenticateUser,controller.getAllTimeSlots);
+    // router.get("/timeslots/:id",authenticateUser,controller.getTimeslots);
+    // router.get("/time-slots/:id/dates",authenticateUser,controller.getDateSlots);
     router.get('/department/list', controller.listDepartmentsHandler);
-    router.post("/fetchPrescription", AuthMiddleware_1.default, controller.fetchPrescription);
+    // router.post("/fetchPrescription",authenticateUser,controller.fetchPrescription);
     router.post("/uploadDocuments", AuthMiddleware_1.default, controller.labRecords);
     router.get("/documents/:id", AuthMiddleware_1.default, controller.fetchDocuments);
     router.delete("/documents/:id", AuthMiddleware_1.default, controller.deleteDocument);
     /*  Booking Routes for booking Controller  */
-    router.post("/appointments", AuthMiddleware_1.default, _bookingController.BookAppoinment);
-    router.get("/allAppoinments", AuthMiddleware_1.default, _bookingController.getAllAppoinments);
-    router.patch("/payment_status/:id", AuthMiddleware_1.default, _bookingController.updatePaymentStatus);
-    router.get("/bookingdetails/:id", AuthMiddleware_1.default, _bookingController.getBookingDetails);
-    router.get("/bookings/:id", AuthMiddleware_1.default, _bookingController.getAllBookingDetails);
-    router.put("/bookingdetails/:id", AuthMiddleware_1.default, _bookingController.cancelAppoinment);
+    // router.post("/appointments",authenticateUser,_bookingController.BookAppoinment);
+    // router.get("/allAppoinments",authenticateUser,_bookingController.getAllAppoinments);
+    // router.patch("/payment_status/:id",authenticateUser,_bookingController.updatePaymentStatus);
+    // router.get("/bookingdetails/:id",authenticateUser,_bookingController.getBookingDetails);
+    // router.get("/bookings/:id",authenticateUser,_bookingController.getAllBookingDetails);
+    // router.put("/bookingdetails/:id",authenticateUser,_bookingController.cancelAppoinment);
+    // router.get("/fetchWallet/:id",authenticateUser,controller.getWallet);
+    // router.get("/transactions", authenticateUser, controller.getTransactions);
+    // router.post("/walletPayment",authenticateUser,_bookingController.walletPayment);
+    // router.put("/updateWallet",authenticateUser,_bookingController.changeWalletAmount);
+    // 
+    router.get("/time-slots/:id", AuthMiddleware_1.default, controller.getTimeslots);
+    router.get("/time-slots/:id/dates", AuthMiddleware_1.default, controller.getDateSlots);
     router.get("/fetchWallet/:id", AuthMiddleware_1.default, controller.getWallet);
     router.get("/transactions", AuthMiddleware_1.default, controller.getTransactions);
+    router.post("/fetchPrescription", AuthMiddleware_1.default, controller.fetchPrescription);
+    router.post("/appointments", AuthMiddleware_1.default, _bookingController.BookAppoinment); //last booking ......
+    router.get("/allAppoinments", AuthMiddleware_1.default, _bookingController.getAllAppoinments);
+    router.patch("/payment/status/:id", AuthMiddleware_1.default, _bookingController.updatePaymentStatus);
     router.post("/walletPayment", AuthMiddleware_1.default, _bookingController.walletPayment);
     router.put("/updateWallet", AuthMiddleware_1.default, _bookingController.changeWalletAmount);
+    router.get("/bookingdetails/:id", AuthMiddleware_1.default, _bookingController.getBookingDetails); //id-bookingid
+    router.get("/bookings/:id", AuthMiddleware_1.default, _bookingController.getAllBookingDetails);
+    router.put("/bookingdetails/:id", AuthMiddleware_1.default, _bookingController.cancelAppoinment);
     return router;
 };
 exports.default = userRoutes;

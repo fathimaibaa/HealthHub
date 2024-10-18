@@ -39,7 +39,7 @@ const doctorVerifyEmailPage = (name, token) => {
           .button {
             display: inline-block;
             padding: 12px 24px;
-            background-color: #D8BFD8; /* Light green color */
+            background-color: #D8BFD8; /* Light purple color */
             color: #fff;
             text-decoration: none;
             border-radius: 4px;

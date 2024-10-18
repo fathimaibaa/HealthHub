@@ -36,6 +36,7 @@ const chatController = (chatDbRepository, chatDbRepositoryImpl) => {
         try {
             const { senderId } = req.params;
             const chats = yield (0, Read_1.getChats)(senderId, chatRepository);
+            console.log('chat of doctor', chats);
             res.status(HttpStatus_1.HttpStatus.OK).json(chats);
         }
         catch (error) {

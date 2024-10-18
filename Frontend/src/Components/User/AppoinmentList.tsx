@@ -3,19 +3,18 @@ import axiosJWT from "../../Utils/AxiosService";
 import { USER_API } from "../../Constants/Index";
 import { DoctorInterface } from "../../Types/DoctorInterface";
 import { DepartmentInterface } from "../../Types/DepartmentInterface";
+import Calender from '../../Assets/Images/Calender.svg';
 import axios from "axios";
 
 const AppointmentsListPage = () => {
   const [appointments, setAppointments] = useState<any[]>([]);
   const [doctors, setDoctors] = useState<DoctorInterface[]>([]);
   const [departments, setDepartments] = useState<{ [key: string]: string }>({});
-  const [currentPage, setCurrentPage] = useState(1);
-  const [appointmentsPerPage] = useState(6);
 
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response :any= await axiosJWT.get(`${USER_API}/allAppoinments`);
+        const response:any = await axiosJWT.get(`${USER_API}/allAppoinments`);
         setAppointments(response.data.bookings.bookingDetails);
       } catch (error) {
         console.error("Error fetching appointments:", error);
@@ -63,30 +62,7 @@ const AppointmentsListPage = () => {
     return doctor ? departments[doctor.department as string] : "Unknown Department";
   };
 
-  const sortedAppointments = [...appointments].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-
-  const indexOfLastAppointment = currentPage * appointmentsPerPage;
-  const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
-  const currentAppointments = sortedAppointments.slice(
-    indexOfFirstAppointment,
-    indexOfLastAppointment
-  );
-
-  const totalPages = Math.ceil(sortedAppointments.length / appointmentsPerPage);
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(prevPage => prevPage + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(prevPage => prevPage - 1);
-    }
-  };
+  console.log(appointments)
 
   return (
     <div className="container mx-auto px-8 py-8">
@@ -94,48 +70,62 @@ const AppointmentsListPage = () => {
 
       {appointments.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-full">
-          <p className="text-xl text-center mb-4">You have no appointments booked.</p>
-        </div>
+        <p className="text-xl text-center mb-4">You have no appointments booked.</p>
+        <img src={Calender} alt="calender pic" className="mx-auto" />
+      </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
-          {currentAppointments.map((appointment: any) => (
-            <div key={appointment._id} className="bg-white shadow-lg rounded-lg p-6 flex flex-col">
-              <h2 className="text-xl font-bold mb-2">{appointment.patientName}</h2>
-              <p className="text-gray-600">Date: {formatDate(appointment.date)}</p>
-              <p className="text-gray-600">Time Slot: {appointment.timeSlot}</p>
-              <p className="text-gray-600">Doctor: {getDoctorName(appointment.doctorId)}</p>
-              <p className="text-gray-600">Fees: {appointment.fee}</p>
-              <p className="text-gray-600">Specialty: {getDepartmentName(appointment.doctorId)}</p>
-              <button
-                className="mt-auto bg-purple-600 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded"
-                onClick={() => window.location.href = `/appoinmentDetails/${appointment._id}`}
-              >
-                View Details
-              </button>
-            </div>
-          ))}
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border border-gray-300">
+            <thead>
+              <tr className="w-full bg-gray-800 text-white">
+                <th className="py-2 px-4 border-b">Patient Name</th>
+                {/* <th className="py-2 px-4 border-b">Age</th> */}
+                <th className="py-2 px-4 border-b">Date</th>
+                <th className="py-2 px-4 border-b">Time Slot</th>
+                <th className="py-2 px-4 border-b">Doctor</th>
+                {/* <th className="py-2 px-4 border-b">Fees</th> */}
+                <th className="py-2 px-4 border-b">Specialty</th>
+                <th className="py-2 px-4 border-b">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {appointments.map((appointment: any) => (
+                <tr key={appointment._id} className="hover:bg-gray-200 transition duration-300">
+                  <td className="py-2 px-4 border-b text-center">
+                    {appointment.patientName}
+                  </td>
+                  {/* <td className="py-2 px-4 border-b text-center">
+                    {appointment.patientAge}
+                  </td> */}
+                  <td className="py-2 px-4 border-b text-center">
+                    {formatDate(appointment.date)}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center">
+                    {appointment.timeSlot}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center">
+                    {getDoctorName(appointment.doctorId)}
+                  </td>
+                  {/* <td className="py-2 px-4 border-b text-center">
+                    {appointment.fee}
+                  </td> */}
+                  <td className="py-2 px-4 border-b text-center">
+                    {getDepartmentName(appointment.doctorId)}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center">
+                    <button
+                      className="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded"
+                      onClick={() => window.location.href = `/appoinmentDetails/${appointment._id}`}
+                    >
+                      View Details
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
-
-      <div className="flex justify-between mt-4">
-        <button
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          className="bg-gray-800 text-white py-2 px-4 rounded disabled:opacity-50"
-        >
-          Previous
-        </button>
-        <span className="text-gray-700">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className="bg-gray-800 text-white py-2 px-4 rounded disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div>
     </div>
   );
 };

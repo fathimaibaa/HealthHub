@@ -1,13 +1,8 @@
+import { Types } from "mongoose";
 
-export interface SlotTimeInterface {
-   start: string;
-   end: string;
- }
- 
- export interface TimeSlotDataInterface {
-   startDate: string;
-   endDate: string;
-   slotTime:[],
-   isAvailable: boolean;
- }
- 
+
+export interface TimeSlotDataInterface {
+   slotTime:string,
+   date:string,
+   isAvailable:Boolean,
+  }

@@ -10,6 +10,8 @@ import { useSocket } from "../../Context/SocketContext";
 
 const Chat: React.FC = () => {
   const doctor = useAppSelector((state) => state.DoctorSlice);
+  console.log('doctor',doctor);
+  
 
   const [conversations, setConversations] = useState<any[]>([]);
   const [currentChat, setCurrentChat] = useState<any | null>(null);
@@ -17,6 +19,7 @@ const Chat: React.FC = () => {
   const [newMessage, setNewMessage] = useState<string>("");
   const [arrivalMessage, setArrivalMessage] = useState<any>(null);
   const [receiverData, setReceiverData] = useState<any | null>(null);
+  
   const socket = useSocket();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -82,7 +85,7 @@ const Chat: React.FC = () => {
         const response = await axiosJWT.get(
           `${CHAT_API}/conversations/${doctor.id}`
         );
-        const conversationData:any = response.data;
+        const conversationData :any= response.data;
 
         const updatedConversations = await Promise.all(
           conversationData.map(async (conversation: any) => {
@@ -213,7 +216,7 @@ const Chat: React.FC = () => {
         <div className="w-full lg:w-1/4 bg-gray-200">
           <div className="p-4 h-full flex flex-col">
 
-            {conversations.map((conversation, index) => (
+            {conversations && conversations.length > 0  ? conversations.map((conversation, index) => (
               <div
                 key={index}
                 onClick={() => handleConversationClick(conversation)}
@@ -221,10 +224,9 @@ const Chat: React.FC = () => {
               >
                 <Conversation
                   conversation={conversation}
-                  lastMessage={conversation.lastMessage}
-                />
+                  lastMessage={conversation.lastMessage} isTyping={false} isOnline={false}                  />
               </div>
-            ))}
+            )):  <div>No Converstions Yet</div> }
           </div>
         </div>
 
@@ -237,11 +239,11 @@ const Chat: React.FC = () => {
                 {messages.map((m, index) => (
                   <div key={index} ref={scrollRef}>
                     <Message
-                      message={m}
-                      own={m.senderId === doctor.id}
-                      receiverProfilePicture={receiverData?.profilePicture}
-                      receiverName={receiverData?.name}
-                    />
+                        message={m}
+                        own={m.senderId === doctor.id}
+                        receiverProfilePicture={receiverData?.profileImage}
+                        receiverName={receiverData?.doctorName}
+                      />
                   </div>
                 ))}
                 <div className="flex items-center mt-auto">

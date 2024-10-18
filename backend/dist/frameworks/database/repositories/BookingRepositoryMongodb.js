@@ -23,9 +23,9 @@ const bookingRepositoryMongodb = () => {
             doctorId: data.getDoctorId(),
             patientName: data.getPatientName(),
             patientAge: data.getPatientAge(),
-            patientNumber: data.getPatientNumber(),
             patientGender: data.getPatientGender(),
-            consultationType: data.getConsultationType(),
+            patientNumber: data.getPatientNumber(),
+            patientProblem: data.getPatientProblem(),
             fee: data.getFee(),
             paymentStatus: data.getPaymentStatus(),
             appoinmentStatus: data.getAppoinmentStatus(),
@@ -35,7 +35,9 @@ const bookingRepositoryMongodb = () => {
         });
     });
     const getAllPatients = () => __awaiter(void 0, void 0, void 0, function* () { return yield Booking_1.default.find(); });
-    const deleteSlot = (doctorId, date, timeSlot) => __awaiter(void 0, void 0, void 0, function* () { return yield Booking_1.default.findOne({ doctorId: doctorId, timeSlot: timeSlot, date: date, }); });
+    const checkBookingStatus = (doctorId, date, timeSlot) => __awaiter(void 0, void 0, void 0, function* () { return yield Booking_1.default.findOne({ doctorId: doctorId, timeSlot: timeSlot, date: date, }); });
+    // const deleteSlot = async(doctorId:string,date:string,timeSlot:string) => 
+    //   await Booking.findOne({doctorId: doctorId, timeSlot:timeSlot,date:date,})
     const getSinglePatient = (id) => __awaiter(void 0, void 0, void 0, function* () { return yield Booking_1.default.findById(id); });
     const updateBooking = (bookingId, updatingData) => __awaiter(void 0, void 0, void 0, function* () {
         return yield Booking_1.default.findOneAndUpdate({ bookingId }, { paymentStatus: "Paid" });
@@ -51,6 +53,14 @@ const bookingRepositoryMongodb = () => {
             console.error('Error updating booking status:', error);
         }
     });
+    const changeBookingAppoinmentStatus = (appoinmentStatus, id) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            yield Booking_1.default.findByIdAndUpdate(id, { appoinmentStatus: appoinmentStatus });
+        }
+        catch (error) {
+            console.error('Error updating booking status:', error);
+        }
+    });
     const changeBookingstatusPayment = (id) => __awaiter(void 0, void 0, void 0, function* () {
         return yield Booking_1.default.findByIdAndUpdate(id, { paymentStatus: "Success" });
     });
@@ -59,8 +69,13 @@ const bookingRepositoryMongodb = () => {
         if (!walletData) {
             throw new Error('Wallet not found for the user');
         }
+        // Calculate the new balance
+        //@ts-ignore
         const newBalance = walletData.balance + fee;
-        walletData.balance = newBalance;
+        // Update the wallet with the new balance
+        //@ts-ignore
+        walletData === null || walletData === void 0 ? void 0 : walletData.balance = newBalance;
+        //@ts-ignore
         yield walletData.save();
     });
     const changeTheWallet = (fees, UserId) => __awaiter(void 0, void 0, void 0, function* () {
@@ -69,7 +84,8 @@ const bookingRepositoryMongodb = () => {
             throw new Error("Wallet not found");
         }
         const newBalance = walletData.balance - fees;
-        walletData.balance = newBalance;
+        //@ts-ignore
+        walletData === null || walletData === void 0 ? void 0 : walletData.balance = newBalance;
         yield walletData.save();
     });
     const getWalletBalance = (userId) => __awaiter(void 0, void 0, void 0, function* () {
@@ -105,8 +121,9 @@ const bookingRepositoryMongodb = () => {
         updateBooking,
         getBookingById,
         getAllBookingByUserId,
-        deleteSlot,
+        // deleteSlot,
         changeBookingStatus,
+        changeBookingAppoinmentStatus,
         getAllBookingByDoctorId,
         changeBookingstatusPayment,
         changeWalletMoney,
@@ -114,7 +131,8 @@ const bookingRepositoryMongodb = () => {
         getWalletBalance,
         amountDebit,
         amountCredit,
-        getReports
+        checkBookingStatus,
+        getReports,
     };
 };
 exports.bookingRepositoryMongodb = bookingRepositoryMongodb;

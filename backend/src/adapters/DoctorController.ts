@@ -37,28 +37,30 @@ import { getSingleUser } from "../App/Use-cases/Admin/AdminRead";
     userRepositoryImpl: userRepositoryMongodbType,
     doctorDbRepository: doctorDbInterface,
     doctorDbRepositoryImpl: doctorRepositoryMongodbType,
-    departmentDbRepository: IDepartmentRepository,
-    
-    departmentDbRepositoryImpl: () => any,
     timeSlotDbRepository: TimeSlotDbInterface,
     timeSlotDbRepositoryImpl: TimeSlotRepositoryMongodbType,
-    prescriptionDbRepository:PrescriptionDbInterface,
-    prescriptionDbRepositoryImpl:PrescriptionRepositoryMongodbType,
-    
+    departmentDbRepository: IDepartmentRepository,
     bookingDbRepository: BookingDbRepositoryInterface,
     bookingDbRepositoryImpl: BookingRepositoryMongodbType,
     
+    departmentDbRepositoryImpl: () => any,
+   
+    prescriptionDbRepository:PrescriptionDbInterface,
+    prescriptionDbRepositoryImpl:PrescriptionRepositoryMongodbType,
+    
+   
     
       
   ) => {
     const authService = authServiceInterface(authServiceImpl());
     const dbRepositoryUser = userDbRepository(userRepositoryImpl());
     const dbRepositoryDoctor = doctorDbRepository(doctorDbRepositoryImpl());
-    const dbDepartmentRepository = departmentDbRepository(departmentDbRepositoryImpl());
-    const dbPrescriptionRepository = prescriptionDbRepository(prescriptionDbRepositoryImpl());
-    
     const dbTimeSlotRepository = timeSlotDbRepository(timeSlotDbRepositoryImpl());
+   
+    const dbDepartmentRepository = departmentDbRepository(departmentDbRepositoryImpl());
+    
     const dbBookingRepository = bookingDbRepository(bookingDbRepositoryImpl());
+    const dbPrescriptionRepository = prescriptionDbRepository(prescriptionDbRepositoryImpl());
    
 
   const signup = async (req: Request, res: Response, next: NextFunction) => {
@@ -203,29 +205,7 @@ const doctorProfile = async (
 
  
    
-  const addSlot = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
-
-    try {
-      const { doctorId, startDate, endDate, slotTime } = req.body;
-      const data = { doctorId, startDate, endDate, slotTime };
-      const response = await addTimeSlot(
-        data,
-        dbTimeSlotRepository
-      );
-
-      res.status(HttpStatus.OK).json({
-        success: true,
-        message: "slots added successfully",
-        response, 
-      });
-    } catch (error) {
-      next(error);
-    }
-  };
+ 
 
 
 
@@ -237,8 +217,10 @@ const doctorProfile = async (
   ) => {
     try {
       const doctorId = req.doctor;
+      // const { date } = req.params; 
       const timeSlots = await getTimeSlotsByDoctorId(
         doctorId,
+        // date,
         dbTimeSlotRepository
       );
       res.status(HttpStatus.OK).json({ success: true, timeSlots });
@@ -247,23 +229,7 @@ const doctorProfile = async (
     }
   };
 
-  const deleteSlot = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
-    try {
-      
-      const{ id } = req.params;
-      await deleteTimeSlot(id, dbTimeSlotRepository);
-      res
-        .status(HttpStatus.OK)
-        .json({ success: true, message: "Slot deleted successfully" });
-    } catch (error) {
-      next(error);
-    }
-  }
-
+  
    
   const getPatientList = async (
     req: Request,
@@ -378,6 +344,53 @@ const userDetails = async (
   }
 };
 
+
+const scheduleTime = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const doctorId = req.doctor;
+    const {slotTime , date } = req.body // Destructure time and date from req.body
+
+    const newTimeSlot = await addTimeSlot(
+      doctorId,
+      {
+        slotTime,  date,
+        isAvailable:true,
+      }, // Pass time and date as an object
+      dbTimeSlotRepository
+    );
+
+    res.status(HttpStatus.OK).json({
+      success: true,
+      message: "Time slot added successfully",
+      newTimeSlot,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+const removeTimeSlot = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    
+    const{ id } = req.params;
+    await deleteTimeSlot(id, dbTimeSlotRepository);
+    res
+      .status(HttpStatus.OK)
+      .json({ success: true, message: "Slot deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+}
+
   return{
     signup,
     verifyToken,
@@ -386,9 +399,7 @@ const userDetails = async (
     updateDoctorInfo,
     doctorStatus,
     listDepartmentsHandler,
-    addSlot,
     getTimeSlots,
-    deleteSlot,
     getPatientList,
     getPatientDetails,
     addPrescription,
@@ -396,6 +407,10 @@ const userDetails = async (
     deletePrescription,
     receiverDetails,
     userDetails,
+    scheduleTime,
+    removeTimeSlot,
+
+
   }
 }
 export default doctorController;

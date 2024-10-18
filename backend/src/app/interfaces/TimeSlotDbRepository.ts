@@ -4,29 +4,20 @@ import { TimeSlotEntityType } from "../../Entities/TimeSlotEntity";
 export const timeSlotDbRepository = (
   repository: ReturnType<TimeSlotRepositoryMongodbType>
 ) => {
-  const addtimeSlot = async (doctorId:string, startDate:string,endDate:string,slotTime:any) =>{
-    const timeslot = await repository.addTimeSlots(doctorId,startDate,endDate,slotTime);
-    return timeslot
-  }
+  const addtimeSlot = async (doctorId:string, slotTime:string,date:string) =>
+    await repository.addTimeSlots(doctorId,slotTime,date);
   
 
   const isTimeSlotExist = async (
     doctorId: string,
-    time: string,
+    slotTime: string,
     date:string,
-  ) => await repository.getSlotByTime(doctorId,time);
+  ) => await repository.getSlotByTime(doctorId,slotTime,date);
 
-  const exsitingSlotAvailables = async (doctorId: string, startDate: any, endDate: any) => {
-    return await repository.existingSlotAvailable(doctorId, startDate, endDate);
-}
-
-
-  const getAllTimeSlotsBydate = async (doctorId: string,date:any) =>
-    await repository.getAllTimeSlotsByDate(doctorId,date);
+  
 
   const getAllTimeSlots = async (doctorId: string) =>
     await repository.getAllTimeSlots(doctorId);
-
 
   const getAllDateSlots = async (doctorId: string) =>
     await repository.getAllDateSlots(doctorId);
@@ -34,7 +25,14 @@ export const timeSlotDbRepository = (
   const removeTimeSlotbyId = async (timeSlotId: string) =>
     await repository.removeTimeSlotbyId(timeSlotId);
 
-  const getAllTimeSlot = async () => await repository.getAllTimeSlot();
+  const getTimeSlotsByDate =  async (doctorId: string, date:string) =>
+    await repository.getTimeSlotsByDate(doctorId,date);
+
+  const UpdateTimeslot =  async (doctorId: string, timeSlot: string , date:string) =>
+    await repository.UpdateTimeslot(doctorId,timeSlot,date);
+
+  const UpdateTheTimeslot =  async (doctorId: string, timeSlot: string , date:string) =>
+    await repository.UpdateTheTimeslot(doctorId,timeSlot,date);
 
   return {
     addtimeSlot,
@@ -42,9 +40,9 @@ export const timeSlotDbRepository = (
     getAllTimeSlots,
     removeTimeSlotbyId,
     getAllDateSlots,
-    exsitingSlotAvailables,
-    getAllTimeSlotsBydate,
-    getAllTimeSlot,
+    getTimeSlotsByDate,
+    UpdateTimeslot,
+    UpdateTheTimeslot
   };
 };
 export type TimeSlotDbInterface = typeof timeSlotDbRepository;

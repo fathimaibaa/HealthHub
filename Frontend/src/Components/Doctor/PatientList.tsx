@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axiosJWT from "../../Utils/AxiosService";
 import { DOCTOR_API } from "../../Constants/Index";
@@ -7,6 +6,7 @@ import { RootState } from "../../Redux/Reducer/Reducer";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaCalendarAlt } from "react-icons/fa";
+import Calender from '../../Assets/Images/Calender.svg';
 
 interface BookingDetail {
   _id: string;
@@ -18,11 +18,8 @@ interface BookingDetail {
 
 const AppointmentDetails: React.FC = () => {
   const id = useSelector((state: RootState) => state.DoctorSlice.id);
-
-  const [bookingDetails, setBookingDetails] = useState<BookingDetail[]>([]);
+   const [bookingDetails, setBookingDetails] = useState<BookingDetail[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [appointmentsPerPage] = useState(8);
 
   useEffect(() => {
     const fetchBookingDetails = async () => {
@@ -31,6 +28,7 @@ const AppointmentDetails: React.FC = () => {
           `${DOCTOR_API}/bookingdetails/${id}`
         );
         const bookingData = response.data.data.bookingDetails;
+        console.log(bookingData)
         setBookingDetails(bookingData);
       } catch (error) {
         console.error("Error fetching booking details:", error);
@@ -43,39 +41,13 @@ const AppointmentDetails: React.FC = () => {
     setSelectedDate(date);
   };
 
-  const filteredAppointments = bookingDetails
-    .filter((bookingDetail) => {
-      if (!selectedDate) return true;
-      return (
-        new Date(bookingDetail.date).toLocaleDateString() ===
-        selectedDate.toLocaleDateString()
-      );
-    })
-    
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-  const indexOfLastAppointment = currentPage * appointmentsPerPage;
-  const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
-  const currentAppointments = filteredAppointments.slice(
-    indexOfFirstAppointment,
-    indexOfLastAppointment
-  );
-
-  const totalPages = Math.ceil(
-    filteredAppointments.length / appointmentsPerPage
-  );
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
-  };
+  const filteredAppointments = bookingDetails.filter((bookingDetail) => {
+    if (!selectedDate) return true;
+    return (
+      new Date(bookingDetail.date).toLocaleDateString() ===
+      selectedDate.toLocaleDateString()
+    );
+  });
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -97,50 +69,48 @@ const AppointmentDetails: React.FC = () => {
         </div>
       </div>
 
-      {currentAppointments.length === 0 ? (
-        <p className="text-xl text-center">You have no appointments booked.</p>
+      {filteredAppointments.length === 0 ? (
+       <div className="flex flex-col items-center justify-center h-full">
+       <p className="text-xl text-center mb-4">You have no appointments booked.</p>
+       <img src={Calender} alt="calender pic" className="mx-auto" />
+     </div>
+       
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {currentAppointments.map((bookingDetail) => (
-            <div
-              key={bookingDetail._id}
-              className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300"
-            >
-              <h2 className="text-xl font-semibold mb-2">{bookingDetail.patientName}</h2>
-              <p className="text-gray-600 mb-2">
-                Date: {new Date(bookingDetail.date).toLocaleDateString()}
-              </p>
-              <p className="text-gray-600 mb-2">Time: {bookingDetail.timeSlot}</p>
-              <Link
-                to={`/patient-details/${bookingDetail._id}`}
-                className="text-blue-500 hover:underline"
-              >
-                View Details
-              </Link>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {totalPages > 1 && (
-        <div className="flex justify-between mt-8">
-          <button
-            onClick={handlePreviousPage}
-            disabled={currentPage === 1}
-            className="bg-gray-800 text-white py-2 px-4 rounded disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <span className="text-gray-700">
-            Page {currentPage} of {totalPages}
-          </span>
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className="bg-gray-800 text-white py-2 px-4 rounded disabled:opacity-50"
-          >
-            Next
-          </button>
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border border-gray-300">
+            <thead>
+              <tr className="w-full bg-gray-800 text-white">
+                <th className="py-2 px-4 border-b">Patient Name</th>               
+                <th className="py-2 px-4 border-b">Date</th>
+                <th className="py-2 px-4 border-b">Time</th>
+                <th className="py-2 px-4 border-b">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredAppointments.map((bookingDetail) => (
+                <tr
+                  key={bookingDetail._id}
+                  className="hover:bg-gray-200 cursor-pointer transition duration-300"
+                >
+                  <td className="py-2 px-4 border-b text-center">
+                    {bookingDetail.patientName}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center">
+                    {new Date(bookingDetail.date).toLocaleDateString()}
+                  </td>
+                  <td className="py-2 px-4 border-b text-center">{bookingDetail.timeSlot}</td>
+                  <td className="py-2 px-4 border-b text-center">
+                  <button
+                      className="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded"
+                      onClick={() => window.location.href = `/patient_details/${bookingDetail._id}`}
+                    >
+                      View Details
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>

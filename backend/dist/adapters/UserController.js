@@ -17,7 +17,6 @@ const HttpStatus_1 = require("../Types/HttpStatus");
 const AdminDepartment_1 = require("../App/Use-cases/Admin/AdminDepartment");
 const UserAuth_1 = require("../App/Use-cases/User/Auth/UserAuth");
 const AdminRead_1 = require("../App/Use-cases/Admin/AdminRead");
-const Get_and_Update_1 = require("../App/Use-cases/User/Timeslots/Get and Update");
 const Timeslot_1 = require("../App/Use-cases/Doctor/Timeslot");
 const Profile_1 = require("../App/Use-cases/User/Auth/Read&Update/Profile");
 const PrescriptionUseCase_1 = require("../App/Use-cases/Prescription/PrescriptionUseCase");
@@ -149,20 +148,23 @@ const userController = (authServiceInterface, authServiceImpl, userDbRepository,
             next(error);
         }
     });
-    const getAllTimeSlots = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            const timeslots = yield (0, Get_and_Update_1.getAllTimeSlot)(dbTimeSlotRepository);
-            return res.status(HttpStatus_1.HttpStatus.OK).json({ success: true, timeslots });
-        }
-        catch (error) {
-            next(error);
-        }
-    });
+    // const getAllTimeSlots = async (
+    //   req: Request,
+    //   res: Response,
+    //   next: NextFunction
+    // ) => {
+    //   try {
+    //     const timeslots = await getAllTimeSlot(dbTimeSlotRepository);
+    //     return res.status(HttpStatus.OK).json({ success: true, timeslots });
+    //   } catch (error) {
+    //     next(error);
+    //   }
+    // };
     const getTimeslots = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const { id } = req.params;
             const { date } = req.query;
-            const timeSlots = yield (0, Timeslot_1.getAllTimeSlotsByDoctorId)(id, date, dbTimeSlotRepository);
+            const timeSlots = yield (0, Timeslot_1.getTimeSlotsByDoctorId)(id, dbTimeSlotRepository);
             res.status(HttpStatus_1.HttpStatus.OK).json({ success: true, timeSlots });
         }
         catch (error) {
@@ -172,8 +174,18 @@ const userController = (authServiceInterface, authServiceImpl, userDbRepository,
     const getDateSlots = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const { id } = req.params;
-            const dateSlots = yield (0, Timeslot_1.getDateSlotsByDoctorId)(id, dbTimeSlotRepository);
-            res.status(HttpStatus_1.HttpStatus.OK).json({ success: true, dateSlots });
+            const { date } = req.query;
+            const dateString = date;
+            if (date) {
+                // Fetch time slots for a specific date
+                const timeSlots = yield (0, Timeslot_1.getTimeSlotsByDoctorIdAndDate)(id, dateString, dbTimeSlotRepository);
+                return res.status(HttpStatus_1.HttpStatus.OK).json({ success: true, timeSlots });
+            }
+            else {
+                // Fetch all dates
+                const dateSlots = yield (0, Timeslot_1.getDateSlotsByDoctorId)(id, dbTimeSlotRepository);
+                return res.status(HttpStatus_1.HttpStatus.OK).json({ success: true, dateSlots });
+            }
         }
         catch (error) {
             next(error);
@@ -289,7 +301,7 @@ const userController = (authServiceInterface, authServiceImpl, userDbRepository,
         doctorPage,
         doctorDetails,
         googleSignIn,
-        getAllTimeSlots,
+        // getAllTimeSlots,
         getTimeslots,
         getDateSlots,
         listDepartmentsHandler,

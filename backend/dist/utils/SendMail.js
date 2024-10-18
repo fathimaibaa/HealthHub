@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const MailService_1 = __importDefault(require("../Frameworks/Services/MailService"));
 const sentMail = (email, emailSubject, content) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log('inside the send mailer');
         const info = yield MailService_1.default.sendMail({
             from: '"HEALTH HUB" <HealthHub@gmail.com>',
             to: email,

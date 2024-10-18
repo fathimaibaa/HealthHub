@@ -66,9 +66,11 @@ function authenticateDoctor(req, res, next) {
 }
 function authenticateAdmin(req, res, next) {
     const authHeader = req.headers.authorization;
+    console.log(authHeader, "authHeaderauthHeader");
     if (!authHeader)
         return res.status(HttpStatus_1.HttpStatus.FORBIDDEN).json("You are not authenticated");
     const access_token = authHeader.split(" ")[1];
+    console.log(access_token, "access_tokenaccess_tokenaccess_tokenaccess_token");
     jsonwebtoken_1.default.verify(access_token, Config_1.default.ACCESS_SECRET, (err, user) => {
         if (err) {
             res

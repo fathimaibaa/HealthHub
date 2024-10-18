@@ -8,27 +8,35 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDateSlotsByDoctorId = exports.deleteTimeSlot = exports.getTimeSlotsByDoctorId = exports.getAllTimeSlotsByDoctorId = exports.addTimeSlot = void 0;
-const addTimeSlot = (data, dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () {
-    const { doctorId, startDate, endDate, slotTime } = data;
-    const existingSlot = yield dbTimeSlotRepository.exsitingSlotAvailables(doctorId, startDate, endDate);
-    if (existingSlot) {
-        existingSlot.slotTime = [...new Set([...existingSlot.slotTime, ...slotTime])];
-        yield existingSlot.save();
-        return { status: true, message: 'Slots updated successfully' };
+exports.UpdateTheTimeslot = exports.UpdateTimeslot = exports.getTimeSlotsByDoctorIdAndDate = exports.getDateSlotsByDoctorId = exports.deleteTimeSlot = exports.getTimeSlotsByDoctorId = exports.addTimeSlot = void 0;
+const HttpStatus_1 = require("../../../Types/HttpStatus");
+const CustomError_1 = __importDefault(require("../../../Utils/CustomError"));
+const addTimeSlot = (doctorId, timeData, // Object containing both time and date
+dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () {
+    const { slotTime, date } = timeData; // Destructure time and date from timeData
+    const isTimeSlotExists = yield dbTimeSlotRepository.isTimeSlotExist(doctorId, slotTime, date);
+    if (isTimeSlotExists) {
+        throw new CustomError_1.default("Time slot already exists", HttpStatus_1.HttpStatus.BAD_REQUEST);
     }
-    else {
-        const newSlot = yield dbTimeSlotRepository.addtimeSlot(doctorId, startDate, endDate, slotTime);
-        return newSlot;
-    }
+    const newSlot = yield dbTimeSlotRepository.addtimeSlot(doctorId, slotTime, date);
+    return newSlot;
 });
 exports.addTimeSlot = addTimeSlot;
-const getAllTimeSlotsByDoctorId = (doctorId, date, dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield dbTimeSlotRepository.getAllTimeSlotsBydate(doctorId, date); });
-exports.getAllTimeSlotsByDoctorId = getAllTimeSlotsByDoctorId;
-const getTimeSlotsByDoctorId = (doctorId, dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield dbTimeSlotRepository.getAllTimeSlots(doctorId); });
+const getTimeSlotsByDoctorId = (doctorId, 
+// date:any,
+dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield dbTimeSlotRepository.getAllTimeSlots(doctorId); });
 exports.getTimeSlotsByDoctorId = getTimeSlotsByDoctorId;
 const deleteTimeSlot = (timeSlotId, dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield dbTimeSlotRepository.removeTimeSlotbyId(timeSlotId); });
 exports.deleteTimeSlot = deleteTimeSlot;
 const getDateSlotsByDoctorId = (doctorId, dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield dbTimeSlotRepository.getAllDateSlots(doctorId); });
 exports.getDateSlotsByDoctorId = getDateSlotsByDoctorId;
+const getTimeSlotsByDoctorIdAndDate = (doctorId, date, dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield dbTimeSlotRepository.getTimeSlotsByDate(doctorId, date); });
+exports.getTimeSlotsByDoctorIdAndDate = getTimeSlotsByDoctorIdAndDate;
+const UpdateTimeslot = (doctorId, timeSlot, date, dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield dbTimeSlotRepository.UpdateTimeslot(doctorId, timeSlot, date); });
+exports.UpdateTimeslot = UpdateTimeslot;
+const UpdateTheTimeslot = (doctorId, timeSlot, date, dbTimeSlotRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield dbTimeSlotRepository.UpdateTheTimeslot(doctorId, timeSlot, date); });
+exports.UpdateTheTimeslot = UpdateTheTimeslot;

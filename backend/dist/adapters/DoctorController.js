@@ -17,14 +17,14 @@ const Timeslot_1 = require("../App/Use-cases/Doctor/Timeslot");
 const DoctorRead_1 = require("../App/Use-cases/Doctor/DoctorRead");
 const PrescriptionUseCase_1 = require("../App/Use-cases/Prescription/PrescriptionUseCase");
 const AdminRead_1 = require("../App/Use-cases/Admin/AdminRead");
-const doctorController = (authServiceInterface, authServiceImpl, userDbRepository, userRepositoryImpl, doctorDbRepository, doctorDbRepositoryImpl, departmentDbRepository, departmentDbRepositoryImpl, timeSlotDbRepository, timeSlotDbRepositoryImpl, prescriptionDbRepository, prescriptionDbRepositoryImpl, bookingDbRepository, bookingDbRepositoryImpl) => {
+const doctorController = (authServiceInterface, authServiceImpl, userDbRepository, userRepositoryImpl, doctorDbRepository, doctorDbRepositoryImpl, timeSlotDbRepository, timeSlotDbRepositoryImpl, departmentDbRepository, bookingDbRepository, bookingDbRepositoryImpl, departmentDbRepositoryImpl, prescriptionDbRepository, prescriptionDbRepositoryImpl) => {
     const authService = authServiceInterface(authServiceImpl());
     const dbRepositoryUser = userDbRepository(userRepositoryImpl());
     const dbRepositoryDoctor = doctorDbRepository(doctorDbRepositoryImpl());
-    const dbDepartmentRepository = departmentDbRepository(departmentDbRepositoryImpl());
-    const dbPrescriptionRepository = prescriptionDbRepository(prescriptionDbRepositoryImpl());
     const dbTimeSlotRepository = timeSlotDbRepository(timeSlotDbRepositoryImpl());
+    const dbDepartmentRepository = departmentDbRepository(departmentDbRepositoryImpl());
     const dbBookingRepository = bookingDbRepository(bookingDbRepositoryImpl());
+    const dbPrescriptionRepository = prescriptionDbRepository(prescriptionDbRepositoryImpl());
     const signup = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const doctordata = req.body;
@@ -116,38 +116,14 @@ const doctorController = (authServiceInterface, authServiceImpl, userDbRepositor
             next(error);
         }
     });
-    const addSlot = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            const { doctorId, startDate, endDate, slotTime } = req.body;
-            const data = { doctorId, startDate, endDate, slotTime };
-            const response = yield (0, Timeslot_1.addTimeSlot)(data, dbTimeSlotRepository);
-            res.status(HttpStatus_1.HttpStatus.OK).json({
-                success: true,
-                message: "slots added successfully",
-                response,
-            });
-        }
-        catch (error) {
-            next(error);
-        }
-    });
     const getTimeSlots = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const doctorId = req.doctor;
-            const timeSlots = yield (0, Timeslot_1.getTimeSlotsByDoctorId)(doctorId, dbTimeSlotRepository);
+            // const { date } = req.params; 
+            const timeSlots = yield (0, Timeslot_1.getTimeSlotsByDoctorId)(doctorId, 
+            // date,
+            dbTimeSlotRepository);
             res.status(HttpStatus_1.HttpStatus.OK).json({ success: true, timeSlots });
-        }
-        catch (error) {
-            next(error);
-        }
-    });
-    const deleteSlot = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            const { id } = req.params;
-            yield (0, Timeslot_1.deleteTimeSlot)(id, dbTimeSlotRepository);
-            res
-                .status(HttpStatus_1.HttpStatus.OK)
-                .json({ success: true, message: "Slot deleted successfully" });
         }
         catch (error) {
             next(error);
@@ -226,6 +202,37 @@ const doctorController = (authServiceInterface, authServiceImpl, userDbRepositor
             next(error);
         }
     });
+    const scheduleTime = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const doctorId = req.doctor;
+            const { slotTime, date } = req.body; // Destructure time and date from req.body
+            const newTimeSlot = yield (0, Timeslot_1.addTimeSlot)(doctorId, {
+                slotTime, date,
+                isAvailable: true,
+            }, // Pass time and date as an object
+            dbTimeSlotRepository);
+            res.status(HttpStatus_1.HttpStatus.OK).json({
+                success: true,
+                message: "Time slot added successfully",
+                newTimeSlot,
+            });
+        }
+        catch (error) {
+            next(error);
+        }
+    });
+    const removeTimeSlot = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const { id } = req.params;
+            yield (0, Timeslot_1.deleteTimeSlot)(id, dbTimeSlotRepository);
+            res
+                .status(HttpStatus_1.HttpStatus.OK)
+                .json({ success: true, message: "Slot deleted successfully" });
+        }
+        catch (error) {
+            next(error);
+        }
+    });
     return {
         signup,
         verifyToken,
@@ -234,9 +241,7 @@ const doctorController = (authServiceInterface, authServiceImpl, userDbRepositor
         updateDoctorInfo,
         doctorStatus,
         listDepartmentsHandler,
-        addSlot,
         getTimeSlots,
-        deleteSlot,
         getPatientList,
         getPatientDetails,
         addPrescription,
@@ -244,6 +249,8 @@ const doctorController = (authServiceInterface, authServiceImpl, userDbRepositor
         deletePrescription,
         receiverDetails,
         userDetails,
+        scheduleTime,
+        removeTimeSlot,
     };
 };
 exports.default = doctorController;

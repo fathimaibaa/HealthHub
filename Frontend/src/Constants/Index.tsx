@@ -5,6 +5,13 @@ export const BASE_URL = "https://fathimaodayi.site/api/";
 export const SERVER_URL = "https://fathimaodayi.site/"
 
 
+// export const BASE_URL = "http://localhost:5000/api/";
+// export const SERVER_URL = "http://localhost:5000/"
+
+
+
+
+
 export const USER_API = BASE_URL + "user";
 export const DOCTOR_API = BASE_URL + "doctor";
 export const ADMIN_API = BASE_URL + "admin";

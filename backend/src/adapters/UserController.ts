@@ -28,8 +28,7 @@ import {doctorDbInterface} from '../App/Interfaces/DoctorDBRepository'
 import { getDoctors,getSingleDoctor } from "../App/Use-cases/Admin/AdminRead";
 import { TimeSlotDbInterface } from "../App/Interfaces/TimeSlotDbRepository";
 import { TimeSlotRepositoryMongodbType } from "../Frameworks/Database/Repositories/TimeSlotRepositoryMongodb";
-import { getAllTimeSlot } from "../App/Use-cases/User/Timeslots/Get and Update";
-import { getAllTimeSlotsByDoctorId, getDateSlotsByDoctorId } from "../App/Use-cases/Doctor/Timeslot";
+import { getDateSlotsByDoctorId, getTimeSlotsByDoctorId, getTimeSlotsByDoctorIdAndDate } from "../App/Use-cases/Doctor/Timeslot";
 import { getUserProfile, getWalletUser, updateUser, WalletTransactions } from "../App/Use-cases/User/Auth/Read&Update/Profile";
 import { fetchPrescriptionUsecase,uploadLabDocuments,getDocuments, deleteSingleDocument } from "../App/Use-cases/Prescription/PrescriptionUseCase";
 import { PrescriptionDbInterface } from "../App/Interfaces/PrescriptionDbRepository";
@@ -223,40 +222,38 @@ const doctorPage = async (
     }
   };
 
-const getAllTimeSlots = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const timeslots = await getAllTimeSlot(dbTimeSlotRepository);
-    return res.status(HttpStatus.OK).json({ success: true, timeslots });
-  } catch (error) {
-    next(error);
-  }
-};
+// const getAllTimeSlots = async (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ) => {
+//   try {
+//     const timeslots = await getAllTimeSlot(dbTimeSlotRepository);
+//     return res.status(HttpStatus.OK).json({ success: true, timeslots });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 
-const getTimeslots = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const { id } = req.params;
-    const { date } = req.query;
+const getTimeslots = async(
+  req:Request,
+  res:Response,
+  next:NextFunction
+)=>{
+  try{
+  const {id} = req.params;
+  const {date} = req.query; 
 
-    const timeSlots = await getAllTimeSlotsByDoctorId(
-      id,
-      date,
-      dbTimeSlotRepository
-    );
-
-    res.status(HttpStatus.OK).json({ success: true, timeSlots });
-  } catch (error) {
-    next(error);
-  }
-};
+  const timeSlots = await getTimeSlotsByDoctorId(
+    id,
+    dbTimeSlotRepository
+  )
+  res.status(HttpStatus.OK).json({ success: true, timeSlots });
+}catch (error) {
+  next(error);
+}
+}
 
 
 const getDateSlots = async(
@@ -266,11 +263,17 @@ const getDateSlots = async(
 )=>{
   try{
   const {id} = req.params;
-  const dateSlots = await getDateSlotsByDoctorId(
-    id,
-    dbTimeSlotRepository
-  )
-  res.status(HttpStatus.OK).json({ success: true, dateSlots });
+  const { date }  = req.query ;
+  const dateString = date as string;
+  if (date) {
+    // Fetch time slots for a specific date
+    const timeSlots = await getTimeSlotsByDoctorIdAndDate(id, dateString, dbTimeSlotRepository);
+    return res.status(HttpStatus.OK).json({ success: true, timeSlots });
+  } else {
+    // Fetch all dates
+    const dateSlots = await getDateSlotsByDoctorId(id, dbTimeSlotRepository);
+    return res.status(HttpStatus.OK).json({ success: true, dateSlots });
+  }
 }catch (error) {
   next(error);
 }
@@ -342,6 +345,7 @@ const fetchPrescription = async(
   }
 }
 
+
 const labRecords = async(
   req:Request,
   res:Response,
@@ -407,6 +411,8 @@ const getWallet = async (
     next(error);
   }
 };
+
+
  
 
 const getTransactions = async (
@@ -438,7 +444,7 @@ return {
     doctorPage,
     doctorDetails,
     googleSignIn,
-    getAllTimeSlots,
+    // getAllTimeSlots,
     getTimeslots,
     getDateSlots,
     listDepartmentsHandler,

@@ -7,9 +7,10 @@ import { TimeSlotDbInterface } from "../App/Interfaces/TimeSlotDbRepository";
 import { TimeSlotRepositoryMongodbType } from "../Frameworks/Database/Repositories/TimeSlotRepositoryMongodb";
 import { BookingDbRepositoryInterface} from "../App/Interfaces/BookingDbRepository";
 import { BookingRepositoryMongodbType } from "../Frameworks/Database/Repositories/BookingRepositoryMongodb";
-import { appoinmentBooking, changeAppoinmentstaus,  changeWallet,  changeWalletAmounti,  checkIsBooked, createPayment, getBookingByBookingId, getBookingByDoctorId, getBookingByUserId,  getWalletBalance,  updateBookingStatus, updateBookingStatusPayment, walletDebit } from "../App/Use-cases/User/Booking/BookingUser";
+import { appoinmentBooking, changeAppoinmentStatus, changeAppoinmentstaus,  changeWallet,  changeWalletAmounti,  checkIsBooked, createPayment, getBookingByBookingId, getBookingByDoctorId, getBookingByUserId,  getWalletBalance,  updateBookingStatus, updateBookingStatusPayment, walletDebit } from "../App/Use-cases/User/Booking/BookingUser";
 import { HttpStatus } from "../Types/HttpStatus";
 import { getUserById } from "../App/Use-cases/User/Auth/UserAuth";
+import { UpdateTheTimeslot, UpdateTimeslot } from "../App/Use-cases/Doctor/Timeslot";
 
 
 
@@ -29,14 +30,25 @@ const BookingController=(
     const dbBookingRepository = bookingDbRepository(bookingDbRepositoryImpl());
 
 
+
+    interface booking {
+      doctorId: string;
+      timeSlot: string;
+      date: string;
+      [key: string]: any; // Other properties that might exist on booking
+    }
+
+
     const BookAppoinment = async (
       req:Request,
       res:Response,
       next:NextFunction,
   )=>{
       try {
-          const data = req.body;
-          const userId = req.user;
+          // const data = req.body;
+          // const userId = req.user;
+          const {userId, ...data} = req.body
+
 
           const checkBooking:any = await checkIsBooked(
             data,
@@ -44,11 +56,13 @@ const BookingController=(
             dbBookingRepository,
           )
 
+
           if(checkBooking){
             res.status(HttpStatus.OK).json({
               success: false,
               message: "slot already booked select another slot",
             });
+            
           }else {
 
             const createBooking = await appoinmentBooking(
@@ -68,6 +82,11 @@ const BookingController=(
               createBooking.fee,  
             );
 
+            //make the timeslot to falsee 
+            if(createBooking){
+             await UpdateTimeslot(data.doctorId,data.timeSlot,data.date,dbTimeSlotRepository);
+            }
+
 
             res.status(HttpStatus.OK).json({
                 success: true,
@@ -75,16 +94,13 @@ const BookingController=(
                 id:sessionId,
               });
           }
-
           
       } catch (error) {
           next(error);
       }
-
   }
 
 
-  
  
 
 
@@ -103,8 +119,6 @@ const BookingController=(
       id,
       dbBookingRepository,
       )
-
-
       await updateBookingStatus(
         id,
         paymentStatus,
@@ -127,15 +141,23 @@ const BookingController=(
     try {
       const {appoinmentStatus} = req.body;
       const {cancelReason} = req.body;
+      const {refundAmount} = req.body;
       const {id} = req.params;
 
-      const updateBooking = await changeAppoinmentstaus(
+
+      const { doctorId, timeSlot, date } = await changeAppoinmentstaus(
         appoinmentStatus,
         cancelReason,
+        refundAmount,
         id,
         dbBookingRepository
       );
 
+     
+     
+    if (doctorId && timeSlot && date) {
+      await UpdateTheTimeslot(doctorId, timeSlot, date, dbTimeSlotRepository);
+    }
       res
         .status(HttpStatus.OK)
         .json({ success: true, message: "Cancel Appoinment" });
@@ -144,6 +166,7 @@ const BookingController=(
       next(error)
     }
   }
+
 
 
   const getBookingDetails = async (
@@ -210,7 +233,6 @@ const BookingController=(
     }
   };
 
-
   const getAppoinmentList = async (
     req: Request,
     res: Response,
@@ -230,8 +252,7 @@ const BookingController=(
     } catch (error) {
       next(error);
     }
-  };
-
+  }
 
 
   const walletPayment = async (
@@ -270,8 +291,8 @@ const BookingController=(
               
           );
 
-          const walletChange=await changeWalletAmounti(userId,requiredAmount,dbBookingRepository)
           const walletTransaction = await walletDebit(userId,requiredAmount,dbBookingRepository);
+          const walletChange=await changeWalletAmounti(userId,requiredAmount,dbBookingRepository)
 
           res.status(HttpStatus.OK).json({
             success: true,
@@ -289,6 +310,7 @@ const BookingController=(
       next(error);
     }
   };
+
 
  const changeWalletAmount = async (
   req: Request,
@@ -317,6 +339,30 @@ const BookingController=(
 }
 
 
+const appoinmentStatus = async(
+  req:Request,
+  res:Response,
+  next:NextFunction
+)=>{
+  try {
+    const {appoinmentStatus} = req.body;
+    const {id} = req.params;
+
+
+     await changeAppoinmentStatus(
+      appoinmentStatus,
+      id,
+      dbBookingRepository
+    );
+
+    res
+      .status(HttpStatus.OK)
+      .json({ success: true, message: "Consultation Status Updated " });
+
+  } catch (error) {
+    next(error)
+  }
+}
 
 
 
@@ -331,6 +377,7 @@ const BookingController=(
         getAppoinmentList,
         walletPayment,
         changeWalletAmount,
+        appoinmentStatus 
         
         }
    

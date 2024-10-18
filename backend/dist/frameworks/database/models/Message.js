@@ -10,5 +10,6 @@ const messageSchema = new Schema({
     senderId: { type: String },
     text: { type: String },
     isRead: { type: Boolean, default: false },
+    isTyping: { type: Boolean }
 }, { timestamps: true });
 exports.default = mongoose_1.default.model("Message", messageSchema);

@@ -79,7 +79,7 @@ const DepartmentData: React.FC<DepartmentDataProps> = ({
               </button>
               <button
                 onClick={handleConfirm}
-                className="px-4 py-2 bg-green-500 text-white rounded"
+                className="px-4 py-2 bg-purple-500 text-white rounded"
               >
                 Confirm
               </button>
@@ -97,7 +97,7 @@ const DepartmentData: React.FC<DepartmentDataProps> = ({
           <div className="flex items-center gap-2">
             <div
               className={`w-3 h-3 rounded-full ${
-                isChecked ? "bg-green-700" : "bg-red-600"
+                isChecked ? "bg-purple-700" : "bg-red-600"
               }`}
             ></div>
             <p>{isChecked ? "Active" : "Blocked"}</p>
@@ -114,7 +114,7 @@ const DepartmentData: React.FC<DepartmentDataProps> = ({
               />
               <div
                 className={`box block h-6 w-10 rounded-full ${
-                  isChecked ? "bg-green-400" : "bg-red-500"
+                  isChecked ? "bg-purple-400" : "bg-red-500"
                 }`}
               ></div>
               <div

@@ -76,10 +76,12 @@ export function authenticateAdmin(
   next: NextFunction
 ) {
   const authHeader = req.headers.authorization;
+  console.log(authHeader,"authHeaderauthHeader")
   if (!authHeader)
     return res.status(HttpStatus.FORBIDDEN).json("You are not authenticated");
 
   const access_token = authHeader.split(" ")[1];
+  console.log(access_token,"access_tokenaccess_tokenaccess_tokenaccess_token")
   jwt.verify(access_token, configKeys.ACCESS_SECRET, (err: any, user: any) => {
     if (err) {
       res

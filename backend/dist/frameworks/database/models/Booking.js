@@ -15,15 +15,14 @@ const bookingSchema = new mongoose_1.default.Schema({
     patientAge: {
         type: String,
     },
-    patientNumber: {
-        tpe: String,
-    },
     patientGender: {
         type: String,
     },
-    consultationType: {
+    patientNumber: {
+        tpe: String,
+    },
+    patientProblem: {
         type: String,
-        required: true,
     },
     fee: {
         type: Number,
@@ -48,9 +47,5 @@ const bookingSchema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
-});
+}, { timestamps: true });
 exports.default = mongoose_1.default.model("Booking", bookingSchema);

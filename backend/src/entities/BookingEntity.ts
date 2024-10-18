@@ -1,39 +1,36 @@
+// src/entities/Booking.ts
 
-export default function BookingEntity(
-    userId: string,
-    doctorId: string,
-    patientName: string,
-    patientAge: string,
-    patientNumber: string,
-    patientGender: string,
-    consultionType:string,
-    fee:number,
-    paymentStatus:string,
-    appoinmentStatus:string,
-    appoinmentCancelReason:string,
-    date:string,
-    timeSlot:string,
-    
-  ) {
+export default function bookingEntity(
+  userId: string,
+  doctorId: string,
+  patientName: string,
+  patientAge: string,
+  patientGender:string,
+  patientNumber: string,
+  patientProblem: string,
+  fee: number,
+  paymentStatus: string,
+  appoinmentStatus: string,
+  appoinmentCancelReason: string,
+  date:string,
+  timeSlot:string,
+) {
+  return {
+    getUserId: (): string => userId,
+    getDoctorId: (): string => doctorId,
+    getPatientName: (): string => patientName,
+    getPatientAge: (): string => patientAge,
+    getPatientGender:() : string =>patientGender,
+    getPatientNumber: (): string => patientNumber,
+    getPatientProblem: (): string => patientProblem,
+    getFee: (): number => fee,
+    getPaymentStatus: (): string => paymentStatus,
+    getAppoinmentStatus: (): string => appoinmentStatus,
+    getAppoinmentCancelReason: (): string => appoinmentCancelReason,
+    getDate:():string=>date,
+    getTimeSlot:():string=>timeSlot,
   
-  
-    return {
-      getUserId: (): string => userId,
-      getDoctorId: (): string => doctorId,
-      getPatientName: (): string => patientName,
-      getPatientAge: (): string => patientAge,
-      getPatientNumber: (): string => patientNumber,
-      getPatientGender:() : string =>patientGender,
-      getConsultationType:() :string =>consultionType,
-      getFee:() :number=>fee,
-      getPaymentStatus:():string=>paymentStatus,
-      getAppoinmentStatus:():string=>appoinmentStatus,
-      getAppoinmentCancelReason:():string=>appoinmentCancelReason,
-      getDate:():string=>date,
-      getTimeSlot:():string=>timeSlot,
-    
-    };
-  }
-  
-  export type BookingEntityType = ReturnType<typeof BookingEntity>;
-  
+  };
+}
+
+export type BookingEntityType = ReturnType<typeof bookingEntity>;

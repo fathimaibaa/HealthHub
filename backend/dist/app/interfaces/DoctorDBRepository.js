@@ -23,7 +23,10 @@ const doctorDbRepository = (repository) => {
     const getDoctorByIdUpdate = (id, action) => __awaiter(void 0, void 0, void 0, function* () {
         return yield repository.getDoctorByIdUpdate(id, action);
     });
+    const getAllAppoinments = () => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getAllAppoinments(); });
     const getDoctorByIdUpdateRejected = (id, status, reason) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getDoctorByIdUpdateRejected(id, status, reason); });
+    const registerGoogleSignedDoctor = (doctor) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.registerGoogleSignedDoctor(doctor); });
+    // Update the function signature to use the defined type
     const getFilteredDoctors = (_a) => __awaiter(void 0, [_a], void 0, function* ({ searchQuery, department, selectedDate, selectedTimeSlot, page, limit, }) {
         return yield repository.getFilteredDoctors({
             searchQuery,
@@ -34,7 +37,6 @@ const doctorDbRepository = (repository) => {
             limit,
         });
     });
-    const getAllAppoinments = () => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getAllAppoinments(); });
     return {
         getDoctorById,
         getDoctorByEmail,
@@ -44,6 +46,7 @@ const doctorDbRepository = (repository) => {
         getAllDoctors,
         updateDoctorBlock,
         getDoctorByIdUpdate,
+        registerGoogleSignedDoctor,
         getDoctorByIdUpdateRejected,
         getFilteredDoctors,
         getAllAppoinments

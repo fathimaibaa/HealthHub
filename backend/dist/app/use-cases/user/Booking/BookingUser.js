@@ -12,23 +12,46 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.changeWallet = exports.changeWalletAmounti = exports.walletDebit = exports.getWalletBalance = exports.updateBookingStatusPayment = exports.getBookingByDoctorId = exports.changeAppoinmentstaus = exports.getBookingByUserId = exports.getBookingByBookingId = exports.updateBookingStatus = exports.createPayment = exports.checkIsBooked = exports.appoinmentBooking = void 0;
-const BookingEntity_1 = __importDefault(require("../../../../Entities/BookingEntity"));
-const Config_1 = __importDefault(require("../../../../Config"));
+exports.updateBookingStatusPayment = exports.getBookingByDoctorId = exports.changeWallet = exports.changeWalletAmounti = exports.walletDebit = exports.getWalletBalance = exports.changeAppoinmentStatus = exports.changeAppoinmentstaus = exports.getBookingByUserId = exports.getBookingByBookingId = exports.updateBookingStatus = exports.createPayment = exports.checkIsBooked = exports.appoinmentBooking = void 0;
 const stripe_1 = __importDefault(require("stripe"));
+const Config_1 = __importDefault(require("../../../../Config"));
+const BookingEntity_1 = __importDefault(require("../../../../Entities/BookingEntity"));
 const appoinmentBooking = (data, userId, bookingDbRepository, doctorDbRepository) => __awaiter(void 0, void 0, void 0, function* () {
-    const { doctorId, patientDetails: { patientName, patientAge, patientNumber, patientGender }, consultationType, fee, paymentStatus, appoinmentStatus, appoinmentCancelReason, date, timeSlot } = data;
+    const { doctorId, patientName, patientAge, patientGender, patientNumber, patientProblem, fee, paymentStatus, appoinmentStatus, appoinmentCancelReason, date, timeSlot } = data;
     const doctorDetails = yield doctorDbRepository.getDoctorById(doctorId);
-    const appoinment = (0, BookingEntity_1.default)(userId, doctorId, patientName, patientAge, patientNumber, patientGender, consultationType, fee, paymentStatus, appoinmentStatus, appoinmentCancelReason, date, timeSlot);
+    const appoinment = (0, BookingEntity_1.default)(userId, doctorId, patientName, patientAge, patientGender, patientNumber, patientProblem, fee, paymentStatus, appoinmentStatus, appoinmentCancelReason, date, timeSlot);
     const booking = yield bookingDbRepository.createBooking(appoinment);
     return booking;
 });
 exports.appoinmentBooking = appoinmentBooking;
 const checkIsBooked = (data, userId, bookingDbRepository) => __awaiter(void 0, void 0, void 0, function* () {
-    const { doctorId, patientDetails: { patientName, patientAge, patientNumber, patientGender }, consultationType, fee, paymentStatus, appoinmentStatus, appoinmentCancelReason, date, timeSlot } = data;
-    const appoinment = (0, BookingEntity_1.default)(userId, doctorId, patientName, patientAge, patientNumber, patientGender, consultationType, fee, paymentStatus, appoinmentStatus, appoinmentCancelReason, date, timeSlot);
-    const isBooked = yield bookingDbRepository.deleteSlot(doctorId, date, timeSlot);
-    return isBooked;
+    const { doctorId, patientName, patientAge, patientGender, patientNumber, patientProblem, fee, paymentStatus, appoinmentStatus, appoinmentCancelReason, date, timeSlot } = data;
+    const Booking = yield bookingDbRepository.checkBookingStatus(doctorId, date, timeSlot);
+    let temp = false;
+    if ((Booking === null || Booking === void 0 ? void 0 : Booking.appoinmentStatus) === "Cancelled") {
+        temp = false;
+    }
+    else if ((Booking === null || Booking === void 0 ? void 0 : Booking.appoinmentStatus) === "Booked") {
+        temp = true;
+    }
+    return temp;
+    // const appoinment = bookingEntity(
+    //     userId,
+    //     doctorId,
+    //     patientName,
+    //     patientAge,
+    //     patientGender,
+    //     patientNumber,
+    //     patientProblem, 
+    //     fee,
+    //     paymentStatus,
+    //     appoinmentStatus,
+    //     appoinmentCancelReason,
+    //     date,
+    //     timeSlot,
+    // );
+    // const isBooked = await bookingDbRepository.deleteSlot(doctorId,date,timeSlot);
+    // return isBooked;
 });
 exports.checkIsBooked = checkIsBooked;
 const createPayment = (userName, email, bookingId, totalAmount) => __awaiter(void 0, void 0, void 0, function* () {
@@ -48,7 +71,7 @@ const createPayment = (userName, email, bookingId, totalAmount) => __awaiter(voi
             {
                 price_data: {
                     currency: "inr",
-                    product_data: { name: "Guests", description: "Doctor booking" },
+                    product_data: { name: "Gue", description: "HealthHub - Doctor Booking" },
                     unit_amount: Math.round(totalAmount * 100),
                 },
                 quantity: 1,
@@ -81,28 +104,30 @@ const getBookingByUserId = (userId, bookingRepository) => __awaiter(void 0, void
     return { bookingDetails };
 });
 exports.getBookingByUserId = getBookingByUserId;
-const changeAppoinmentstaus = (appoinmentStatus, cancelReason, id, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () {
+const changeAppoinmentstaus = (appoinmentStatus, cancelReason, refundAmount, id, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(refundAmount, "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     const changeStatus = yield bookingRepository.changeBookingstatus(appoinmentStatus, cancelReason, id);
     const booking = yield bookingRepository.getBookingById(id);
-    const fee = booking === null || booking === void 0 ? void 0 : booking.fee;
+    //ivide vech time date oka kond timeslot matta
+    //@ts-ignore
+    // const fee:any = booking?.fee;
+    //@ts-ignore
     const UserId = booking === null || booking === void 0 ? void 0 : booking.userId;
+    //@ts-ignore
+    const doctorId = booking === null || booking === void 0 ? void 0 : booking.doctorId;
+    //@ts-ignore
+    const timeSlot = booking === null || booking === void 0 ? void 0 : booking.timeSlot;
+    //@ts-ignore
+    const date = booking === null || booking === void 0 ? void 0 : booking.date;
+    const fee = refundAmount;
+    //@ts-ignore
     const changeWalletAmount = yield bookingRepository.changeWallet(fee, UserId);
     const walletTransaction = yield bookingRepository.creditAmount(fee, UserId);
-    return { changeStatus,
-        changeWalletAmount
-    };
+    return { doctorId, timeSlot, date };
 });
 exports.changeAppoinmentstaus = changeAppoinmentstaus;
-const getBookingByDoctorId = (doctorId, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () {
-    const bookingDetails = yield bookingRepository.getAllBookingByDoctorId(doctorId);
-    return { bookingDetails };
-});
-exports.getBookingByDoctorId = getBookingByDoctorId;
-const updateBookingStatusPayment = (id, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () {
-    const status = yield bookingRepository.changeBookingstatusPayment(id);
-    return status;
-});
-exports.updateBookingStatusPayment = updateBookingStatusPayment;
+const changeAppoinmentStatus = (appoinmentStatus, id, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () { return yield bookingRepository.changeBookingAppoinmentStatus(appoinmentStatus, id); });
+exports.changeAppoinmentStatus = changeAppoinmentStatus;
 const getWalletBalance = (userId, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () {
     const balance = yield bookingRepository.getBalanceAmount(userId);
     return balance;
@@ -117,8 +142,21 @@ const changeWalletAmounti = (UserId, fees, bookingRepository) => __awaiter(void 
 });
 exports.changeWalletAmounti = changeWalletAmounti;
 const changeWallet = (bookingId, fees, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () {
+    // Retrieve the booking entity by its ID
     const booking = yield bookingRepository.getBookingById(bookingId);
+    //@ts-ignore
     const UserId = booking === null || booking === void 0 ? void 0 : booking.userId;
     const changeupdated = yield bookingRepository.changeTheWalletAmount(fees, UserId);
 });
 exports.changeWallet = changeWallet;
+/**doctor use cases */
+const getBookingByDoctorId = (doctorId, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () {
+    const bookingDetails = yield bookingRepository.getAllBookingByDoctorId(doctorId);
+    return { bookingDetails };
+});
+exports.getBookingByDoctorId = getBookingByDoctorId;
+const updateBookingStatusPayment = (id, bookingRepository) => __awaiter(void 0, void 0, void 0, function* () {
+    const status = yield bookingRepository.changeBookingstatusPayment(id);
+    return status;
+});
+exports.updateBookingStatusPayment = updateBookingStatusPayment;

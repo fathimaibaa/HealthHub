@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = TimeSlotEntity;
-function TimeSlotEntity(doctorId, startDate, endDate, slotTime, isAvailable = true) {
+function TimeSlotEntity(doctorId, time, date, isAvailable = true) {
     return {
         doctorId: () => doctorId,
-        startDate: () => startDate,
-        endDate: () => endDate,
-        slotTime: () => slotTime,
+        time: () => time,
+        date: () => date,
         isAvailable: () => isAvailable,
     };
 }

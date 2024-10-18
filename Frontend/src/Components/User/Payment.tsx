@@ -7,7 +7,7 @@ interface PaymentMessageProps {
 const Payment: React.FC<PaymentMessageProps> = ({ isSuccess }) => {
   const { id } = useParams();
   return (
-    <div className="bg-gray-100 min-h-screen flex justify-center items-center px-2">
+    <div className="bg-gray-100  h-[75vh] flex justify-center items-center px-2">
       <div
         className={`bg-white p-6 rounded-lg shadow-md ${isSuccess && "px-10"}`}
       >
@@ -15,7 +15,7 @@ const Payment: React.FC<PaymentMessageProps> = ({ isSuccess }) => {
           {isSuccess ? (
             <svg
               viewBox="0 0 24 24"
-              className="text-green-600 w-16 h-16 mx-auto my-6 "
+              className="text-purple-600 w-16 h-16 mx-auto my-6 "
             >
               <path
                 fill="currentColor"
@@ -34,36 +34,33 @@ const Payment: React.FC<PaymentMessageProps> = ({ isSuccess }) => {
             {isSuccess ? "Booking Successfull" : "Payment Failed!"}
           </h3>
           <p className="text-gray-600 mb-4">
-            {isSuccess
-              ? "Thank you for completing your  payment."
-              : "Sorry, your payment was unsuccessful. Please try again later."}
-          </p>
+  {isSuccess ? (
+    <>
+      Thank you for completing your payment.
+      <br />
+      You can cancel the appointment up to 1 hour before the scheduled time
+    </>
+  ) : (
+    "Sorry, your payment was unsuccessful. Please try again later."
+  )}
+</p>
           <p className="text-gray-600 mb-8">
             {isSuccess
               ? "Have a great day!"
               : "If the problem persists, please contact customer support."}
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center">
             <Link
               to={isSuccess ? `/appoinmentDetails/${id}` : "/"}
               className={`inline-block px-8 py-3 ${
                 isSuccess
-                  ? "bg-purple-700 "
-                  : "bg-red-600 "
+                  ? "bg-purple-600 hover:bg-purple-500"
+                  : "bg-red-600 hover:bg-red-500"
               } text-white font-semibold rounded-lg shadow-md transition duration-300`}
             >
               {isSuccess ? "View Booking" : "GO BACK"}
             </Link>
-            {isSuccess && (
-              <Link
-                to={`/`}
-                className="bg-purple-400   inline-flex gap-1 items-center
-              text-white font-semibold px-8 py-3 rounded-lg 
-              "
-              >
-                Go To Home Page
-              </Link>
-            )}
+            
           </div>
         </div>
       </div>

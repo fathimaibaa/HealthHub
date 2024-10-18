@@ -18,7 +18,7 @@ const chatController = (
    */
   const createNewChat = async (
     req: Request,
-    res: Response,
+    res: Response, 
     next: NextFunction
   ) => {
     try {
@@ -43,6 +43,8 @@ const chatController = (
     try {
       const { senderId } = req.params;
       const chats = await getChats(senderId, chatRepository);
+      console.log('chat of doctor',chats);
+      
       res.status(HttpStatus.OK).json(chats);
     } catch (error) {
       next(error);

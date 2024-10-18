@@ -14,64 +14,74 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.timeSlotRepositoryMongodb = void 0;
 const TimeSlots_1 = __importDefault(require("../Models/TimeSlots"));
-const transformSlotTime = (slotTime) => {
-    return Object.entries(slotTime).map(([day, times]) => ({
-        day: parseInt(day, 10),
-        times: times.map(time => ({
-            start: time.start,
-            end: time.end,
-        })),
-    }));
-};
 const timeSlotRepositoryMongodb = () => {
-    const addTimeSlots = (doctorId, startDate, endDate, slotTime) => __awaiter(void 0, void 0, void 0, function* () {
-        const transformedSlotTime = transformSlotTime(slotTime);
-        try {
-            const newTimeSlot = yield TimeSlots_1.default.create({
-                doctorId: doctorId,
-                startDate: new Date(startDate),
-                endDate: new Date(endDate),
-                slots: transformedSlotTime,
-                available: true,
-            });
-            return newTimeSlot;
-        }
-        catch (error) {
-            console.error("Failed to add time slot:", error);
-            throw error;
-        }
+    const addTimeSlots = (doctorId, slotTime, date) => __awaiter(void 0, void 0, void 0, function* () {
+        const res = yield TimeSlots_1.default.create({
+            doctorId: doctorId,
+            slotTime: slotTime,
+            date: date,
+            available: true,
+        });
+        return res;
     });
-    const getSlotByTime = (doctorId, time) => __awaiter(void 0, void 0, void 0, function* () { return yield TimeSlots_1.default.findOne({ doctorId: doctorId, time: time }); });
+    const getSlotByTime = (doctorId, slotTime, date) => __awaiter(void 0, void 0, void 0, function* () {
+        const res = yield TimeSlots_1.default.findOne({ doctorId, date, slotTime });
+        return res;
+    });
     const getAllTimeSlots = (doctorId) => __awaiter(void 0, void 0, void 0, function* () { return yield TimeSlots_1.default.find({ doctorId }).sort({ slotTime: -1 }); });
-    const getAllTimeSlotsByDate = (doctorId, date) => __awaiter(void 0, void 0, void 0, function* () {
+    const getAllDateSlots = (doctorId) => __awaiter(void 0, void 0, void 0, function* () { return yield TimeSlots_1.default.find({ doctorId }).sort({ date: -1 }); });
+    const getTimeSlotsByDate = (doctorId, date) => __awaiter(void 0, void 0, void 0, function* () {
+        const startDate = new Date(date);
+        startDate.setHours(0, 0, 0, 0);
+        const endDate = new Date(date);
+        endDate.setHours(23, 59, 59, 999);
+        return yield TimeSlots_1.default.find({
+            doctorId,
+            date: {
+                $gte: startDate,
+                $lt: endDate
+            }
+        }).sort({ date: -1 });
+    });
+    // UpdateTimeslot
+    const UpdateTimeslot = (doctorId, timeSlot, date) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const timeSlots = yield TimeSlots_1.default.find({
-                doctorId,
-                startDate: { $lte: date },
-                endDate: { $gte: date }
-            }).sort({ slotTime: -1 });
-            return timeSlots;
+            const result = yield TimeSlots_1.default.findOneAndUpdate({
+                doctorId: doctorId,
+                slotTime: timeSlot,
+                date: new Date(date),
+            }, { $set: { available: false } }, { new: true });
+            return result;
         }
         catch (error) {
-            console.error('Error fetching time slots:', error);
+            console.error("Error updating timeslot availability:", error);
             throw error;
         }
     });
-    const getAllDateSlots = (doctorId) => __awaiter(void 0, void 0, void 0, function* () { return yield TimeSlots_1.default.find({ doctorId }).sort({ date: -1 }); });
-    const removeTimeSlotbyId = (id) => __awaiter(void 0, void 0, void 0, function* () { return yield TimeSlots_1.default.findByIdAndDelete(id); });
-    const existingSlotAvailable = (doctorId, startDate, endDate) => __awaiter(void 0, void 0, void 0, function* () {
-        return yield TimeSlots_1.default.findOne({ doctorId, startDate, endDate });
+    const UpdateTheTimeslot = (doctorId, timeSlot, date) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const result = yield TimeSlots_1.default.findOneAndUpdate({
+                doctorId: doctorId,
+                slotTime: timeSlot,
+                date: new Date(date),
+            }, { $set: { available: true } }, { new: true });
+            return result;
+        }
+        catch (error) {
+            console.error("Error updating timeslot availability:", error);
+            throw error;
+        }
     });
-    const getAllTimeSlot = () => __awaiter(void 0, void 0, void 0, function* () { return yield TimeSlots_1.default.find({ available: true }); });
+    const removeTimeSlotbyId = (id) => __awaiter(void 0, void 0, void 0, function* () { return yield TimeSlots_1.default.findByIdAndDelete(id); });
     return {
         addTimeSlots,
         getAllTimeSlots,
         getSlotByTime,
         removeTimeSlotbyId,
         getAllDateSlots,
-        existingSlotAvailable,
-        getAllTimeSlotsByDate,
-        getAllTimeSlot,
+        getTimeSlotsByDate,
+        UpdateTimeslot,
+        UpdateTheTimeslot
     };
 };
 exports.timeSlotRepositoryMongodb = timeSlotRepositoryMongodb;

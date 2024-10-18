@@ -11,28 +11,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.timeSlotDbRepository = void 0;
 const timeSlotDbRepository = (repository) => {
-    const addtimeSlot = (doctorId, startDate, endDate, slotTime) => __awaiter(void 0, void 0, void 0, function* () {
-        const timeslot = yield repository.addTimeSlots(doctorId, startDate, endDate, slotTime);
-        return timeslot;
-    });
-    const isTimeSlotExist = (doctorId, time, date) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getSlotByTime(doctorId, time); });
-    const exsitingSlotAvailables = (doctorId, startDate, endDate) => __awaiter(void 0, void 0, void 0, function* () {
-        return yield repository.existingSlotAvailable(doctorId, startDate, endDate);
-    });
-    const getAllTimeSlotsBydate = (doctorId, date) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getAllTimeSlotsByDate(doctorId, date); });
+    const addtimeSlot = (doctorId, slotTime, date) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.addTimeSlots(doctorId, slotTime, date); });
+    const isTimeSlotExist = (doctorId, slotTime, date) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getSlotByTime(doctorId, slotTime, date); });
     const getAllTimeSlots = (doctorId) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getAllTimeSlots(doctorId); });
     const getAllDateSlots = (doctorId) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getAllDateSlots(doctorId); });
     const removeTimeSlotbyId = (timeSlotId) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.removeTimeSlotbyId(timeSlotId); });
-    const getAllTimeSlot = () => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getAllTimeSlot(); });
+    const getTimeSlotsByDate = (doctorId, date) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.getTimeSlotsByDate(doctorId, date); });
+    const UpdateTimeslot = (doctorId, timeSlot, date) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.UpdateTimeslot(doctorId, timeSlot, date); });
+    const UpdateTheTimeslot = (doctorId, timeSlot, date) => __awaiter(void 0, void 0, void 0, function* () { return yield repository.UpdateTheTimeslot(doctorId, timeSlot, date); });
     return {
         addtimeSlot,
         isTimeSlotExist,
         getAllTimeSlots,
         removeTimeSlotbyId,
         getAllDateSlots,
-        exsitingSlotAvailables,
-        getAllTimeSlotsBydate,
-        getAllTimeSlot,
+        getTimeSlotsByDate,
+        UpdateTimeslot,
+        UpdateTheTimeslot
     };
 };
 exports.timeSlotDbRepository = timeSlotDbRepository;

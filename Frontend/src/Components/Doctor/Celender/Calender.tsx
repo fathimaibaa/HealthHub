@@ -55,15 +55,44 @@ const DoctorCalendar: React.FC = () => {
 
   const generateTimeSlots = (): TimeSlot[] => {
     const slots: TimeSlot[] = [];
+    const today = new Date();
+    const currentHour = today.getHours();
+    const currentMinute = today.getMinutes();
+  
     for (let i = 9; i <= 17; i++) {
       const startHour = i > 12 ? i - 12 : i;
       const endHour = i + 1 > 12 ? i - 11 : i + 1;
       const period = i >= 12 ? "PM" : "AM";
       const nextPeriod = i + 1 >= 12 ? "PM" : "AM";
-      slots.push({ start: `${startHour}:00 ${period}`, end: `${endHour}:00 ${nextPeriod}` });
+  
+      // Create time slot
+      const timeSlot: TimeSlot = {
+        start: `${startHour}:00 ${period}`,
+        end: `${endHour}:00 ${nextPeriod}`
+      };
+  
+      // Disable past time slots if both start and end dates are today
+      if (selectedStartDate && selectedEndDate) {
+        const startDate = new Date(selectedStartDate);
+        const endDate = new Date(selectedEndDate);
+  
+        if (startDate.toDateString() === today.toDateString() && endDate.toDateString() === today.toDateString()) {
+          const slotStartHour = parseInt(timeSlot.start.split(':')[0]) + (timeSlot.start.includes('PM') ? 12 : 0);
+          
+          // Only include future time slots
+          if (slotStartHour > currentHour || (slotStartHour === currentHour && currentMinute < 0)) {
+            slots.push(timeSlot);
+          }
+        } else {
+          slots.push(timeSlot); // Include all time slots for other dates
+        }
+      } else {
+        slots.push(timeSlot); // Include all time slots if no dates selected
+      }
     }
     return slots;
   };
+  
 
   const timeSlots = generateTimeSlots();
 
@@ -101,41 +130,54 @@ const DoctorCalendar: React.FC = () => {
   
 
   const handleConfirmSlots = () => {
-    if (selectedStartDate && selectedEndDate && selectedSlots.length > 0 && selectedDays.length > 0) {
-      const updatedSlots: SelectedTimeSlots = { ...selectedTimeSlots };
-  
-
-      const selectedDayIndices = selectedDays.map(day => daysOfWeek[day].day - 1);
-  
-      const rule = new RRule({
-        freq: RRule.WEEKLY,
-        dtstart: new Date(selectedStartDate),
-        until: new Date(selectedEndDate),
-        byweekday: selectedDayIndices,
-      });
-  
-      const dates = rule.all();
-  
-      dates.forEach((date) => {
-        const day = date.getDay();
-        if (!updatedSlots[day]) {
-          updatedSlots[day] = [];
-        }
-        selectedSlots.forEach((slot) => {
-          if (!updatedSlots[day].some((s) => s.start === slot.start && s.end === slot.end)) {
-            updatedSlots[day].push(slot);
-          }
-        });
-      });
-  
-      setSelectedTimeSlots(updatedSlots);
-      setSelectedSlots([]);
-      setSelectedDays([]);
-    } else {
-      toast.warn("Please select start date, end date, days, and time slots.");
+    // Check if start and end dates are selected
+    if (!selectedStartDate || !selectedEndDate) {
+      toast.warn("Please select both start and end dates.");
+      return; // Prevent further execution
     }
-  };
   
+    // Check if at least one day is selected
+    if (selectedDays.length === 0) {
+      toast.warn("Please select at least one day.");
+      return; // Prevent further execution
+    }
+  
+    // Check if at least one time slot is selected
+    if (selectedSlots.length === 0) {
+      toast.warn("Please select at least one time slot.");
+      return; // Prevent further execution
+    }
+  
+    const updatedSlots: SelectedTimeSlots = { ...selectedTimeSlots };
+  
+    const selectedDayIndices = selectedDays.map((day) => daysOfWeek[day].day - 1);
+  
+    const rule = new RRule({
+      freq: RRule.WEEKLY,
+      dtstart: new Date(selectedStartDate),
+      until: new Date(selectedEndDate),
+      byweekday: selectedDayIndices,
+    });
+  
+    const dates = rule.all();
+  
+    dates.forEach((date) => {
+      const day = date.getDay();
+      if (!updatedSlots[day]) {
+        updatedSlots[day] = [];
+      }
+      selectedSlots.forEach((slot) => {
+        if (!updatedSlots[day].some((s) => s.start === slot.start && s.end === slot.end)) {
+          updatedSlots[day].push(slot);
+        }
+      });
+    });
+  
+    setSelectedTimeSlots(updatedSlots);
+    setSelectedSlots([]);
+    setSelectedDays([]);
+    toast.success("Slots confirmed successfully!");
+  };
   
   const handleDelete = (day: number, index: number) => {
     Swal.fire({
@@ -169,7 +211,7 @@ const DoctorCalendar: React.FC = () => {
         endDate: selectedEndDate,
         slotTime: selectedTimeSlots,
       };
-      const response :any = await axiosJWT.post(`${DOCTOR_API}/addSlot`, slotsData);
+      const response:any = await axiosJWT.post(`${DOCTOR_API}/addSlot`, slotsData);
       if (response) {
        
         showToast("Slots added successfully!", "success");
@@ -241,33 +283,35 @@ const DoctorCalendar: React.FC = () => {
   return (
     <>
       <div className="container mx-auto p-4">
-        <div className="flex flex-col md:flex-row bg-purple-100">
-          <div className="w-full md:w-1/2 p-4">
-            <div className="mb-4">
-              <label className="block mb-2">Start Date:</label>
-              <input
-                type="date"
-                className="w-full p-2 border rounded"
-                value={selectedStartDate || ""}
-                onChange={handleStartDateChange}
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block mb-2">End Date:</label>
-              <input
-                type="date"
-                className="w-full p-2 border rounded"
-                value={selectedEndDate || ""}
-                onChange={handleEndDateChange}
-              />
-            </div>
+    <div className="flex flex-col md:flex-row bg-purple-100">
+      <div className="w-full md:w-1/2 p-4">
+        <div className="mb-4">
+          <label className="block mb-2">Start Date:</label>
+          <input
+            type="date"
+            className="w-full p-2 border rounded"
+            value={selectedStartDate || ""}
+            onChange={handleStartDateChange}
+            min={new Date().toISOString().split('T')[0]} // Set the min date to today
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">End Date:</label>
+          <input
+            type="date"
+            className="w-full p-2 border rounded"
+            value={selectedEndDate || ""}
+            onChange={handleEndDateChange}
+            min={selectedStartDate || new Date().toISOString().split('T')[0]} // Set the min date to start date or today
+          />
+         </div>
             <div className="mb-4">
               <h2 className="text-lg font-bold mb-2">Select Days</h2>
               <div className="grid grid-cols-3 gap-2">
                 {daysOfWeek.map((day) => (
                   <button
                     key={day.day}
-                    className={`p-2 border rounded ${selectedDays.includes(day.day) ? "bg-purple-400 text-white" : "bg-white"}`}
+                    className={`p-2 border rounded ${selectedDays.includes(day.day) ? "bg-purple-500 text-white" : "bg-white"}`}
                     onClick={() => handleDaySelect(day.day)}
                   >
                    {day.label}
@@ -282,7 +326,7 @@ const DoctorCalendar: React.FC = () => {
                   {timeSlots.map((slot, index) => (
                     <button
                       key={index}
-                      className={`p-2 border rounded ${selectedSlots.some((s) => s.start === slot.start && s.end === slot.end) ? "bg-purple-400 text-white" : "bg-white"}`}
+                      className={`p-2 border rounded ${selectedSlots.some((s) => s.start === slot.start && s.end === slot.end) ? "bg-purple-500 text-white" : "bg-white"}`}
                       onClick={() => handleSlotSelect(slot)}
                     >
                       {slot.start} - {slot.end}
@@ -292,7 +336,7 @@ const DoctorCalendar: React.FC = () => {
               </div>
             )}
             <div className="text-center">
-              <button className="bg-purple-700  text-white font-bold py-2 px-4 rounded" onClick={handleConfirmSlots}>
+              <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded" onClick={handleConfirmSlots}>
                 Save Slots
               </button>
             </div>
@@ -312,7 +356,7 @@ const DoctorCalendar: React.FC = () => {
                           <span>{slot.start} - {slot.end}</span>
                           <div>
                             <button
-                              className="bg-purple-400  text-white font-bold py-1 mb-1 px-2 rounded mr-2"
+                              className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 mb-1 px-2 rounded mr-2"
                               onClick={() => handleEdit(Number(day), index)}
                             >
                               Edit
@@ -356,7 +400,7 @@ const DoctorCalendar: React.FC = () => {
             </div>
             <div className="flex justify-end">
               <button
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
+                className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mr-2"
                 onClick={handleSaveEdit}
               >
                 Save
@@ -372,7 +416,7 @@ const DoctorCalendar: React.FC = () => {
         )}
         <div className="flex justify-center mt-4">
           <button
-            className="bg-purple-700  text-white font-bold py-2 px-4 rounded"
+            className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
             onClick={handleConfirmAvailableSlots}
           >
             Confirm Available Slots
@@ -387,7 +431,7 @@ const DoctorCalendar: React.FC = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           {scheduledSlots.map((slot) => (
-            <div key={slot._id} className="bg-blue-100 border border-blue-300 shadow-lg rounded-lg p-6 ml-16 mb-8">
+            <div key={slot._id} className="bg-purple-100 border border-purple-300 shadow-lg rounded-lg p-6 ml-16 mb-8">
               <div className="flex justify-end mb-4">
                 <button
                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
