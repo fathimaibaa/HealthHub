@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../Redux/Reducer/Reducer";
@@ -7,6 +7,8 @@ import { clearUser } from "../../../Redux/Slices/UserSlice";
 import logo from '../../../Assets/Images/logo.png';
 import { removeItemFromLocalStorage } from "../../../Utils/Setnget";
 import { FiArrowLeft, FiMenu, FiX } from 'react-icons/fi'; 
+import { useSocket } from "../../../Context/SocketContext";
+import toast from "react-hot-toast";
 
 const Navbar: React.FC = () => {
   const user = useSelector((state: RootState) => state.UserSlice);
@@ -14,6 +16,12 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const socket = useSocket();
+  const access_token = localStorage.getItem('access_token')
+  console.log('access_token of user',access_token);
+  
+  // const [notification,setNotification] = useState(false)
+
 
   const handleLogout = () => {
     dispatch(clearUser());
@@ -30,6 +38,21 @@ const Navbar: React.FC = () => {
   const isActive = (path: string) => {
     return location.pathname === path;
   };
+  useEffect(() => {
+
+    if(socket && access_token && user){
+      console.log('in addUser');
+      socket?.emit("addUser", user.id);  
+      socket?.on('getMessage',()=>{
+        console.log('message Recieved');
+        toast.success('New Message')   
+      })
+    }
+    return ()=>{
+      socket?.off('getMessage')
+    }
+  }, [socket,access_token,user]);
+
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-purple-900">

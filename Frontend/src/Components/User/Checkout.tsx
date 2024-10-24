@@ -43,13 +43,13 @@ const Checkout: React.FC = () => {
 
   const handleSubmit = async () => {
     try {
-      const stripePromise = await loadStripe("pk_test_51Phr0W2MEaCJUhJiFEoCveh2HCXFchEMI6AUSQ9kczuQFvBcLV9U0BGXPVePiZZJ22KeQ1Tep0HAZ0XnXoh1FsU100bl7EW4uK");
+      const stripePromise = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
       const response:any = await axiosJWT.post(`${USER_API}/appointments`, {
         ...appointmentData,
         userId,
         paymentMethod
       });
-
+      console.log(response,'payment resssssssssssssssssssssssssssssssss')
       if (response.data.id) {
         const stripe = await stripePromise;
         const result = await stripe?.redirectToCheckout({
@@ -68,7 +68,7 @@ const Checkout: React.FC = () => {
 
   const handleWalletPayment = async () =>{
     try {
-      const response:any = await axiosJWT.post(`${USER_API}/walletPayment`, {
+      const response :any= await axiosJWT.post(`${USER_API}/walletPayment`, {
         ...appointmentData,
         userId,
         paymentMethod
@@ -194,7 +194,7 @@ const Checkout: React.FC = () => {
                   <div className="mt-4">
                     <button
                       onClick={handleWalletPayment}
-                      className="bg-purple-500 px-4 py-2 rounded-md shadow-md mt-4 ml-2"
+                      className="bg-green-500 px-4 py-2 rounded-md shadow-md mt-4 ml-2"
                     >
                       <p className="text-white">Wallet Payment</p>
                     </button>

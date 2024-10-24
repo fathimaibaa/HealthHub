@@ -75,7 +75,7 @@ const Conversation: React.FC<ConversationProps> = ({ conversation, lastMessage }
 
   return (
     <div className="bg-white rounded-lg shadow-md p-2 flex flex-col mb-1">
-      <div className="flex flex-col sm:flex-row items-center sm:items-start">
+      <div className="flex flex-col  sm:flex-row items-center sm:items-start">
         <img
           className="w-14 h-14 rounded-full object-cover mb-2 sm:mb-0 sm:mr-4"
           src={doctorData.profileImage}

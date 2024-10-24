@@ -66,5 +66,5 @@ export const getAllTheAppoinments = async (doctorDbRepository: ReturnType<doctor
   await doctorDbRepository.getAllAppoinments();
 
 
-export const getAllReports = async (bookingDbRepository: ReturnType<BookingDbRepositoryInterface>) =>
-  await bookingDbRepository.getReports();
+// export const getAllReports = async (bookingDbRepository: ReturnType<BookingDbRepositoryInterface>) =>
+//   await bookingDbRepository.getReports();

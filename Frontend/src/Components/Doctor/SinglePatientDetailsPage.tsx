@@ -216,14 +216,11 @@ const PatientDetailPage = () => {
               <h2 className="font-bold text-gray-700">Time</h2>
               <p className="text-gray-900">{patient.timeSlot}</p>
             </div>
-            {/* <div className="p-4 bg-gray-50 rounded-lg shadow-inner">
-              <h2 className="font-bold text-gray-700">Payment Status</h2>
-              <p className="text-gray-900">{patient.paymentStatus}</p>
-            </div> */}
-             <div className="p-4 bg-gray-50 rounded-lg shadow-inner">
+            <div className="p-4 bg-gray-50 rounded-lg shadow-inner">
               <h2 className="font-bold text-gray-700">Payment Status</h2>
               <p className="text-gray-900">{patient.paymentStatus}</p>
             </div>
+             
             {patient.appoinmentStatus === "Booked" || patient?.appoinmentStatus == "Consulted" || patient?.appoinmentStatus == "unConsulted"  ? (
               <>
                 <div className="p-4 bg-gray-50 rounded-lg shadow-inner">
@@ -245,7 +242,7 @@ const PatientDetailPage = () => {
                 </div>
 
                 {patient?.appoinmentStatus == "unConsulted" || patient?.appoinmentStatus == "Consulted" ? ( 
-                  <div className="p-4 bg-gray-50 rounded-lg shadow-inner">
+                  <div className="p-4 bg-gray-50 rounded-lg shadow-inner">  
                   <h2 className="font-bold text-gray-700">Consultation Status</h2>
                   <p className="text-gray-900 font-semibold">{patient?.appoinmentStatus}</p>
                 </div>

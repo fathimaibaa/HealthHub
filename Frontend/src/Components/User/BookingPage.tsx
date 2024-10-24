@@ -177,7 +177,7 @@ const AppointmentBookingPage: React.FC = () => {
         doctorName: doctor.doctorName,
         doctorImage: doctor.profileImage,
         fee: 200,
-        paymentStatus: "Pending",
+        paymentStatus: "pending",
         appoinmentStatus: "Booked",
         appoinmentCancelReason: "",
         timeSlot: selectedTimeSlot || "",

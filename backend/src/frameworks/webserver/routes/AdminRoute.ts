@@ -51,7 +51,7 @@ export default () => {
     router.patch('/block_department/:id',controller.blockDepartmentHandler);
     router.patch('/unblock_department/:id', controller.unblockDepartmentHandler);
     router.get("/appoinments", controller.getAllAppoinments);
-    router.get("/reports",controller.getReports);
+    // router.get("/reports",controller.getReports);
 
 
     return router

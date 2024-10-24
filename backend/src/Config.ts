@@ -10,6 +10,8 @@ const configKeys = {
   APP_PASSWORD:process.env.APP_PASSWORD as string,
   ADMIN_EMAIL:process.env.ADMIN_EMAIL as string,
   ADMIN_PASSWORD:process.env.ADMIN_PASSWORD as string,
-  CLIENT_PORT:process.env.CLIENT_PORT as string
+  CLIENT_PORT:process.env.CLIENT_PORT as string,
+  STRIPE_SECRET_KEY:process.env.STRIPE_SECRET_KEY as string
+
 };
 export default configKeys;

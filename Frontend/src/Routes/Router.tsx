@@ -86,7 +86,6 @@ export const MainRouter = () => {
       <Route path="/user/walletHistory" element={<Transaction/>}/>
       <Route path="/user/appoinment/:id" element={<AppoinmentBookingPage />} />       
       <Route path="/user/checkout/:id" element={<CheckoutPage />} />
-      <Route path='/payment_status/:id' element={<SuccessPage/>}/>
       <Route path="/user/doctor" element={<DoctorList />} />
        
       </Route>

@@ -87,7 +87,7 @@ export const createPayment = async (
     bookingId: string,
     totalAmount: number
   ) => {
-    const stripe = new Stripe("sk_test_51Phr0W2MEaCJUhJikIT3TUIPISmQMTP7CA1UQ8rxmRrlIamjTe6eHl444qrEYfu501UcongTiXsyUlNyA4UyIn8H00kc40OSMB");
+    const stripe = new Stripe(configKeys.STRIPE_SECRET_KEY);
   
     const customer = await stripe.customers.create({
       name: userName,
@@ -105,7 +105,7 @@ export const createPayment = async (
         {
           price_data: {
             currency: "inr",
-            product_data: { name: "Gue", description: "HealthHub - Doctor Booking" },
+            product_data: { name: "Guests", description: "QuickDoc - Doctor Booking" },
             unit_amount: Math.round(totalAmount * 100),
           },
           quantity: 1,
@@ -137,6 +137,7 @@ export const createPayment = async (
 
     return bookingData;
   };
+
 
   export const getBookingByBookingId = async (
     bookingID: string,

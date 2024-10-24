@@ -7,7 +7,10 @@ import { useAppSelector } from "../../Redux/Store/Store";
 import axiosJWT from "../../Utils/AxiosService";
 import { CHAT_API, USER_API } from "../../Constants/Index";
 
+
+
 import { useSocket } from "../../Context/SocketContext";
+;
 
 const Chat: React.FC = () => {
   const user = useAppSelector((state) => state.UserSlice);
@@ -65,10 +68,10 @@ const Chat: React.FC = () => {
     }
   }, [arrivalMessage, currentChat]);
 
-  useEffect(() => {
-    socket?.emit("addUser", user.id);
-    socket?.on("getUsers", (_users: any) => {});
-  }, [user, socket]);
+  // useEffect(() => {
+  //   socket?.emit("addUser", user.id);
+  //   socket?.on("getUsers", (_users: any) => {});
+  // }, [user, socket]);
 
   const emitTypingStatus = (isTyping: boolean) => {
     if (receiverId) {
@@ -100,11 +103,15 @@ const Chat: React.FC = () => {
             return { ...conversation, lastMessage };
           })
         );
+        console.log('updated Conversations',updatedConversations);
+        
+const data = updatedConversations.map((a)=>a)
+console.log('dataaa',data);
 
         updatedConversations.sort(
           (a, b) =>
-            new Date(b.lastMessage.createdAt).getTime() -
-            new Date(a.lastMessage.createdAt).getTime()
+            new Date(b?.lastMessage?.createdAt).getTime() -
+            new Date(a?.lastMessage?.createdAt).getTime()
         );
 
         setConversations(updatedConversations);
@@ -153,8 +160,8 @@ const Chat: React.FC = () => {
       );
       updatedConversations.sort(
         (a, b) =>
-          new Date(b.lastMessage.createdAt).getTime() -
-          new Date(a.lastMessage.createdAt).getTime()
+          new Date(b?.lastMessage?.createdAt).getTime() -
+          new Date(a?.lastMessage?.createdAt).getTime()
       );
       return updatedConversations;
     });
@@ -275,3 +282,4 @@ const Chat: React.FC = () => {
 };
 
 export default Chat;
+  

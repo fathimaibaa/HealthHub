@@ -8,7 +8,7 @@ import { userRepositoryMongodbType } from "../Frameworks/Database/Repositories/U
 import { AuthService } from "../Frameworks/Services/AuthService";
 import { HttpStatus } from "../Types/HttpStatus";
 import { blockDoctor, blockUser } from "../App/Use-cases/Admin/AdminUpdate";
-import { getAllReports, getAllTheAppoinments, getAllTheDoctors, getDoctor, getDoctorRejected, getSingleDoctor, getUsers } from "../App/Use-cases/Admin/AdminRead";
+import { getAllTheAppoinments, getAllTheDoctors, getDoctor, getDoctorRejected, getSingleDoctor, getUsers } from "../App/Use-cases/Admin/AdminRead";
 import { IDepartmentRepository } from "../App/Interfaces/DepartmentRepositoryInterface";
 import {
   addDepartment,
@@ -293,18 +293,18 @@ export default (
   };
 
 
-  const getReports = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
-    try {
-      const reports = await getAllReports(dbBookingRepository);
-      return res.status(HttpStatus.OK).json({ success: true, reports });
-    } catch (error) {
-      next(error);
-    }
-  };
+  // const getReports = async (
+  //   req: Request,
+  //   res: Response,
+  //   next: NextFunction
+  // ) => {
+  //   try {
+  //     const reports = await getAllReports(dbBookingRepository);
+  //     return res.status(HttpStatus.OK).json({ success: true, reports });
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // };
 
   return {
     adminLogin,
@@ -322,7 +322,7 @@ export default (
     blockDepartmentHandler,
     unblockDepartmentHandler,
     getAllAppoinments,
-    getReports
+    // getReports
 
    
   };

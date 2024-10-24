@@ -64,8 +64,7 @@ export const bookingDbRepository = (
     const amount = await repository.amountCredit(fee,UserId);
   }
 
-  const getReports = async () => await repository.getReports();
- 
+
 
     return {
         createBooking,
@@ -84,8 +83,7 @@ export const bookingDbRepository = (
         debitAmount,
         creditAmount,
         changeBookingAppoinmentStatus,
-        checkBookingStatus,
-        getReports
+        checkBookingStatus
        
     }
   }

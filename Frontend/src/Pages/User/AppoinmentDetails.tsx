@@ -22,12 +22,9 @@ const AppointmentDetails: React.FC = () => {
   const [doctorDetails, setDoctorDetails] = useState<any>(null);
   const [showModal, setShowModal] = useState(false);
   const [showPrescriptionModal, setShowPrescriptionModal] = useState(false);
-  const [showReviewModal, setShowReviewModal] = useState(false);
   const [prescription, setPrescription] = useState<any | null>(null);
   const [cancelReason, setCancelReason] = useState("");
-  const [review, setReview] = useState("");
-  const [rating, setRating] = useState(1);
-  const [reviewExists, setReviewExists] = useState(false);
+  
   const [showDocumentModal, setShowDocumentModal] = useState(false);
   const [documents, setDocuments] = useState<{
     name: string;
@@ -54,30 +51,20 @@ const AppointmentDetails: React.FC = () => {
         const response :any= await axiosJWT.get(`${USER_API}/bookingdetails/${id}`);
         const bookingData = response.data.data.bookingDetails;
         setBookingDetails(bookingData);
+        console.log(bookingData,'data hereeeeeeeeeeeeeeeee')
+
 
         const doctorResponse:any = await axiosJWT.get(
           `${USER_API}/doctor/${bookingData.doctorId}`
         );
         setDoctorDetails(doctorResponse.data.doctor);
 
-        await checkReview();
       } catch (error) {
         console.error("Error fetching booking details:", error);
       }
     };
 
-    const checkReview = async () => {
-      try {
-        const response:any = await axiosJWT.get(`${USER_API}/reviewexists`, {
-          params: {
-          appointment:id,
-          },
-        });
-        setReviewExists(response.data.reviewExists);
-      } catch (error) {
-        console.error("Error checking review existence:", error);
-      }
-    };
+    
     
     fetchBookingDetails();
 
@@ -173,15 +160,7 @@ const AppointmentDetails: React.FC = () => {
         <>
       <p className="text-purple-700 text-xl text-bold">Consultation Completed</p>
 
-      <button
-          onClick={() => setShowReviewModal(true)}
-          className={`bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded mt-5 ${
-            reviewExists ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-          disabled={reviewExists}
-        >
-          {reviewExists ? "Review Added" : "Add Review"}
-        </button>
+     
     </>
     );
     }
@@ -218,9 +197,7 @@ const AppointmentDetails: React.FC = () => {
     setShowDocumentModal(false);
   }
 
-  const closeReviewModal = (): void => {
-    setShowReviewModal(false);
-  };
+ 
 
   const handleNameChange = (index: number, value: string) => {
     const updatedDocuments = [...documents];
@@ -287,33 +264,7 @@ const removeDocument = (index:number) => {
       });
   };
 
-  const submitReview = async () => {
-    try {
-      const response = await axiosJWT.post(`${USER_API}/createreviews`, {
-        review: {
-          rating,
-          reviewText: review,
-          user: userID,
-          doctor: bookingDetails.doctorId,
-          appoinment:id
-        },
-      });
-
-      if (response.status === 200) {
-        showToast("Review submitted successfully","success");
-        setShowReviewModal(false);
-        setReview("");
-        setRating(1);
-        setReviewExists(true);
-      } else {
-        alert("Failed to submit review");
-      }
-    } catch (error) {
-      console.error("Error submitting review:", error);
-      showToast("Error submitting review","error");
-    }
-  };
-
+ 
   return (
     <>
       <Navbar />
@@ -404,6 +355,9 @@ const removeDocument = (index:number) => {
                 <p className="font-medium">
                   Patient Problem: {bookingDetails.patientProblem}
                 </p>
+                <p className="font-medium">
+                  Payment Status: {bookingDetails.paymentStatus}
+                </p>
                 {renderStatus()}
                 
               </div>
@@ -493,46 +447,6 @@ const removeDocument = (index:number) => {
 
 
 
-{showReviewModal && (
-          <div className="fixed top-0 left-0 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50">
-            <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">Review Appointment</h2>
-                <button
-                  onClick={closeReviewModal}
-                  className="text-gray-500 hover:text-gray-600"
-                >
-                  <FaTimes />
-                </button>
-              </div>
-              <textarea
-                className="w-full h-32 p-2 border border-gray-300 rounded mb-4"
-                placeholder="Write your review"
-                value={review}
-                onChange={(e) => setReview(e.target.value)}
-              ></textarea>
-              <label className="block mb-2 font-bold">Rating:</label>
-              <select
-                value={rating}
-                onChange={(e) => setRating(parseInt(e.target.value))}
-                className="w-full p-2 border border-gray-300 rounded mb-4"
-              >
-                {/* <option value={0}>Select Rating</option> */}
-                <option value={1}>1 - Very Poor</option>
-                <option value={2}>2 - Poor</option>
-                <option value={3}>3 - Average</option>
-                <option value={4}>4 - Good</option>
-                <option value={5}>5 - Excellent</option>
-              </select>
-              <button
-                onClick={submitReview}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              >
-               {reviewExists ? "Review Added" : "Submit Review"}
-              </button>
-            </div>
-          </div>
-        )}
 
 
 

@@ -8,7 +8,7 @@ import errorHandlingMiddleware from "./Frameworks/Webserver/Middlewares/Errorhan
 import CustomError from "./Utils/CustomError";
 import { Server } from "socket.io";
 import socketConfig from "./Frameworks/Webserver/WebSocket/Socket";
-import path from "path";
+// import path from "path";
 
 
 const app : Application = express();
@@ -27,9 +27,9 @@ const io = new Server(server, {
     },
   });
 
-  app.use(
-    express.static(path.join(__dirname, "../../Frontend/dist"))
-  );
+  // app.use(
+  //   express.static(path.join(__dirname, "../../Frontend/dist"))
+  // );
 
 
   socketConfig(io);

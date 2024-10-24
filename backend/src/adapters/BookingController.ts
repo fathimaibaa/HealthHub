@@ -23,7 +23,7 @@ const BookingController=(
     timeSlotDbRepositoryImpl: TimeSlotRepositoryMongodbType,
     bookingDbRepository: BookingDbRepositoryInterface,
     bookingDbRepositoryImpl: BookingRepositoryMongodbType,
-)=>{
+)=>{ 
     const dbRepositoryUser = userDbRepository(userRepositoryImpl());
     const dbDoctorRepository = doctorDbRepository(doctorDbRepositoryImpl());
     const dbTimeSlotRepository = timeSlotDbRepository(timeSlotDbRepositoryImpl());
@@ -132,7 +132,7 @@ const BookingController=(
 
     }
   }
-
+  
   const cancelAppoinment = async(
     req:Request,
     res:Response,

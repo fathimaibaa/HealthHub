@@ -8,8 +8,9 @@ SocketContext.displayName = "Socket Context";
 export const useSocket = () => useContext(SocketContext);
 
 const SocketProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+
   const socket = io(SERVER_URL);
-  console.log('sockert in user');
+  console.log('sockert in user'); 
   
   socket.on("connect", () => console.log("connected"));
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../Redux/Reducer/Reducer";
@@ -6,12 +6,16 @@ import showToast from "../../../Utils/Toaster";
 import { clearDoctor } from "../../../Redux/Slices/DoctorSlice";
 import { removeItemFromLocalStorage } from "../../../Utils/Setnget";
 import logo from '../../../Assets/Images/logo.png';
+import { useSocket } from "../../../Context/SocketContext";
+import toast from "react-hot-toast";
 
 const Navbar: React.FC = () => {
   const doctor = useSelector((state: RootState) => state.DoctorSlice);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const socket = useSocket()
+  const access_token = localStorage.getItem('access_token')
 
   const handleLogout = () => {
     dispatch(clearDoctor());
@@ -24,6 +28,21 @@ const Navbar: React.FC = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+
+    if(socket && access_token && doctor){
+      console.log('in addUser');
+      socket?.emit("addUser", doctor.id);  
+      socket?.on('getMessage',()=>{
+        console.log('message Recieved');
+        toast.success('New Message')   
+      })
+    }
+    return ()=>{
+      socket?.off('getMessage')
+    }
+  }, [socket,access_token,doctor]);
 
   return (
     <nav className="bg-purple-900 shadow-lg w-full">

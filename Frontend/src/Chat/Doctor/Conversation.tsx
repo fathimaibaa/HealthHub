@@ -46,7 +46,11 @@ const Conversation: React.FC<ConversationProps> = ({ conversation, lastMessage  
   useEffect(() => {
     const receiverId = conversation.members[0]; // Assuming the doctor is the receiver
     socket?.on("senderTyping", (isTyping: boolean, senderId: string) => {
+      console.log('sender event res',isTyping,senderId);
+      
       if (senderId === receiverId) {
+        console.log('inside the condiyiojn', isTyping);
+        
         setIsTyping(isTyping);
       }
     });
@@ -55,6 +59,10 @@ const Conversation: React.FC<ConversationProps> = ({ conversation, lastMessage  
       socket?.off("senderTyping"); // Cleanup event listener on unmount
     };
   }, [socket, conversation]);
+  useEffect(()=>{
+console.log('isTyping in useEffect',isTyping);
+
+  },[isTyping])
 
   // Listen for online status
   useEffect(() => {
@@ -74,7 +82,7 @@ const Conversation: React.FC<ConversationProps> = ({ conversation, lastMessage  
 
   return (
     <div className="bg-white rounded-lg shadow-md p-2 flex flex-col mb-1">
-        <div className="flex flex-col sm:flex-row items-center sm:items-start">
+        <div className="flex flex-col  sm:flex-row items-center sm:items-start">
                 <img
                     className="w-14 h-14 rounded-full object-cover mb-2 sm:mb-0 sm:mr-4"
                     src={userData.profilePicture} 
@@ -94,11 +102,9 @@ const Conversation: React.FC<ConversationProps> = ({ conversation, lastMessage  
           )}
 
           {/* Display the typing status or last message */}
-          {isTyping ? (
+          {isTyping  && (
             <span className="text-gray-500 text-sm italic">Typing...</span>
-          ) : (
-            <span className="text-gray-500 text-sm">{lastMessage?.text}</span>
-          )}
+          ) }
         </div>
   
   );

@@ -77,7 +77,8 @@ export const doctorVerifyEmailPage = (name: string, token: string) => {
           <p>Dear ${name},</p>
           <p>We are thrilled to have you join our platform. Your are now part of the HealthHub family</p>
           <p>To get started, please confirm your email address by clicking the button below:</p>
-          <a href=https://https://health-hub-one.vercel.app/doctor/verify-token/${token} class="button" target="_blank">Confirm Email</a>
+          <a href=http://localhost:5173/doctor/verify-token/${token} class="button" target="_blank">Confirm Email</a>
+        
           <p>If you didn't sign up for an account on HealthHub, you can disregard this email.</p>
           <div class="footer">
             <p>Best regards,<br>HealthHub Team</p>
